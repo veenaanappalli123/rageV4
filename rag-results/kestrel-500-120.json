@@ -1,0 +1,1228 @@
+{
+  "corpus": "kestrel",
+  "config": {
+    "size": 500,
+    "overlap": 120,
+    "k": 5,
+    "retriever": "BM25",
+    "generate": false,
+    "noContext": false
+  },
+  "grading_rules": {
+    "correct": "Fully supported, or clearly abstains when unanswerable",
+    "partial": "Some supported details but incomplete",
+    "wrong": "Incorrect answer, including an answer to an unanswerable question",
+    "unsupported": "Claims not justified by cited documents"
+  },
+  "summary": {
+    "questions": 10,
+    "answerable": 8,
+    "excluded_unanswerable": 2,
+    "missing_ground_truth": 0,
+    "hit_rate_at_1": 0.375,
+    "recall_at_1": 0.25,
+    "hit_rate_at_3": 0.5,
+    "recall_at_3": 0.4375,
+    "hit_rate_at_5": 0.625,
+    "recall_at_5": 0.5,
+    "hit_rate_at_10": 0.875,
+    "recall_at_10": 0.625
+  },
+  "by_type": {
+    "exact_identifier": {
+      "count": 2,
+      "hit_rate_at_1": 0.5,
+      "recall_at_1": 0.25,
+      "hit_rate_at_3": 0.5,
+      "recall_at_3": 0.5,
+      "hit_rate_at_5": 0.5,
+      "recall_at_5": 0.5,
+      "hit_rate_at_10": 1,
+      "recall_at_10": 0.75
+    },
+    "split_answer": {
+      "count": 2,
+      "hit_rate_at_1": 0.5,
+      "recall_at_1": 0.25,
+      "hit_rate_at_3": 0.5,
+      "recall_at_3": 0.25,
+      "hit_rate_at_5": 0.5,
+      "recall_at_5": 0.25,
+      "hit_rate_at_10": 0.5,
+      "recall_at_10": 0.25
+    },
+    "vocabulary": {
+      "count": 1,
+      "hit_rate_at_1": 0,
+      "recall_at_1": 0,
+      "hit_rate_at_3": 0,
+      "recall_at_3": 0,
+      "hit_rate_at_5": 0,
+      "recall_at_5": 0,
+      "hit_rate_at_10": 1,
+      "recall_at_10": 0.5
+    },
+    "versions": {
+      "count": 2,
+      "hit_rate_at_1": 0.5,
+      "recall_at_1": 0.5,
+      "hit_rate_at_3": 1,
+      "recall_at_3": 1,
+      "hit_rate_at_5": 1,
+      "recall_at_5": 1,
+      "hit_rate_at_10": 1,
+      "recall_at_10": 1
+    },
+    "two_hop": {
+      "count": 1,
+      "hit_rate_at_1": 0,
+      "recall_at_1": 0,
+      "hit_rate_at_3": 0,
+      "recall_at_3": 0,
+      "hit_rate_at_5": 1,
+      "recall_at_5": 0.5,
+      "hit_rate_at_10": 1,
+      "recall_at_10": 0.5
+    }
+  },
+  "rows": [
+    {
+      "id": "q01",
+      "question": "What does error KST-2044 mean and how do I fix it?",
+      "type": "exact_identifier",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "support-runbook-errors.md",
+          "quote": "the Kestrel addresses are missing from it"
+        },
+        {
+          "source": "support-runbook-errors.md",
+          "quote": "add both 203.0.113.10 and 203.0.113.11 to the allowlist"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "support-runbook-errors.md:8",
+        "support-runbook-errors.md:9"
+      ],
+      "retrieved": [
+        {
+          "text": "# Kestrel Analytics — Support Runbook: Error Codes\n\nInternal document · Owner: Customer Support · Last reviewed: 2 September 2026\n\n## How to use this runbook\n\nEvery error shown to a Kestrel user carries a code of the form `KST-` followed by four digits. The first digit gives the area: 1 for sign-in, 2 for connectors, 3 for queries and dashboards, 4 for members and seats, 5 for delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what supp",
+          "offset": 0,
+          "id": "support-runbook-errors.md:0",
+          "source": "support-runbook-errors.md",
+          "score": 9.418664552072883
+        },
+        {
+          "text": "# Kestrel Analytics — Billing and Refund Policy\n\nEffective date: 1 January 2025 · Policy owner: Finance · Audience: customers and support staff\n\n## 1. Scope\n\nThis policy explains how Kestrel Analytics charges for its plans, how invoices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. Enterprise contracts may contain different terms; when they do, the contract takes precedence over this policy. Current prices are published on the Ke",
+          "offset": 0,
+          "id": "billing-policy-2025.md:0",
+          "source": "billing-policy-2025.md",
+          "score": 6.967548665866185
+        },
+        {
+          "text": "delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what support can do, and when to escalate. Always ask the customer for the workspace name, the exact code and the time it happened. If a code is not listed here, escalate it to the on-call engineer of the Platform team.\n\nEscalations go to the team that owns the service involved. The owning team of each service and its on-call channel are listed in the Service Catalog.\n\n## Severity level",
+          "offset": 380,
+          "id": "support-runbook-errors.md:1",
+          "source": "support-runbook-errors.md",
+          "score": 6.945404856700214
+        },
+        {
+          "text": "# Kestrel Analytics — Service Catalog\n\nInternal document · Owner: Platform team · Last updated: 15 September 2026\n\nThis catalog lists the production services of Kestrel, what each one does, and which team owns it. The owning team is responsible for the service's on-call rotation, its alerts and its runbook entries. When in doubt about who owns something, ask in #platform-help.\n\n## 1. Services\n\n### gateway\n\nPublic entry point for the web app and the public API. Handles TLS, rate limiting and requ",
+          "offset": 0,
+          "id": "service-catalog.md:0",
+          "source": "service-catalog.md",
+          "score": 6.421050020917456
+        },
+        {
+          "text": "# Kestrel Analytics — Product Guide\n\nVersion 4.2 · Last updated: 12 August 2026 · Audience: customers and workspace administrators\n\n## 1. What Kestrel does\n\nKestrel Analytics is a dashboard and business intelligence service for teams. You connect your data sources, build datasets on top of them, and turn those datasets into dashboards that refresh automatically. Dashboards can be shared with colleagues, sent as scheduled PDF reports, or embedded in your own web applications.\n\nEverything in Kestr",
+          "offset": 0,
+          "id": "product-guide.md:0",
+          "source": "product-guide.md",
+          "score": 5.56065855387462
+        },
+        {
+          "text": "connector.\n**Escalate:** to Data Integrations if several customers report it for the same source type at the same time.\n\n### KST-2044 — Source refused the connection\n\n**User sees:** \"Your data source refused the connection from Kestrel.\"\n**Cause:** the database only accepts connections from an allowlist of IP addresses, and the Kestrel addresses are missing from it.\n**Support action:** ask the customer to add both 203.0.113.10 and 203.0.113.11 to the allowlist of their database or firewall. Addi",
+          "offset": 3040,
+          "id": "support-runbook-errors.md:8",
+          "source": "support-runbook-errors.md",
+          "score": 5.441384715162062
+        },
+        {
+          "text": "# Kestrel Analytics — Billing and Refund Policy\n\nEffective date: 1 March 2026 · Policy owner: Finance · Audience: customers and support staff\n\nThis policy replaces the Billing and Refund Policy effective 1 January 2025. Requests made before 1 March 2026 are handled under the previous policy.\n\n## 1. Scope\n\nThis policy explains how Kestrel Analytics charges for its plans, how invoices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. E",
+          "offset": 0,
+          "id": "billing-policy-2026.md:0",
+          "source": "billing-policy-2026.md",
+          "score": 5.209104620147855
+        },
+        {
+          "text": ", use one of your backup codes at the second-factor prompt, then set up two-factor authentication again from **Profile → Security**.\n\nIf you have neither your authenticator device nor any backup code, ask an Admin of your workspace to reset your second factor from **Settings → Members**. You will set it up again at your next sign-in.\n\nIf you are the only Admin, or the workspace Owner, write to support from the e-mail address registered on the account. For security reasons support verifies your i",
+          "offset": 4560,
+          "id": "product-guide.md:12",
+          "source": "product-guide.md",
+          "score": 4.824740345451765
+        },
+        {
+          "text": " critical incidents |\n\nWhen you contact support, include the workspace name, the error code if one is shown (it starts with `KST-`), and the time it happened.\n",
+          "offset": 8360,
+          "id": "product-guide.md:22",
+          "source": "product-guide.md",
+          "score": 4.531897824197495
+        },
+        {
+          "text": "freshes, every tile that uses it is updated. The refresh frequency of a dataset cannot be faster than the fastest refresh of your plan (see section 2).\n\nYou can see when a dataset was last refreshed by hovering over the clock icon in the corner of any tile. A red clock means the last refresh failed; the tooltip shows the error code.\n\n## 8. Scheduled reports\n\nAny dashboard can be sent as a PDF on a schedule: daily, weekly or monthly. A schedule can have up to 50 recipients, who do not need to be ",
+          "offset": 6080,
+          "id": "product-guide.md:16",
+          "source": "product-guide.md",
+          "score": 4.240724063194764
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 5,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 0.5
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q02",
+      "question": "A user gets KST-4012 when accepting an invitation. What should support tell them?",
+      "type": "exact_identifier",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "support-runbook-errors.md",
+          "quote": "all seats of the plan are already used"
+        },
+        {
+          "source": "support-runbook-errors.md",
+          "quote": "an Admin of the workspace must remove a member to free a seat, or the Owner must add seats or move to a larger plan"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "support-runbook-errors.md:12",
+        "support-runbook-errors.md:13"
+      ],
+      "retrieved": [
+        {
+          "text": "* a red clock on the tiles.\n**Cause:** the tooltip shows a second code with the real cause, usually a KST-2xxx connector error.\n**Support action:** handle the underlying code.\n**Escalate:** depends on the underlying code.\n\n## Members and seats (KST-4xxx)\n\n### KST-4012 — No seat available\n\n**User sees:** \"This workspace has no seat available. Ask an Admin.\"\n**Cause:** the person is accepting an invitation, but all seats of the plan are already used. Pending invitations do not use a seat; the chec",
+          "offset": 4560,
+          "id": "support-runbook-errors.md:12",
+          "source": "support-runbook-errors.md",
+          "score": 14.406990978846506
+        },
+        {
+          "text": " is accepting an invitation, but all seats of the plan are already used. Pending invitations do not use a seat; the check happens at acceptance.\n**Support action:** explain that an Admin of the workspace must remove a member to free a seat, or the Owner must add seats or move to a larger plan. Once a seat is free, the same invitation link works again as long as it is less than 7 days old.\n**Escalate:** no.\n\n### KST-4019 — Ownership transfer pending\n\n**User sees:** \"An ownership transfer is waiti",
+          "offset": 4940,
+          "id": "support-runbook-errors.md:13",
+          "source": "support-runbook-errors.md",
+          "score": 11.286171716632834
+        },
+        {
+          "text": "h a workaround | Next business day |\n| SEV-4 | Question, cosmetic issue | Normal queue |\n\n## Sign-in (KST-1xxx)\n\n### KST-1001 — Invalid credentials\n\n**User sees:** \"The e-mail or password is incorrect.\"\n**Cause:** wrong password, or the user is signing in to a workspace that enforces single sign-on.\n**Support action:** check whether the workspace enforces single sign-on. If it does, tell the user to use **Sign in with SSO**. Otherwise point them to **Forgot password**. Support never sets a passw",
+          "offset": 1140,
+          "id": "support-runbook-errors.md:3",
+          "source": "support-runbook-errors.md",
+          "score": 9.406590202662876
+        },
+        {
+          "text": "does, tell the user to use **Sign in with SSO**. Otherwise point them to **Forgot password**. Support never sets a password for a user.\n**Escalate:** no.\n\n### KST-1007 — Two-factor code rejected\n\n**User sees:** \"This code is not valid.\"\n**Cause:** in most cases the clock of the device running the authenticator app is wrong; time-based codes depend on the time being correct within about 30 seconds.\n**Support action:** ask the user to turn on automatic date and time on their device and try again. ",
+          "offset": 1520,
+          "id": "support-runbook-errors.md:4",
+          "source": "support-runbook-errors.md",
+          "score": 9.126852808703767
+        },
+        {
+          "text": "\n\n## 4. Inviting people\n\nAdmins invite people from **Settings → Members → Invite**. An invitation is sent by e-mail and is valid for 7 days. After that the link expires and a new invitation must be sent.\n\nPending invitations do not use a seat. A seat is used only when the person accepts the invitation. If the workspace has no free seat at that moment, the invitation cannot be accepted until an Admin frees a seat or the Owner moves to a larger plan.\n\nMembers can be removed at any time. Their dash",
+          "offset": 2660,
+          "id": "product-guide.md:7",
+          "source": "product-guide.md",
+          "score": 7.930739913028468
+        },
+        {
+          "text": "delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what support can do, and when to escalate. Always ask the customer for the workspace name, the exact code and the time it happened. If a code is not listed here, escalate it to the on-call engineer of the Platform team.\n\nEscalations go to the team that owns the service involved. The owning team of each service and its on-call channel are listed in the Service Catalog.\n\n## Severity level",
+          "offset": 380,
+          "id": "support-runbook-errors.md:1",
+          "source": "support-runbook-errors.md",
+          "score": 7.586865278691176
+        },
+        {
+          "text": "# Kestrel Analytics — Support Runbook: Error Codes\n\nInternal document · Owner: Customer Support · Last reviewed: 2 September 2026\n\n## How to use this runbook\n\nEvery error shown to a Kestrel user carries a code of the form `KST-` followed by four digits. The first digit gives the area: 1 for sign-in, 2 for connectors, 3 for queries and dashboards, 4 for members and seats, 5 for delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what supp",
+          "offset": 0,
+          "id": "support-runbook-errors.md:0",
+          "source": "support-runbook-errors.md",
+          "score": 7.419153469168949
+        },
+        {
+          "text": "ens dashboards and reports, but cannot change them.\n\nTo transfer ownership, the current Owner opens **Settings → Members**, selects a member and chooses **Transfer ownership**. The new Owner must already be an Admin of the workspace. Both people receive a confirmation e-mail, and the transfer completes only after both have confirmed. Until then the transfer is shown as pending.\n\n## 4. Inviting people\n\nAdmins invite people from **Settings → Members → Invite**. An invitation is sent by e-mail and ",
+          "offset": 2280,
+          "id": "product-guide.md:6",
+          "source": "product-guide.md",
+          "score": 6.540764664042651
+        },
+        {
+          "text": "ction:** ask the customer to add both 203.0.113.10 and 203.0.113.11 to the allowlist of their database or firewall. Adding only one of them leads to errors that come and go, because connections can come from either address.\n**Escalate:** no.\n\n### KST-2051 — Credentials rejected\n\n**User sees:** \"The username or password for this data source is incorrect.\"\n**Cause:** the database password was changed, or the database user was removed.\n**Support action:** an Admin must edit the connector and enter ",
+          "offset": 3420,
+          "id": "support-runbook-errors.md:9",
+          "source": "support-runbook-errors.md",
+          "score": 5.277082943114003
+        },
+        {
+          "text": "# Kestrel Analytics — Product Guide\n\nVersion 4.2 · Last updated: 12 August 2026 · Audience: customers and workspace administrators\n\n## 1. What Kestrel does\n\nKestrel Analytics is a dashboard and business intelligence service for teams. You connect your data sources, build datasets on top of them, and turn those datasets into dashboards that refresh automatically. Dashboards can be shared with colleagues, sent as scheduled PDF reports, or embedded in your own web applications.\n\nEverything in Kestr",
+          "offset": 0,
+          "id": "product-guide.md:0",
+          "source": "product-guide.md",
+          "score": 5.187594924887439
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 0.5
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q03",
+      "question": "What happens, step by step, when a customer's card payment fails?",
+      "type": "split_answer",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "billing-policy-2026.md",
+          "quote": "We then retry the payment automatically 1 day, 3 days and 7 days after the first attempt"
+        },
+        {
+          "source": "billing-policy-2026.md",
+          "quote": "a grace period of 21 days from the first failed attempt"
+        },
+        {
+          "source": "billing-policy-2026.md",
+          "quote": "the workspace becomes read-only"
+        },
+        {
+          "source": "billing-policy-2026.md",
+          "quote": "60 days after the first failed attempt, the workspace is suspended"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "billing-policy-2026.md:9",
+        "billing-policy-2026.md:10"
+      ],
+      "retrieved": [
+        {
+          "text": "s → Plan → Request a refund** or by e-mail to billing@kestrel.example. Approved refunds are processed within 14 days and returned to the original payment method.\n\nCharges caused by a billing error on our side (for example a duplicate charge) are always refunded in full, whatever the plan and whatever the date.\n\n## 7. Failed payments\n\nWhen a payment fails, the workspace Owner and the billing contact receive an e-mail straight away. We then retry the payment automatically 1 day, 3 days and 7 days ",
+          "offset": 3040,
+          "id": "billing-policy-2026.md:8",
+          "source": "billing-policy-2026.md",
+          "score": 11.099154248415587
+        },
+        {
+          "text": "unds are processed within 10 business days and returned to the original payment method.\n\nCharges caused by a billing error on our side (for example a duplicate charge) are always refunded in full, whatever the plan and whatever the date.\n\n## 7. Failed payments\n\nIf a payment fails, we retry the card automatically 3 days and 7 days after the first attempt, and the workspace Owner receives an e-mail after each failed attempt.\n\nIf the payment still fails, the workspace has a grace period of 14 days ",
+          "offset": 2660,
+          "id": "billing-policy-2025.md:7",
+          "source": "billing-policy-2025.md",
+          "score": 10.622102681211553
+        },
+        {
+          "text": "as SEV-2.\n\n### KST-5038 — Embed token expired\n\n**User sees:** an embedded dashboard shows \"This link has expired\".\n**Cause:** the embed token passed by the customer's application is older than its lifetime (24 hours by default).\n**Support action:** the customer's server must request a new token before the old one expires. On Business and Enterprise, the lifetime can be raised up to 30 days.\n**Escalate:** no.\n\n## Billing (KST-6xxx)\n\n### KST-6002 — Payment declined\n\n**User sees:** \"Your payment wa",
+          "offset": 6460,
+          "id": "support-runbook-errors.md:17",
+          "source": "support-runbook-errors.md",
+          "score": 9.653813029427411
+        },
+        {
+          "text": "cipient's mail server.\n**Support action:** check whether the recipient's address is correct and whether the next delivery succeeds. Ask the customer to check that messages from kestrel.example are not blocked by their mail filter.\n**Escalate:** if the error happens on two consecutive deliveries, or for several customers on the same day, escalate to the team that owns postroom, as SEV-2.\n\n### KST-5038 — Embed token expired\n\n**User sees:** an embedded dashboard shows \"This link has expired\".\n**Cau",
+          "offset": 6080,
+          "id": "support-runbook-errors.md:16",
+          "source": "support-runbook-errors.md",
+          "score": 8.94742600897542
+        },
+        {
+          "text": "tries, grace period and read-only rules. Support cannot take card details over e-mail or chat.\n**Escalate:** to Payments Core only if the customer shows that the bank approved the payment.\n\n### KST-6010 — Duplicate charge detected\n\n**User sees:** nothing; this code appears in the admin console when two charges for the same period are found.\n**Cause:** a retry and a manual payment went through for the same invoice.\n**Support action:** confirm the duplicate in the admin console and request a full ",
+          "offset": 7220,
+          "id": "support-runbook-errors.md:19",
+          "source": "support-runbook-errors.md",
+          "score": 8.34787845237155
+        },
+        {
+          "text": "p to 30 days.\n**Escalate:** no.\n\n## Billing (KST-6xxx)\n\n### KST-6002 — Payment declined\n\n**User sees:** \"Your payment was declined.\"\n**Cause:** the card was refused by the bank: insufficient funds, expired card, or a security block.\n**Support action:** ask the Owner to update the payment method before the next automatic retry. Follow the current Billing and Refund Policy for retries, grace period and read-only rules. Support cannot take card details over e-mail or chat.\n**Escalate:** to Payments",
+          "offset": 6840,
+          "id": "support-runbook-errors.md:18",
+          "source": "support-runbook-errors.md",
+          "score": 7.828856142745881
+        },
+        {
+          "text": "ept credit and debit cards (Visa, Mastercard, American Express). Business and Enterprise customers can also pay by bank transfer against an invoice, with payment due within 30 days of the invoice date.\n\nThe card on file can be updated by the workspace Owner from **Settings → Plan → Payment method**. We do not store full card numbers; they are held by our payment processor.\n\n## 4. Invoices\n\nAn invoice is issued for every charge and sent by e-mail to the billing contact of the workspace. Invoices ",
+          "offset": 1140,
+          "id": "billing-policy-2025.md:3",
+          "source": "billing-policy-2025.md",
+          "score": 7.426497150118366
+        },
+        {
+          "text": "delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what support can do, and when to escalate. Always ask the customer for the workspace name, the exact code and the time it happened. If a code is not listed here, escalate it to the on-call engineer of the Platform team.\n\nEscalations go to the team that owns the service involved. The owning team of each service and its on-call channel are listed in the Service Catalog.\n\n## Severity level",
+          "offset": 380,
+          "id": "support-runbook-errors.md:1",
+          "source": "support-runbook-errors.md",
+          "score": 7.161022914111473
+        },
+        {
+          "text": "# Kestrel Analytics — Support Runbook: Error Codes\n\nInternal document · Owner: Customer Support · Last reviewed: 2 September 2026\n\n## How to use this runbook\n\nEvery error shown to a Kestrel user carries a code of the form `KST-` followed by four digits. The first digit gives the area: 1 for sign-in, 2 for connectors, 3 for queries and dashboards, 4 for members and seats, 5 for delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what supp",
+          "offset": 0,
+          "id": "support-runbook-errors.md:0",
+          "source": "support-runbook-errors.md",
+          "score": 7.134483256305788
+        },
+        {
+          "text": " embed tokens for dashboards embedded in customer applications.\nOwner: **Platform**.\n\n### ledger\n\nSubscriptions, seats, invoices and payments. Generates invoice PDFs, runs the automatic payment retries, and applies the grace period and read-only rules of the Billing and Refund Policy. Talks to the payment processor; never stores full card numbers.\nOwner: **Payments Core**.\n\n### audit-log\n\nRecords security-relevant events (sign-ins, role changes, connector edits, exports) for workspaces on Busine",
+          "offset": 1900,
+          "id": "service-catalog.md:5",
+          "source": "service-catalog.md",
+          "score": 6.7664868462511425
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 5,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 10,
+          "hit": 0,
+          "recall": 0
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q04",
+      "question": "Which plans include single sign-on, and how does an admin set it up?",
+      "type": "split_answer",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "product-guide.md",
+          "quote": "| Single sign-on (SAML) | — | — | — | Yes | Yes |"
+        },
+        {
+          "source": "product-guide.md",
+          "quote": "downloads the Kestrel service provider metadata"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "product-guide.md:3",
+        "product-guide.md:10"
+      ],
+      "retrieved": [
+        {
+          "text": "ttings → Security**. Members who have not set it up are asked to do so at their next sign-in.\n\n### 5.2 Single sign-on\n\nOn the Business and Enterprise plans, workspaces can use single sign-on with any SAML 2.0 identity provider. To set it up, an Admin opens **Settings → Security → Single sign-on**, downloads the Kestrel service provider metadata, registers Kestrel in the identity provider, and pastes the identity provider metadata URL back into Kestrel. We recommend testing with one Admin account",
+          "offset": 3800,
+          "id": "product-guide.md:10",
+          "source": "product-guide.md",
+          "score": 19.357514343827788
+        },
+        {
+          "text": "y provider, and pastes the identity provider metadata URL back into Kestrel. We recommend testing with one Admin account before choosing **Enforce for all members**. When single sign-on is enforced, passwords are disabled and two-factor authentication is handled by your identity provider.\n\n### 5.3 Regaining access to your account\n\nIf you no longer have your authenticator device, use one of your backup codes at the second-factor prompt, then set up two-factor authentication again from **Profile →",
+          "offset": 4180,
+          "id": "product-guide.md:11",
+          "source": "product-guide.md",
+          "score": 11.025593736814814
+        },
+        {
+          "text": "mend turning on two-factor authentication from **Profile → Security**. Kestrel supports authenticator apps that generate time-based six-digit codes. When you turn it on, Kestrel shows 10 backup codes. Each backup code works once. Store them somewhere safe and separate from your authenticator device.\n\nAdmins can make two-factor authentication mandatory for every member from **Settings → Security**. Members who have not set it up are asked to do so at their next sign-in.\n\n### 5.2 Single sign-on\n\nO",
+          "offset": 3420,
+          "id": "product-guide.md:9",
+          "source": "product-guide.md",
+          "score": 10.761738988736996
+        },
+        {
+          "text": ", use one of your backup codes at the second-factor prompt, then set up two-factor authentication again from **Profile → Security**.\n\nIf you have neither your authenticator device nor any backup code, ask an Admin of your workspace to reset your second factor from **Settings → Members**. You will set it up again at your next sign-in.\n\nIf you are the only Admin, or the workspace Owner, write to support from the e-mail address registered on the account. For security reasons support verifies your i",
+          "offset": 4560,
+          "id": "product-guide.md:12",
+          "source": "product-guide.md",
+          "score": 10.575366872363883
+        },
+        {
+          "text": "h a workaround | Next business day |\n| SEV-4 | Question, cosmetic issue | Normal queue |\n\n## Sign-in (KST-1xxx)\n\n### KST-1001 — Invalid credentials\n\n**User sees:** \"The e-mail or password is incorrect.\"\n**Cause:** wrong password, or the user is signing in to a workspace that enforces single sign-on.\n**Support action:** check whether the workspace enforces single sign-on. If it does, tell the user to use **Sign in with SSO**. Otherwise point them to **Forgot password**. Support never sets a passw",
+          "offset": 1140,
+          "id": "support-runbook-errors.md:3",
+          "source": "support-runbook-errors.md",
+          "score": 9.36972547011279
+        },
+        {
+          "text": "another workspace, even inside the same organisation.\n\n## 2. Plans and limits\n\nEach workspace is on exactly one plan. The plan sets the number of seats, how often data refreshes, and which administration features are available.\n\n| | Free | Starter | Team | Business | Enterprise |\n|---|---|---|---|---|---|\n| Seats included | 2 | 5 | 20 | 100 | Custom |\n| Dashboards | 3 | 25 | Unlimited | Unlimited | Unlimited |\n| Data connectors | 1 | 3 | 10 | Unlimited | Unlimited |\n| Fastest refresh | Daily | H",
+          "offset": 760,
+          "id": "product-guide.md:2",
+          "source": "product-guide.md",
+          "score": 7.98931469703733
+        },
+        {
+          "text": "ccepted until an Admin frees a seat or the Owner moves to a larger plan.\n\nMembers can be removed at any time. Their dashboards are not deleted: they are transferred to the Admin who removed them.\n\n## 5. Signing in\n\n### 5.1 Password and two-factor authentication\n\nMembers sign in with their e-mail address and a password, unless the workspace uses single sign-on. We strongly recommend turning on two-factor authentication from **Profile → Security**. Kestrel supports authenticator apps that generate",
+          "offset": 3040,
+          "id": "product-guide.md:8",
+          "source": "product-guide.md",
+          "score": 7.509461172882547
+        },
+        {
+          "text": "# Kestrel Analytics — Billing and Refund Policy\n\nEffective date: 1 January 2025 · Policy owner: Finance · Audience: customers and support staff\n\n## 1. Scope\n\nThis policy explains how Kestrel Analytics charges for its plans, how invoices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. Enterprise contracts may contain different terms; when they do, the contract takes precedence over this policy. Current prices are published on the Ke",
+          "offset": 0,
+          "id": "billing-policy-2025.md:0",
+          "source": "billing-policy-2025.md",
+          "score": 7.346084239502226
+        },
+        {
+          "text": "# Kestrel Analytics — Billing and Refund Policy\n\nEffective date: 1 March 2026 · Policy owner: Finance · Audience: customers and support staff\n\nThis policy replaces the Billing and Refund Policy effective 1 January 2025. Requests made before 1 March 2026 are handled under the previous policy.\n\n## 1. Scope\n\nThis policy explains how Kestrel Analytics charges for its plans, how invoices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. E",
+          "offset": 0,
+          "id": "billing-policy-2026.md:0",
+          "source": "billing-policy-2026.md",
+          "score": 7.300623303438513
+        },
+        {
+          "text": " identity provider returned an invalid response.\"\n**Cause:** the identity provider certificate has expired or was rotated, or the clock of the identity provider is out of sync.\n**Support action:** ask a workspace Admin to upload the new identity provider metadata in **Settings → Security → Single sign-on**.\n**Escalate:** to Identity if the metadata is correct and the error persists.\n\n## Connectors (KST-2xxx)\n\n### KST-2040 — Connection timed out\n\n**User sees:** \"Kestrel could not reach your data ",
+          "offset": 2280,
+          "id": "support-runbook-errors.md:6",
+          "source": "support-runbook-errors.md",
+          "score": 7.09173170128086
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 0.5
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 0.5
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 0.5
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 0.5
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q05",
+      "question": "I lost my phone and I can't log in anymore. What can I do?",
+      "type": "vocabulary",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "product-guide.md",
+          "quote": "If you no longer have your authenticator device, use one of your backup codes"
+        },
+        {
+          "source": "product-guide.md",
+          "quote": "ask an Admin of your workspace to reset your second factor"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "product-guide.md:11",
+        "product-guide.md:12"
+      ],
+      "retrieved": [
+        {
+          "text": "delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what support can do, and when to escalate. Always ask the customer for the workspace name, the exact code and the time it happened. If a code is not listed here, escalate it to the on-call engineer of the Platform team.\n\nEscalations go to the team that owns the service involved. The owning team of each service and its on-call channel are listed in the Service Catalog.\n\n## Severity level",
+          "offset": 380,
+          "id": "support-runbook-errors.md:1",
+          "source": "support-runbook-errors.md",
+          "score": 7.106924169803672
+        },
+        {
+          "text": "in about 30 seconds.\n**Support action:** ask the user to turn on automatic date and time on their device and try again. If they have lost their device, follow the second-factor reset procedure in the Product Guide (an Admin of the workspace resets it; support only does it after identity verification).\n**Escalate:** no.\n\n### KST-1012 — SSO response rejected\n\n**User sees:** \"Your identity provider returned an invalid response.\"\n**Cause:** the identity provider certificate has expired or was rotate",
+          "offset": 1900,
+          "id": "support-runbook-errors.md:5",
+          "source": "support-runbook-errors.md",
+          "score": 5.254945181179168
+        },
+        {
+          "text": "limited | Unlimited | Unlimited |\n| Data connectors | 1 | 3 | 10 | Unlimited | Unlimited |\n| Fastest refresh | Daily | Hourly | Every 15 minutes | Every 5 minutes | Every minute |\n| History kept | 30 days | 1 year | 2 years | 5 years | Custom |\n| Single sign-on (SAML) | — | — | — | Yes | Yes |\n| SCIM user provisioning | — | — | — | — | Yes |\n| Audit log | — | — | — | 90 days | 1 year |\n| Public share links | — | Yes | Yes | Yes | Yes |\n\nPlans can be changed at any time from **Settings → Plan**. ",
+          "offset": 1140,
+          "id": "product-guide.md:3",
+          "source": "product-guide.md",
+          "score": 5.06656875384027
+        },
+        {
+          "text": "# Kestrel Analytics — Product Guide\n\nVersion 4.2 · Last updated: 12 August 2026 · Audience: customers and workspace administrators\n\n## 1. What Kestrel does\n\nKestrel Analytics is a dashboard and business intelligence service for teams. You connect your data sources, build datasets on top of them, and turn those datasets into dashboards that refresh automatically. Dashboards can be shared with colleagues, sent as scheduled PDF reports, or embedded in your own web applications.\n\nEverything in Kestr",
+          "offset": 0,
+          "id": "product-guide.md:0",
+          "source": "product-guide.md",
+          "score": 5.042341499099665
+        },
+        {
+          "text": "# Kestrel Analytics — Service Catalog\n\nInternal document · Owner: Platform team · Last updated: 15 September 2026\n\nThis catalog lists the production services of Kestrel, what each one does, and which team owns it. The owning team is responsible for the service's on-call rotation, its alerts and its runbook entries. When in doubt about who owns something, ask in #platform-help.\n\n## 1. Services\n\n### gateway\n\nPublic entry point for the web app and the public API. Handles TLS, rate limiting and requ",
+          "offset": 0,
+          "id": "service-catalog.md:0",
+          "source": "service-catalog.md",
+          "score": 4.159962524080102
+        },
+        {
+          "text": "# Kestrel Analytics — Support Runbook: Error Codes\n\nInternal document · Owner: Customer Support · Last reviewed: 2 September 2026\n\n## How to use this runbook\n\nEvery error shown to a Kestrel user carries a code of the form `KST-` followed by four digits. The first digit gives the area: 1 for sign-in, 2 for connectors, 3 for queries and dashboards, 4 for members and seats, 5 for delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what supp",
+          "offset": 0,
+          "id": "support-runbook-errors.md:0",
+          "source": "support-runbook-errors.md",
+          "score": 4.063239452340365
+        },
+        {
+          "text": "\n## 3. Workspace roles\n\nEvery member has one role in the workspace:\n\n- **Owner**: exactly one per workspace. The Owner can do everything an Admin can, and is the only person who can change the plan, delete the workspace or transfer ownership.\n- **Admin**: manages members, connectors and security settings.\n- **Editor**: creates and edits datasets and dashboards.\n- **Viewer**: opens dashboards and reports, but cannot change them.\n\nTo transfer ownership, the current Owner opens **Settings → Members",
+          "offset": 1900,
+          "id": "product-guide.md:5",
+          "source": "product-guide.md",
+          "score": 4.050070576495426
+        },
+        {
+          "text": ", use one of your backup codes at the second-factor prompt, then set up two-factor authentication again from **Profile → Security**.\n\nIf you have neither your authenticator device nor any backup code, ask an Admin of your workspace to reset your second factor from **Settings → Members**. You will set it up again at your next sign-in.\n\nIf you are the only Admin, or the workspace Owner, write to support from the e-mail address registered on the account. For security reasons support verifies your i",
+          "offset": 4560,
+          "id": "product-guide.md:12",
+          "source": "product-guide.md",
+          "score": 3.8570795185926485
+        },
+        {
+          "text": "freshes, every tile that uses it is updated. The refresh frequency of a dataset cannot be faster than the fastest refresh of your plan (see section 2).\n\nYou can see when a dataset was last refreshed by hovering over the clock icon in the corner of any tile. A red clock means the last refresh failed; the tooltip shows the error code.\n\n## 8. Scheduled reports\n\nAny dashboard can be sent as a PDF on a schedule: daily, weekly or monthly. A schedule can have up to 50 recipients, who do not need to be ",
+          "offset": 6080,
+          "id": "product-guide.md:16",
+          "source": "product-guide.md",
+          "score": 3.4500030174034957
+        },
+        {
+          "text": "ttings → Security**. Members who have not set it up are asked to do so at their next sign-in.\n\n### 5.2 Single sign-on\n\nOn the Business and Enterprise plans, workspaces can use single sign-on with any SAML 2.0 identity provider. To set it up, an Admin opens **Settings → Security → Single sign-on**, downloads the Kestrel service provider metadata, registers Kestrel in the identity provider, and pastes the identity provider metadata URL back into Kestrel. We recommend testing with one Admin account",
+          "offset": 3800,
+          "id": "product-guide.md:10",
+          "source": "product-guide.md",
+          "score": 3.403084278185565
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 5,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 0.5
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q06",
+      "question": "Can I get a refund on my annual plan 45 days after it renewed?",
+      "type": "versions",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "billing-policy-2026.md",
+          "quote": "within 60 days of the purchase or renewal date"
+        },
+        {
+          "source": "billing-policy-2026.md",
+          "quote": "pro-rated from the date of the request"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "billing-policy-2026.md:7"
+      ],
+      "retrieved": [
+        {
+          "text": " the end of the month already paid.\n\n**Annual plans** can be refunded if the request is made within 60 days of the purchase or renewal date. The refund is pro-rated from the date of the request: you are refunded the unused full months of the annual period. After 60 days, annual plans are not refundable.\n\nRefund requests must be sent by the workspace Owner, either from **Settings → Plan → Request a refund** or by e-mail to billing@kestrel.example. Approved refunds are processed within 14 days and",
+          "offset": 2660,
+          "id": "billing-policy-2026.md:7",
+          "source": "billing-policy-2026.md",
+          "score": 11.972862344763788
+        },
+        {
+          "text": "thly plans** are not refundable. When a monthly plan is cancelled, it remains active until the end of the month already paid.\n\n**Annual plans** can be refunded in full if the request is made within 30 days of the purchase or renewal date. After 30 days, annual plans are not refundable.\n\nRefund requests must be sent by the workspace Owner to billing@kestrel.example. Approved refunds are processed within 10 business days and returned to the original payment method.\n\nCharges caused by a billing err",
+          "offset": 2280,
+          "id": "billing-policy-2025.md:6",
+          "source": "billing-policy-2025.md",
+          "score": 11.490969829336693
+        },
+        {
+          "text": "ro-rated to the end of the current billing period.\n\nSeats can be removed at any time. On monthly plans the reduction takes effect at the next monthly charge. On annual plans the reduction takes effect at the next renewal, and no credit is given for the current period.\n\n## 6. Refunds\n\n**Monthly plans** are not refundable. When a monthly plan is cancelled, it remains active until the end of the month already paid.\n\n**Annual plans** can be refunded if the request is made within 60 days of the purch",
+          "offset": 2280,
+          "id": "billing-policy-2026.md:6",
+          "source": "billing-policy-2026.md",
+          "score": 8.151647733713663
+        },
+        {
+          "text": ". Data from your sources is not included: Kestrel stores only the cached results needed to display dashboards.\n\nWhen the Owner deletes a workspace, it is first disabled for 30 days. During that period it can be restored by contacting support. After 30 days it is deleted permanently and cannot be recovered.\n\nRequests about personal data (access, correction, deletion) can be sent to privacy@kestrel.example. We answer within one month.\n\n## 11. Getting help\n\n| Plan | Channels | First response target",
+          "offset": 7600,
+          "id": "product-guide.md:20",
+          "source": "product-guide.md",
+          "score": 7.421706395934426
+        },
+        {
+          "text": " then moves to the Free plan. Content above the Free plan limits becomes read-only.\n\nCancelling an annual plan does not by itself trigger a refund. To be refunded, request it as described in section 6.\n\n## 9. Taxes\n\nPrices are shown without tax. VAT or sales tax is added according to the billing address. Business customers in the European Union who provide a valid VAT number are invoiced without VAT under the reverse-charge mechanism.\n\n## 10. Contact\n\nBilling questions: billing@kestrel.example. ",
+          "offset": 4560,
+          "id": "billing-policy-2026.md:12",
+          "source": "billing-policy-2026.md",
+          "score": 7.20521920346866
+        },
+        {
+          "text": "ce is suspended: nobody can sign in to it until the outstanding amount is paid. A suspended workspace is not deleted, and returns to normal as soon as the payment succeeds.\n\n## 8. Cancellation\n\nThe Owner can cancel a paid plan from **Settings → Plan → Cancel plan**. Cancellation stops future charges. The workspace stays on its paid plan until the end of the period already paid, then moves to the Free plan. Content above the Free plan limits becomes read-only.\n\nCancelling an annual plan does not ",
+          "offset": 4180,
+          "id": "billing-policy-2026.md:11",
+          "source": "billing-policy-2026.md",
+          "score": 7.1248887082436845
+        },
+        {
+          "text": "s → Plan → Request a refund** or by e-mail to billing@kestrel.example. Approved refunds are processed within 14 days and returned to the original payment method.\n\nCharges caused by a billing error on our side (for example a duplicate charge) are always refunded in full, whatever the plan and whatever the date.\n\n## 7. Failed payments\n\nWhen a payment fails, the workspace Owner and the billing contact receive an e-mail straight away. We then retry the payment automatically 1 day, 3 days and 7 days ",
+          "offset": 3040,
+          "id": "billing-policy-2026.md:8",
+          "source": "billing-policy-2026.md",
+          "score": 6.722600806778052
+        },
+        {
+          "text": "unds are processed within 10 business days and returned to the original payment method.\n\nCharges caused by a billing error on our side (for example a duplicate charge) are always refunded in full, whatever the plan and whatever the date.\n\n## 7. Failed payments\n\nIf a payment fails, we retry the card automatically 3 days and 7 days after the first attempt, and the workspace Owner receives an e-mail after each failed attempt.\n\nIf the payment still fails, the workspace has a grace period of 14 days ",
+          "offset": 2660,
+          "id": "billing-policy-2025.md:7",
+          "source": "billing-policy-2025.md",
+          "score": 6.691772631365147
+        },
+        {
+          "text": " receives an e-mail after each failed attempt.\n\nIf the payment still fails, the workspace has a grace period of 14 days from the first failed attempt. During the grace period everything keeps working. After the grace period, the workspace becomes read-only: members can view dashboards but cannot edit them, and datasets stop refreshing.\n\nA read-only workspace returns to normal as soon as the outstanding amount is paid.\n\n## 8. Cancellation\n\nThe Owner can cancel a paid plan from **Settings → Plan →",
+          "offset": 3040,
+          "id": "billing-policy-2025.md:8",
+          "source": "billing-policy-2025.md",
+          "score": 6.644320033167007
+        },
+        {
+          "text": "of 21 days from the first failed attempt, during which everything keeps working. A banner reminds Admins that payment is overdue.\n\nAfter the grace period, the workspace becomes read-only: members can view dashboards but cannot edit them, scheduled reports are paused, and datasets stop refreshing.\n\nIf the amount is still unpaid 60 days after the first failed attempt, the workspace is suspended: nobody can sign in to it until the outstanding amount is paid. A suspended workspace is not deleted, an",
+          "offset": 3800,
+          "id": "billing-policy-2026.md:10",
+          "source": "billing-policy-2026.md",
+          "score": 6.591136305533615
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q07",
+      "question": "How much do I save by paying annually instead of monthly?",
+      "type": "versions",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "billing-policy-2026.md",
+          "quote": "Customers who choose annual billing receive a 20% discount"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "billing-policy-2026.md:2"
+      ],
+      "retrieved": [
+        {
+          "text": "in different terms; when they do, the contract takes precedence over this policy. Current prices are published on the Kestrel pricing page and are not repeated here.\n\n## 2. Billing cycles\n\nPaid plans are billed per seat, either monthly or annually. Monthly plans are charged on the same day each month as the original purchase. Annual plans are charged once a year, on the anniversary of the purchase.\n\nCustomers who choose annual billing receive a 15% discount compared with twelve months of monthly",
+          "offset": 380,
+          "id": "billing-policy-2025.md:1",
+          "source": "billing-policy-2025.md",
+          "score": 8.393037530856157
+        },
+        {
+          "text": "oices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. Enterprise contracts may contain different terms; when they do, the contract takes precedence over this policy. Current prices are published on the Kestrel pricing page and are not repeated here.\n\n## 2. Billing cycles\n\nPaid plans are billed per seat, either monthly or annually. Monthly plans are charged on the same day each month as the original purchase. Annual plans are charge",
+          "offset": 380,
+          "id": "billing-policy-2026.md:1",
+          "source": "billing-policy-2026.md",
+          "score": 7.371611382739038
+        },
+        {
+          "text": "thly or annually. Monthly plans are charged on the same day each month as the original purchase. Annual plans are charged once a year, on the anniversary of the purchase.\n\nCustomers who choose annual billing receive a 20% discount compared with twelve months of monthly billing. Switching from monthly to annual billing is possible at any time and takes effect immediately; the unused part of the current month is credited. Switching from annual to monthly billing takes effect at the next renewal.\n\n",
+          "offset": 760,
+          "id": "billing-policy-2026.md:2",
+          "source": "billing-policy-2026.md",
+          "score": 7.0814119689642006
+        },
+        {
+          "text": "# Kestrel Analytics — Billing and Refund Policy\n\nEffective date: 1 January 2025 · Policy owner: Finance · Audience: customers and support staff\n\n## 1. Scope\n\nThis policy explains how Kestrel Analytics charges for its plans, how invoices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. Enterprise contracts may contain different terms; when they do, the contract takes precedence over this policy. Current prices are published on the Ke",
+          "offset": 0,
+          "id": "billing-policy-2025.md:0",
+          "source": "billing-policy-2025.md",
+          "score": 5.718522002679379
+        },
+        {
+          "text": "e sent as a PDF on a schedule: daily, weekly or monthly. A schedule can have up to 50 recipients, who do not need to be members of the workspace. The schedule uses the time zone of the person who created it.\n\nReports are generated a few minutes before the scheduled time and delivered by e-mail. If a recipient's mail server rejects the message three times, that recipient is removed from the schedule and the schedule creator is notified.\n\n## 9. Sharing and embedding\n\n**Public links** let anyone wi",
+          "offset": 6460,
+          "id": "product-guide.md:17",
+          "source": "product-guide.md",
+          "score": 5.064017325744654
+        },
+        {
+          "text": "freshes, every tile that uses it is updated. The refresh frequency of a dataset cannot be faster than the fastest refresh of your plan (see section 2).\n\nYou can see when a dataset was last refreshed by hovering over the clock icon in the corner of any tile. A red clock means the last refresh failed; the tooltip shows the error code.\n\n## 8. Scheduled reports\n\nAny dashboard can be sent as a PDF on a schedule: daily, weekly or monthly. A schedule can have up to 50 recipients, who do not need to be ",
+          "offset": 6080,
+          "id": "product-guide.md:16",
+          "source": "product-guide.md",
+          "score": 5.0524096650895265
+        },
+        {
+          "text": "sary of the purchase.\n\nCustomers who choose annual billing receive a 15% discount compared with twelve months of monthly billing. Switching from monthly to annual billing is possible at any time and takes effect immediately; the unused part of the current month is credited. Switching from annual to monthly billing takes effect at the next renewal.\n\n## 3. Payment methods\n\nWe accept credit and debit cards (Visa, Mastercard, American Express). Business and Enterprise customers can also pay by bank ",
+          "offset": 760,
+          "id": "billing-policy-2025.md:2",
+          "source": "billing-policy-2025.md",
+          "score": 4.8704776565885535
+        },
+        {
+          "text": ", use one of your backup codes at the second-factor prompt, then set up two-factor authentication again from **Profile → Security**.\n\nIf you have neither your authenticator device nor any backup code, ask an Admin of your workspace to reset your second factor from **Settings → Members**. You will set it up again at your next sign-in.\n\nIf you are the only Admin, or the workspace Owner, write to support from the e-mail address registered on the account. For security reasons support verifies your i",
+          "offset": 4560,
+          "id": "product-guide.md:12",
+          "source": "product-guide.md",
+          "score": 4.5589158426306176
+        },
+        {
+          "text": "# Kestrel Analytics — Support Runbook: Error Codes\n\nInternal document · Owner: Customer Support · Last reviewed: 2 September 2026\n\n## How to use this runbook\n\nEvery error shown to a Kestrel user carries a code of the form `KST-` followed by four digits. The first digit gives the area: 1 for sign-in, 2 for connectors, 3 for queries and dashboards, 4 for members and seats, 5 for delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what supp",
+          "offset": 0,
+          "id": "support-runbook-errors.md:0",
+          "source": "support-runbook-errors.md",
+          "score": 4.253934149944966
+        },
+        {
+          "text": "ept credit and debit cards (Visa, Mastercard, American Express). Business and Enterprise customers can also pay by bank transfer against an invoice, with payment due within 30 days of the invoice date.\n\nThe card on file can be updated by the workspace Owner from **Settings → Plan → Payment method**. We do not store full card numbers; they are held by our payment processor.\n\n## 4. Invoices\n\nAn invoice is issued for every charge and sent by e-mail to the billing contact of the workspace. Invoices ",
+          "offset": 1140,
+          "id": "billing-policy-2025.md:3",
+          "source": "billing-policy-2025.md",
+          "score": 4.067511917163163
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q08",
+      "question": "Error KST-5031 happened on the last two scheduled reports. Which team should support contact, and where?",
+      "type": "two_hop",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "support-runbook-errors.md",
+          "quote": "escalate to the team that owns postroom"
+        },
+        {
+          "source": "service-catalog.md",
+          "quote": "| Messaging | Inès Moreau | #oncall-messaging | 08:00–20:00, weekdays |"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "service-catalog.md:7",
+        "support-runbook-errors.md:16"
+      ],
+      "retrieved": [
+        {
+          "text": "s → Members**.\n**Escalate:** no.\n\n## Delivery and embedding (KST-5xxx)\n\n### KST-5031 — Scheduled report not delivered\n\n**User sees:** the schedule shows \"Last delivery failed\".\n**Cause:** the report was generated but the e-mail was not sent. This error is raised by postroom, the service that sends all Kestrel e-mails. A single occurrence is usually a temporary problem with a recipient's mail server.\n**Support action:** check whether the recipient's address is correct and whether the next deliver",
+          "offset": 5700,
+          "id": "support-runbook-errors.md:15",
+          "source": "support-runbook-errors.md",
+          "score": 11.656734586678612
+        },
+        {
+          "text": " critical incidents |\n\nWhen you contact support, include the workspace name, the error code if one is shown (it starts with `KST-`), and the time it happened.\n",
+          "offset": 8360,
+          "id": "product-guide.md:22",
+          "source": "product-guide.md",
+          "score": 11.570343809121534
+        },
+        {
+          "text": "freshes, every tile that uses it is updated. The refresh frequency of a dataset cannot be faster than the fastest refresh of your plan (see section 2).\n\nYou can see when a dataset was last refreshed by hovering over the clock icon in the corner of any tile. A red clock means the last refresh failed; the tooltip shows the error code.\n\n## 8. Scheduled reports\n\nAny dashboard can be sent as a PDF on a schedule: daily, weekly or monthly. A schedule can have up to 50 recipients, who do not need to be ",
+          "offset": 6080,
+          "id": "product-guide.md:16",
+          "source": "product-guide.md",
+          "score": 10.141147457275645
+        },
+        {
+          "text": "7 days old.\n**Escalate:** no.\n\n### KST-4019 — Ownership transfer pending\n\n**User sees:** \"An ownership transfer is waiting for confirmation.\"\n**Cause:** the Owner started a transfer, and one of the two people has not confirmed it by e-mail.\n**Support action:** ask both people to check their inbox and spam folder. The transfer can be cancelled by the current Owner from **Settings → Members**.\n**Escalate:** no.\n\n## Delivery and embedding (KST-5xxx)\n\n### KST-5031 — Scheduled report not delivered\n\n*",
+          "offset": 5320,
+          "id": "support-runbook-errors.md:14",
+          "source": "support-runbook-errors.md",
+          "score": 10.075472654522182
+        },
+        {
+          "text": "cipient's mail server.\n**Support action:** check whether the recipient's address is correct and whether the next delivery succeeds. Ask the customer to check that messages from kestrel.example are not blocked by their mail filter.\n**Escalate:** if the error happens on two consecutive deliveries, or for several customers on the same day, escalate to the team that owns postroom, as SEV-2.\n\n### KST-5038 — Embed token expired\n\n**User sees:** an embedded dashboard shows \"This link has expired\".\n**Cau",
+          "offset": 6080,
+          "id": "support-runbook-errors.md:16",
+          "source": "support-runbook-errors.md",
+          "score": 8.63094041591886
+        },
+        {
+          "text": "# Kestrel Analytics — Service Catalog\n\nInternal document · Owner: Platform team · Last updated: 15 September 2026\n\nThis catalog lists the production services of Kestrel, what each one does, and which team owns it. The owning team is responsible for the service's on-call rotation, its alerts and its runbook entries. When in doubt about who owns something, ask in #platform-help.\n\n## 1. Services\n\n### gateway\n\nPublic entry point for the web app and the public API. Handles TLS, rate limiting and requ",
+          "offset": 0,
+          "id": "service-catalog.md:0",
+          "source": "service-catalog.md",
+          "score": 8.536496202871849
+        },
+        {
+          "text": "# Kestrel Analytics — Product Guide\n\nVersion 4.2 · Last updated: 12 August 2026 · Audience: customers and workspace administrators\n\n## 1. What Kestrel does\n\nKestrel Analytics is a dashboard and business intelligence service for teams. You connect your data sources, build datasets on top of them, and turn those datasets into dashboards that refresh automatically. Dashboards can be shared with colleagues, sent as scheduled PDF reports, or embedded in your own web applications.\n\nEverything in Kestr",
+          "offset": 0,
+          "id": "product-guide.md:0",
+          "source": "product-guide.md",
+          "score": 8.281605433553104
+        },
+        {
+          "text": " to privacy@kestrel.example. We answer within one month.\n\n## 11. Getting help\n\n| Plan | Channels | First response target |\n|---|---|---|\n| Free | Help centre, community forum | Best effort |\n| Starter | E-mail | 2 business days |\n| Team | E-mail, chat | 1 business day |\n| Business | E-mail, chat | 8 business hours |\n| Enterprise | E-mail, chat, named contact | 4 hours, 24/7 for critical incidents |\n\nWhen you contact support, include the workspace name, the error code if one is shown (it starts w",
+          "offset": 7980,
+          "id": "product-guide.md:21",
+          "source": "product-guide.md",
+          "score": 7.46783619568952
+        },
+        {
+          "text": "of 21 days from the first failed attempt, during which everything keeps working. A banner reminds Admins that payment is overdue.\n\nAfter the grace period, the workspace becomes read-only: members can view dashboards but cannot edit them, scheduled reports are paused, and datasets stop refreshing.\n\nIf the amount is still unpaid 60 days after the first failed attempt, the workspace is suspended: nobody can sign in to it until the outstanding amount is paid. A suspended workspace is not deleted, an",
+          "offset": 3800,
+          "id": "billing-policy-2026.md:10",
+          "source": "billing-policy-2026.md",
+          "score": 7.448078397927582
+        },
+        {
+          "text": "delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what support can do, and when to escalate. Always ask the customer for the workspace name, the exact code and the time it happened. If a code is not listed here, escalate it to the on-call engineer of the Platform team.\n\nEscalations go to the team that owns the service involved. The owning team of each service and its on-call channel are listed in the Service Catalog.\n\n## Severity level",
+          "offset": 380,
+          "id": "support-runbook-errors.md:1",
+          "source": "support-runbook-errors.md",
+          "score": 7.0492626881722416
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 0.5
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 0.5
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q09",
+      "question": "Is there a Kestrel mobile app for iPhone?",
+      "type": "not_in_corpus",
+      "answerable": false,
+      "evidence": [],
+      "relevant_chunk_ids": [],
+      "retrieved": [
+        {
+          "text": "# Kestrel Analytics — Service Catalog\n\nInternal document · Owner: Platform team · Last updated: 15 September 2026\n\nThis catalog lists the production services of Kestrel, what each one does, and which team owns it. The owning team is responsible for the service's on-call rotation, its alerts and its runbook entries. When in doubt about who owns something, ask in #platform-help.\n\n## 1. Services\n\n### gateway\n\nPublic entry point for the web app and the public API. Handles TLS, rate limiting and requ",
+          "offset": 0,
+          "id": "service-catalog.md:0",
+          "source": "service-catalog.md",
+          "score": 5.610557031845683
+        },
+        {
+          "text": "does, tell the user to use **Sign in with SSO**. Otherwise point them to **Forgot password**. Support never sets a password for a user.\n**Escalate:** no.\n\n### KST-1007 — Two-factor code rejected\n\n**User sees:** \"This code is not valid.\"\n**Cause:** in most cases the clock of the device running the authenticator app is wrong; time-based codes depend on the time being correct within about 30 seconds.\n**Support action:** ask the user to turn on automatic date and time on their device and try again. ",
+          "offset": 1520,
+          "id": "support-runbook-errors.md:4",
+          "source": "support-runbook-errors.md",
+          "score": 4.7901199224544815
+        },
+        {
+          "text": "\n## 1. Services\n\n### gateway\n\nPublic entry point for the web app and the public API. Handles TLS, rate limiting and request routing to the other services. Rate limit: 600 API requests per minute per workspace; requests above the limit receive HTTP 429.\nOwner: **Platform**.\n\n### auth\n\nSign-in with password, two-factor authentication, single sign-on (SAML) and SCIM provisioning. Issues the session tokens used by every other service.\nOwner: **Identity**.\n\n### connector-hub\n\nStores connector credent",
+          "offset": 380,
+          "id": "service-catalog.md:1",
+          "source": "service-catalog.md",
+          "score": 3.844288393201722
+        },
+        {
+          "text": ". Data from your sources is not included: Kestrel stores only the cached results needed to display dashboards.\n\nWhen the Owner deletes a workspace, it is first disabled for 30 days. During that period it can be restored by contacting support. After 30 days it is deleted permanently and cannot be recovered.\n\nRequests about personal data (access, correction, deletion) can be sent to privacy@kestrel.example. We answer within one month.\n\n## 11. Getting help\n\n| Plan | Channels | First response target",
+          "offset": 7600,
+          "id": "product-guide.md:20",
+          "source": "product-guide.md",
+          "score": 2.979232480352615
+        },
+        {
+          "text": "# Kestrel Analytics — Product Guide\n\nVersion 4.2 · Last updated: 12 August 2026 · Audience: customers and workspace administrators\n\n## 1. What Kestrel does\n\nKestrel Analytics is a dashboard and business intelligence service for teams. You connect your data sources, build datasets on top of them, and turn those datasets into dashboards that refresh automatically. Dashboards can be shared with colleagues, sent as scheduled PDF reports, or embedded in your own web applications.\n\nEverything in Kestr",
+          "offset": 0,
+          "id": "product-guide.md:0",
+          "source": "product-guide.md",
+          "score": 2.9713396634375364
+        },
+        {
+          "text": "# Kestrel Analytics — Support Runbook: Error Codes\n\nInternal document · Owner: Customer Support · Last reviewed: 2 September 2026\n\n## How to use this runbook\n\nEvery error shown to a Kestrel user carries a code of the form `KST-` followed by four digits. The first digit gives the area: 1 for sign-in, 2 for connectors, 3 for queries and dashboards, 4 for members and seats, 5 for delivery and embedding, 6 for billing.\n\nFor each code, this runbook gives what the user sees, the usual cause, what supp",
+          "offset": 0,
+          "id": "support-runbook-errors.md:0",
+          "source": "support-runbook-errors.md",
+          "score": 2.9239127374123326
+        },
+        {
+          "text": " Owner, write to support from the e-mail address registered on the account. For security reasons support verifies your identity before resetting anything; this verification can take up to 2 business days.\n\nTo reset a forgotten password, choose **Forgot password** on the sign-in page. The reset link is valid for 1 hour.\n\n## 6. Data connectors\n\nA connector stores the connection details for one data source. Kestrel supports PostgreSQL, MySQL, Google BigQuery, Snowflake, Google Sheets and CSV upload",
+          "offset": 4940,
+          "id": "product-guide.md:13",
+          "source": "product-guide.md",
+          "score": 2.90257784884355
+        },
+        {
+          "text": "ists.\n\n## Connectors (KST-2xxx)\n\n### KST-2040 — Connection timed out\n\n**User sees:** \"Kestrel could not reach your data source in time.\"\n**Cause:** the database is down, overloaded, or behind a firewall that silently drops the connection.\n**Support action:** ask the customer to confirm the database is reachable from outside their network, on the host and port configured in the connector.\n**Escalate:** to Data Integrations if several customers report it for the same source type at the same time.\n",
+          "offset": 2660,
+          "id": "support-runbook-errors.md:7",
+          "source": "support-runbook-errors.md",
+          "score": 2.5803836142600867
+        },
+        {
+          "text": "ved from the schedule and the schedule creator is notified.\n\n## 9. Sharing and embedding\n\n**Public links** let anyone with the link view a dashboard without signing in. They are available on every plan except Free, and an Admin can turn them off for the whole workspace.\n\n**Embedding** places a dashboard inside your own web application. Your server requests an embed token from the Kestrel API and passes it to the page. By default an embed token expires after 24 hours. On the Business and Enterpri",
+          "offset": 6840,
+          "id": "product-guide.md:18",
+          "source": "product-guide.md",
+          "score": 2.457567399047689
+        },
+        {
+          "text": "etails for one data source. Kestrel supports PostgreSQL, MySQL, Google BigQuery, Snowflake, Google Sheets and CSV upload. A single CSV file can be up to 200 MB.\n\nConnector credentials are encrypted at rest and are never shown again after they are saved. If your database only accepts connections from known addresses, add both Kestrel addresses to its allowlist: **203.0.113.10** and **203.0.113.11**. Connections can come from either address.\n\nEach dataset query has a time limit of 120 seconds. Que",
+          "offset": 5320,
+          "id": "product-guide.md:14",
+          "source": "product-guide.md",
+          "score": 2.3976095721616058
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 3,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 5,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 10,
+          "hit": 0,
+          "recall": null
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "q10",
+      "question": "How much does one seat cost per month on the Business plan?",
+      "type": "not_in_corpus",
+      "answerable": false,
+      "evidence": [],
+      "relevant_chunk_ids": [],
+      "retrieved": [
+        {
+          "text": "oices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. Enterprise contracts may contain different terms; when they do, the contract takes precedence over this policy. Current prices are published on the Kestrel pricing page and are not repeated here.\n\n## 2. Billing cycles\n\nPaid plans are billed per seat, either monthly or annually. Monthly plans are charged on the same day each month as the original purchase. Annual plans are charge",
+          "offset": 380,
+          "id": "billing-policy-2026.md:1",
+          "source": "billing-policy-2026.md",
+          "score": 9.212397352414834
+        },
+        {
+          "text": "another workspace, even inside the same organisation.\n\n## 2. Plans and limits\n\nEach workspace is on exactly one plan. The plan sets the number of seats, how often data refreshes, and which administration features are available.\n\n| | Free | Starter | Team | Business | Enterprise |\n|---|---|---|---|---|---|\n| Seats included | 2 | 5 | 20 | 100 | Custom |\n| Dashboards | 3 | 25 | Unlimited | Unlimited | Unlimited |\n| Data connectors | 1 | 3 | 10 | Unlimited | Unlimited |\n| Fastest refresh | Daily | H",
+          "offset": 760,
+          "id": "product-guide.md:2",
+          "source": "product-guide.md",
+          "score": 8.368141817093461
+        },
+        {
+          "text": "in different terms; when they do, the contract takes precedence over this policy. Current prices are published on the Kestrel pricing page and are not repeated here.\n\n## 2. Billing cycles\n\nPaid plans are billed per seat, either monthly or annually. Monthly plans are charged on the same day each month as the original purchase. Annual plans are charged once a year, on the anniversary of the purchase.\n\nCustomers who choose annual billing receive a 15% discount compared with twelve months of monthly",
+          "offset": 380,
+          "id": "billing-policy-2025.md:1",
+          "source": "billing-policy-2025.md",
+          "score": 8.051997625789031
+        },
+        {
+          "text": "be shared with colleagues, sent as scheduled PDF reports, or embedded in your own web applications.\n\nEverything in Kestrel lives inside a **workspace**. A workspace has members, connectors, datasets and dashboards. Most customers use one workspace per company; larger organisations sometimes create one workspace per department. Members of one workspace cannot see the content of another workspace, even inside the same organisation.\n\n## 2. Plans and limits\n\nEach workspace is on exactly one plan. Th",
+          "offset": 380,
+          "id": "product-guide.md:1",
+          "source": "product-guide.md",
+          "score": 7.846047343986642
+        },
+        {
+          "text": " to privacy@kestrel.example. We answer within one month.\n\n## 11. Getting help\n\n| Plan | Channels | First response target |\n|---|---|---|\n| Free | Help centre, community forum | Best effort |\n| Starter | E-mail | 2 business days |\n| Team | E-mail, chat | 1 business day |\n| Business | E-mail, chat | 8 business hours |\n| Enterprise | E-mail, chat, named contact | 4 hours, 24/7 for critical incidents |\n\nWhen you contact support, include the workspace name, the error code if one is shown (it starts w",
+          "offset": 7980,
+          "id": "product-guide.md:21",
+          "source": "product-guide.md",
+          "score": 7.347418282317724
+        },
+        {
+          "text": "# Kestrel Analytics — Billing and Refund Policy\n\nEffective date: 1 January 2025 · Policy owner: Finance · Audience: customers and support staff\n\n## 1. Scope\n\nThis policy explains how Kestrel Analytics charges for its plans, how invoices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. Enterprise contracts may contain different terms; when they do, the contract takes precedence over this policy. Current prices are published on the Ke",
+          "offset": 0,
+          "id": "billing-policy-2025.md:0",
+          "source": "billing-policy-2025.md",
+          "score": 6.139442505150703
+        },
+        {
+          "text": "* a red clock on the tiles.\n**Cause:** the tooltip shows a second code with the real cause, usually a KST-2xxx connector error.\n**Support action:** handle the underlying code.\n**Escalate:** depends on the underlying code.\n\n## Members and seats (KST-4xxx)\n\n### KST-4012 — No seat available\n\n**User sees:** \"This workspace has no seat available. Ask an Admin.\"\n**Cause:** the person is accepting an invitation, but all seats of the plan are already used. Pending invitations do not use a seat; the chec",
+          "offset": 4560,
+          "id": "support-runbook-errors.md:12",
+          "source": "support-runbook-errors.md",
+          "score": 6.084324631280679
+        },
+        {
+          "text": "1 year |\n| Public share links | — | Yes | Yes | Yes | Yes |\n\nPlans can be changed at any time from **Settings → Plan**. An upgrade takes effect immediately. A downgrade takes effect at the end of the current billing period; if the workspace uses more than the lower plan allows (for example more dashboards than the limit), the extra items become read-only until you remove them.\n\n## 3. Workspace roles\n\nEvery member has one role in the workspace:\n\n- **Owner**: exactly one per workspace. The Owner c",
+          "offset": 1520,
+          "id": "product-guide.md:4",
+          "source": "product-guide.md",
+          "score": 5.90950386144069
+        },
+        {
+          "text": "\n## 3. Workspace roles\n\nEvery member has one role in the workspace:\n\n- **Owner**: exactly one per workspace. The Owner can do everything an Admin can, and is the only person who can change the plan, delete the workspace or transfer ownership.\n- **Admin**: manages members, connectors and security settings.\n- **Editor**: creates and edits datasets and dashboards.\n- **Viewer**: opens dashboards and reports, but cannot change them.\n\nTo transfer ownership, the current Owner opens **Settings → Members",
+          "offset": 1900,
+          "id": "product-guide.md:5",
+          "source": "product-guide.md",
+          "score": 5.7660517117916
+        },
+        {
+          "text": "# Kestrel Analytics — Billing and Refund Policy\n\nEffective date: 1 March 2026 · Policy owner: Finance · Audience: customers and support staff\n\nThis policy replaces the Billing and Refund Policy effective 1 January 2025. Requests made before 1 March 2026 are handled under the previous policy.\n\n## 1. Scope\n\nThis policy explains how Kestrel Analytics charges for its plans, how invoices are issued, and when refunds are possible. It applies to all paid plans: Starter, Team, Business and Enterprise. E",
+          "offset": 0,
+          "id": "billing-policy-2026.md:0",
+          "source": "billing-policy-2026.md",
+          "score": 5.328594248166869
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 3,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 5,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 10,
+          "hit": 0,
+          "recall": null
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    }
+  ]
+}

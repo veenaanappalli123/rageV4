@@ -1,0 +1,1004 @@
+{
+  "version": 1,
+  "created_at": "2026-11-16T23:02:44.828Z",
+  "schema": {
+    "entity_types": [
+      "error_code",
+      "service",
+      "team",
+      "person",
+      "product",
+      "policy",
+      "plan",
+      "concept",
+      "channel",
+      "document"
+    ],
+    "relation_types": [
+      "caused_by",
+      "owned_by",
+      "routes_to",
+      "contacted_via",
+      "escalates_to",
+      "requires",
+      "mentions",
+      "part_of",
+      "managed_by",
+      "applies_to",
+      "related_to"
+    ]
+  },
+  "resolution": "Conservative exact normalized-name merge. Accents and punctuation are normalized; no fuzzy merge is performed to avoid collapsing distinct people or services.",
+  "nodes": [
+    {
+      "id": "billing_policy_2025",
+      "name": "Billing policy 2025",
+      "type": "document",
+      "aliases": [],
+      "chunk_ids": [
+        "billing-policy-2026.md:0"
+      ]
+    },
+    {
+      "id": "billing_policy_2026",
+      "name": "Billing policy 2026",
+      "type": "document",
+      "aliases": [],
+      "chunk_ids": [
+        "billing-policy-2026.md:0"
+      ]
+    },
+    {
+      "id": "single_sign_on_saml",
+      "name": "Single sign-on (SAML)",
+      "type": "concept",
+      "aliases": [],
+      "chunk_ids": [
+        "product-guide.md:1",
+        "product-guide.md:2",
+        "support-runbook-errors.md:3"
+      ]
+    },
+    {
+      "id": "business_plan",
+      "name": "Business plan",
+      "type": "plan",
+      "aliases": [],
+      "chunk_ids": [
+        "product-guide.md:1",
+        "product-guide.md:2",
+        "support-runbook-errors.md:7"
+      ]
+    },
+    {
+      "id": "enterprise_plan",
+      "name": "Enterprise plan",
+      "type": "plan",
+      "aliases": [],
+      "chunk_ids": [
+        "product-guide.md:1",
+        "product-guide.md:2"
+      ]
+    },
+    {
+      "id": "gateway",
+      "name": "gateway",
+      "type": "service",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:0"
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "Platform",
+      "type": "team",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:0",
+        "service-catalog.md:3",
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "connector_hub",
+      "name": "connector-hub",
+      "type": "service",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:1",
+        "support-runbook-errors.md:4"
+      ]
+    },
+    {
+      "id": "data_integrations",
+      "name": "Data Integrations",
+      "type": "team",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:1",
+        "service-catalog.md:3",
+        "support-runbook-errors.md:3"
+      ]
+    },
+    {
+      "id": "203_0_113_10_and_203_0_113_11",
+      "name": "203.0.113.10 and 203.0.113.11",
+      "type": "concept",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:1"
+      ]
+    },
+    {
+      "id": "query_engine",
+      "name": "query-engine",
+      "type": "service",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:1",
+        "support-runbook-errors.md:5"
+      ]
+    },
+    {
+      "id": "analytics_engine",
+      "name": "Analytics Engine",
+      "type": "team",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:1",
+        "service-catalog.md:3",
+        "support-runbook-errors.md:5"
+      ]
+    },
+    {
+      "id": "scheduler",
+      "name": "scheduler",
+      "type": "service",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:1"
+      ]
+    },
+    {
+      "id": "postroom",
+      "name": "postroom",
+      "type": "service",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:1",
+        "service-catalog.md:2",
+        "support-runbook-errors.md:8"
+      ]
+    },
+    {
+      "id": "messaging",
+      "name": "Messaging",
+      "type": "team",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:2",
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "mailman",
+      "name": "mailman",
+      "type": "service",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:2"
+      ]
+    },
+    {
+      "id": "ledger",
+      "name": "ledger",
+      "type": "service",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:2"
+      ]
+    },
+    {
+      "id": "payments_core",
+      "name": "Payments Core",
+      "type": "team",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:2",
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "samuel_okafor",
+      "name": "Samuel Okafor",
+      "type": "person",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "oncall_platform",
+      "name": "#oncall-platform",
+      "type": "channel",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "identity",
+      "name": "Identity",
+      "type": "team",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "priya_raman",
+      "name": "Priya Raman",
+      "type": "person",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "oncall_identity",
+      "name": "#oncall-identity",
+      "type": "channel",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "oncall_data_integrations",
+      "name": "#oncall-data-integrations",
+      "type": "channel",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "oncall_analytics",
+      "name": "#oncall-analytics",
+      "type": "channel",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "ines_moreau",
+      "name": "Inès Moreau",
+      "type": "person",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "oncall_messaging",
+      "name": "#oncall-messaging",
+      "type": "channel",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "oncall_payments",
+      "name": "#oncall-payments",
+      "type": "channel",
+      "aliases": [],
+      "chunk_ids": [
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "kst_1012",
+      "name": "KST-1012",
+      "type": "error_code",
+      "aliases": [],
+      "chunk_ids": [
+        "support-runbook-errors.md:3"
+      ]
+    },
+    {
+      "id": "kst_2040",
+      "name": "KST-2040",
+      "type": "error_code",
+      "aliases": [],
+      "chunk_ids": [
+        "support-runbook-errors.md:3"
+      ]
+    },
+    {
+      "id": "kst_2044",
+      "name": "KST-2044",
+      "type": "error_code",
+      "aliases": [],
+      "chunk_ids": [
+        "support-runbook-errors.md:4",
+        "support-runbook-errors.md:6"
+      ]
+    },
+    {
+      "id": "kst_3020",
+      "name": "KST-3020",
+      "type": "error_code",
+      "aliases": [],
+      "chunk_ids": [
+        "support-runbook-errors.md:6"
+      ]
+    },
+    {
+      "id": "kst_4012",
+      "name": "KST-4012",
+      "type": "error_code",
+      "aliases": [],
+      "chunk_ids": [
+        "support-runbook-errors.md:7"
+      ]
+    },
+    {
+      "id": "kst_5031",
+      "name": "KST-5031",
+      "type": "error_code",
+      "aliases": [],
+      "chunk_ids": [
+        "support-runbook-errors.md:8"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "billing_policy_2025|applies_to|billing_policy_2026",
+      "source": "billing_policy_2025",
+      "relation": "applies_to",
+      "target": "billing_policy_2026",
+      "evidence": [
+        {
+          "chunk_id": "billing-policy-2026.md:0",
+          "quote": "This policy replaces the Billing and Refund Policy effective 1 January 2025. Requests made before 1 March 2026 are handled under the previous policy."
+        }
+      ],
+      "chunk_ids": [
+        "billing-policy-2026.md:0"
+      ]
+    },
+    {
+      "id": "single_sign_on_saml|part_of|business_plan",
+      "source": "single_sign_on_saml",
+      "relation": "part_of",
+      "target": "business_plan",
+      "evidence": [
+        {
+          "chunk_id": "product-guide.md:1",
+          "quote": "| Single sign-on (SAML) | — | — | — | Yes | Yes |"
+        },
+        {
+          "chunk_id": "product-guide.md:2",
+          "quote": "| Single sign-on (SAML) | — | — | — | Yes | Yes |"
+        }
+      ],
+      "chunk_ids": [
+        "product-guide.md:1",
+        "product-guide.md:2"
+      ]
+    },
+    {
+      "id": "single_sign_on_saml|part_of|enterprise_plan",
+      "source": "single_sign_on_saml",
+      "relation": "part_of",
+      "target": "enterprise_plan",
+      "evidence": [
+        {
+          "chunk_id": "product-guide.md:1",
+          "quote": "| Single sign-on (SAML) | — | — | — | Yes | Yes |"
+        },
+        {
+          "chunk_id": "product-guide.md:2",
+          "quote": "| Single sign-on (SAML) | — | — | — | Yes | Yes |"
+        }
+      ],
+      "chunk_ids": [
+        "product-guide.md:1",
+        "product-guide.md:2"
+      ]
+    },
+    {
+      "id": "gateway|owned_by|platform",
+      "source": "gateway",
+      "relation": "owned_by",
+      "target": "platform",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:0",
+          "quote": "Public entry point for the web app and the public API. Handles TLS, rate limiting and request routing to the other services."
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:0"
+      ]
+    },
+    {
+      "id": "connector_hub|owned_by|data_integrations",
+      "source": "connector_hub",
+      "relation": "owned_by",
+      "target": "data_integrations",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:1",
+          "quote": "Stores connector credentials (encrypted with per-workspace keys) and opens the connections to customer data sources."
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:1"
+      ]
+    },
+    {
+      "id": "203_0_113_10_and_203_0_113_11|routes_to|connector_hub",
+      "source": "203_0_113_10_and_203_0_113_11",
+      "relation": "routes_to",
+      "target": "connector_hub",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:1",
+          "quote": "All outgoing connections leave through two fixed addresses, 203.0.113.10 and 203.0.113.11."
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:1"
+      ]
+    },
+    {
+      "id": "query_engine|owned_by|analytics_engine",
+      "source": "query_engine",
+      "relation": "owned_by",
+      "target": "analytics_engine",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:1",
+          "quote": "Runs dataset queries, enforces the 120-second query time limit, and caches results for dashboards."
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:1"
+      ]
+    },
+    {
+      "id": "scheduler|owned_by|analytics_engine",
+      "source": "scheduler",
+      "relation": "owned_by",
+      "target": "analytics_engine",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:1",
+          "quote": "Triggers dataset refreshes and scheduled reports at the right time, in the time zone of each schedule."
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:1"
+      ]
+    },
+    {
+      "id": "scheduler|routes_to|postroom",
+      "source": "scheduler",
+      "relation": "routes_to",
+      "target": "postroom",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:1",
+          "quote": "Generates the report PDFs and hands them over for delivery."
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:1"
+      ]
+    },
+    {
+      "id": "postroom|owned_by|messaging",
+      "source": "postroom",
+      "relation": "owned_by",
+      "target": "messaging",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:2",
+          "quote": "Sends every e-mail that leaves Kestrel: scheduled reports, invitations, password resets"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:2"
+      ]
+    },
+    {
+      "id": "mailman|related_to|postroom",
+      "source": "mailman",
+      "relation": "related_to",
+      "target": "postroom",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:2",
+          "quote": "postroom replaced the older mailman service in November 2025. mailman is switched off; old alerts or documents that mention it refer to postroom today."
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:2"
+      ]
+    },
+    {
+      "id": "ledger|owned_by|payments_core",
+      "source": "ledger",
+      "relation": "owned_by",
+      "target": "payments_core",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:2",
+          "quote": "Subscriptions, seats, invoices and payments. Generates invoice PDFs, runs the automatic payment retries"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:2"
+      ]
+    },
+    {
+      "id": "platform|managed_by|samuel_okafor",
+      "source": "platform",
+      "relation": "managed_by",
+      "target": "samuel_okafor",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:3",
+          "quote": "| Platform | Samuel Okafor | #oncall-platform | 24/7 rotation |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "platform|contacted_via|oncall_platform",
+      "source": "platform",
+      "relation": "contacted_via",
+      "target": "oncall_platform",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:3",
+          "quote": "| Platform | Samuel Okafor | #oncall-platform | 24/7 rotation |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "identity|managed_by|priya_raman",
+      "source": "identity",
+      "relation": "managed_by",
+      "target": "priya_raman",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:3",
+          "quote": "| Identity | Priya Raman | #oncall-identity | 24/7 rotation |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "identity|contacted_via|oncall_identity",
+      "source": "identity",
+      "relation": "contacted_via",
+      "target": "oncall_identity",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:3",
+          "quote": "| Identity | Priya Raman | #oncall-identity | 24/7 rotation |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "data_integrations|contacted_via|oncall_data_integrations",
+      "source": "data_integrations",
+      "relation": "contacted_via",
+      "target": "oncall_data_integrations",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:3",
+          "quote": "| Data Integrations | Tomasz Wójcik | #oncall-data-integrations | 08:00–20:00, weekdays |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "analytics_engine|contacted_via|oncall_analytics",
+      "source": "analytics_engine",
+      "relation": "contacted_via",
+      "target": "oncall_analytics",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:3",
+          "quote": "| Analytics Engine | Léa Fontaine | #oncall-analytics | 24/7 rotation |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:3"
+      ]
+    },
+    {
+      "id": "messaging|managed_by|ines_moreau",
+      "source": "messaging",
+      "relation": "managed_by",
+      "target": "ines_moreau",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:4",
+          "quote": "| Messaging | Inès Moreau | #oncall-messaging | 08:00–20:00, weekdays |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "messaging|contacted_via|oncall_messaging",
+      "source": "messaging",
+      "relation": "contacted_via",
+      "target": "oncall_messaging",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:4",
+          "quote": "| Messaging | Inès Moreau | #oncall-messaging | 08:00–20:00, weekdays |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "messaging|escalates_to|platform",
+      "source": "messaging",
+      "relation": "escalates_to",
+      "target": "platform",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:4",
+          "quote": "Teams with weekday hours are covered outside those hours by the Platform on-call"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "payments_core|contacted_via|oncall_payments",
+      "source": "payments_core",
+      "relation": "contacted_via",
+      "target": "oncall_payments",
+      "evidence": [
+        {
+          "chunk_id": "service-catalog.md:4",
+          "quote": "| Payments Core | Jonas Berg | #oncall-payments | 24/7 rotation |"
+        }
+      ],
+      "chunk_ids": [
+        "service-catalog.md:4"
+      ]
+    },
+    {
+      "id": "kst_1012|caused_by|single_sign_on_saml",
+      "source": "kst_1012",
+      "relation": "caused_by",
+      "target": "single_sign_on_saml",
+      "evidence": [
+        {
+          "chunk_id": "support-runbook-errors.md:3",
+          "quote": "the identity provider certificate has expired or was rotated, or the clock of the identity provider is out of sync."
+        }
+      ],
+      "chunk_ids": [
+        "support-runbook-errors.md:3"
+      ]
+    },
+    {
+      "id": "kst_2040|caused_by|data_integrations",
+      "source": "kst_2040",
+      "relation": "caused_by",
+      "target": "data_integrations",
+      "evidence": [
+        {
+          "chunk_id": "support-runbook-errors.md:3",
+          "quote": "Kestrel could not reach your data source in time."
+        }
+      ],
+      "chunk_ids": [
+        "support-runbook-errors.md:3"
+      ]
+    },
+    {
+      "id": "kst_2044|caused_by|connector_hub",
+      "source": "kst_2044",
+      "relation": "caused_by",
+      "target": "connector_hub",
+      "evidence": [
+        {
+          "chunk_id": "support-runbook-errors.md:4",
+          "quote": "Your data source refused the connection from Kestrel."
+        }
+      ],
+      "chunk_ids": [
+        "support-runbook-errors.md:4"
+      ]
+    },
+    {
+      "id": "query_engine|requires|analytics_engine",
+      "source": "query_engine",
+      "relation": "requires",
+      "target": "analytics_engine",
+      "evidence": [
+        {
+          "chunk_id": "support-runbook-errors.md:5",
+          "quote": "a dataset query ran for more than 120 seconds."
+        }
+      ],
+      "chunk_ids": [
+        "support-runbook-errors.md:5"
+      ]
+    },
+    {
+      "id": "kst_3020|caused_by|kst_2044",
+      "source": "kst_3020",
+      "relation": "caused_by",
+      "target": "kst_2044",
+      "evidence": [
+        {
+          "chunk_id": "support-runbook-errors.md:6",
+          "quote": "the tooltip shows a second code with the real cause, usually a KST-2xxx connector error."
+        }
+      ],
+      "chunk_ids": [
+        "support-runbook-errors.md:6"
+      ]
+    },
+    {
+      "id": "kst_4012|related_to|business_plan",
+      "source": "kst_4012",
+      "relation": "related_to",
+      "target": "business_plan",
+      "evidence": [
+        {
+          "chunk_id": "support-runbook-errors.md:7",
+          "quote": "all seats of the plan are already used. Pending invitations do not use a seat; the check happens at acceptance."
+        }
+      ],
+      "chunk_ids": [
+        "support-runbook-errors.md:7"
+      ]
+    },
+    {
+      "id": "kst_5031|caused_by|postroom",
+      "source": "kst_5031",
+      "relation": "caused_by",
+      "target": "postroom",
+      "evidence": [
+        {
+          "chunk_id": "support-runbook-errors.md:8",
+          "quote": "This error is raised by postroom, the service that sends all Kestrel e-mails."
+        }
+      ],
+      "chunk_ids": [
+        "support-runbook-errors.md:8"
+      ]
+    }
+  ],
+  "build": {
+    "method": "llm-validated",
+    "calls": 45,
+    "successful_calls": 45,
+    "failed_calls": 0,
+    "usage": {
+      "prompt_tokens": 8593,
+      "completion_tokens": 1350,
+      "total_tokens": 9943
+    },
+    "elapsed_ms": 3,
+    "failures": [],
+    "extraction_runs": [
+      {
+        "chunk_id": "billing-policy-2025.md:0",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2025.md:1",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2025.md:2",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2025.md:3",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2025.md:4",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2025.md:5",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2026.md:0",
+        "triples": 1
+      },
+      {
+        "chunk_id": "billing-policy-2026.md:1",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2026.md:2",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2026.md:3",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2026.md:4",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2026.md:5",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2026.md:6",
+        "triples": 0
+      },
+      {
+        "chunk_id": "billing-policy-2026.md:7",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:0",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:1",
+        "triples": 2
+      },
+      {
+        "chunk_id": "product-guide.md:2",
+        "triples": 2
+      },
+      {
+        "chunk_id": "product-guide.md:3",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:4",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:5",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:6",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:7",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:8",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:9",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:10",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:11",
+        "triples": 0
+      },
+      {
+        "chunk_id": "product-guide.md:12",
+        "triples": 0
+      },
+      {
+        "chunk_id": "service-catalog.md:0",
+        "triples": 1
+      },
+      {
+        "chunk_id": "service-catalog.md:1",
+        "triples": 5
+      },
+      {
+        "chunk_id": "service-catalog.md:2",
+        "triples": 3
+      },
+      {
+        "chunk_id": "service-catalog.md:3",
+        "triples": 6
+      },
+      {
+        "chunk_id": "service-catalog.md:4",
+        "triples": 4
+      },
+      {
+        "chunk_id": "service-catalog.md:5",
+        "triples": 0
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:0",
+        "triples": 0
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:1",
+        "triples": 0
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:2",
+        "triples": 0
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:3",
+        "triples": 2
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:4",
+        "triples": 1
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:5",
+        "triples": 1
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:6",
+        "triples": 1
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:7",
+        "triples": 1
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:8",
+        "triples": 1
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:9",
+        "triples": 0
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:10",
+        "triples": 0
+      },
+      {
+        "chunk_id": "support-runbook-errors.md:11",
+        "triples": 0
+      }
+    ]
+  },
+  "chunking": {
+    "size": 800,
+    "overlap": 120
+  }
+}

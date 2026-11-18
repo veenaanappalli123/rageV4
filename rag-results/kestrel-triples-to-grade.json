@@ -1,0 +1,102 @@
+[
+  {
+    "subject": "KST-5031",
+    "relation": "caused_by",
+    "object": "postroom",
+    "chunk_id": "support-runbook-errors.md:8",
+    "quote": "This error is raised by postroom, the service that sends all Kestrel e-mails.",
+    "grade": "correct",
+    "notes": "Verified: chunk explicitly states \"This error is raised by postroom\".",
+    "source_text": "ng for confirmation.\"\n**Cause:** the Owner started a transfer, and one of the two people has not confirmed it by e-mail.\n**Support action:** ask both people to check their inbox and spam folder. The transfer can be cancelled by the current Owner from **Settings → Members**.\n**Escalate:** no.\n\n## Delivery and embedding (KST-5xxx)\n\n### KST-5031 — Scheduled report not delivered\n\n**User sees:** the schedule shows \"Last delivery failed\".\n**Cause:** the report was generated but the e-mail was not sent. This error is raised by postroom, the service that sends all Kestrel e-mails. A single occurrence is usually a temporary problem with a recipient's mail server.\n**Support action:** check whether the recipient's address is correct and whether the next delivery succeeds. Ask the customer to check th"
+  },
+  {
+    "subject": "mailman",
+    "relation": "related_to",
+    "object": "postroom",
+    "chunk_id": "service-catalog.md:2",
+    "quote": "postroom replaced the older mailman service in November 2025. mailman is switched off; old alerts or documents that mention it refer to postroom today.",
+    "grade": "correct",
+    "notes": "Verified: chunk explicitly states \"postroom replaced the older mailman service in November 2025\".",
+    "source_text": "Generates the report PDFs and hands them over for delivery.\nOwner: **Analytics Engine**.\n\n### postroom\n\nSends every e-mail that leaves Kestrel: scheduled reports, invitations, password resets, ownership transfer confirmations and billing notifications. Tracks bounces and removes a recipient from a schedule after three rejections.\nOwner: **Messaging**.\n\npostroom replaced the older mailman service in November 2025. mailman is switched off; old alerts or documents that mention it refer to postroom today.\n\n### embed-svc\n\nIssues and checks embed tokens for dashboards embedded in customer applications.\nOwner: **Platform**.\n\n### ledger\n\nSubscriptions, seats, invoices and payments. Generates invoice PDFs, runs the automatic payment retries, and applies the grace period and read-only rules of the B"
+  },
+  {
+    "subject": "connector-hub",
+    "relation": "owned_by",
+    "object": "Data Integrations",
+    "chunk_id": "service-catalog.md:1",
+    "quote": "Stores connector credentials (encrypted with per-workspace keys) and opens the connections to customer data sources.",
+    "grade": "correct",
+    "notes": "Verified: Service catalog assigns connector-hub ownership to Data Integrations.",
+    "source_text": "ssword, two-factor authentication, single sign-on (SAML) and SCIM provisioning. Issues the session tokens used by every other service.\nOwner: **Identity**.\n\n### connector-hub\n\nStores connector credentials (encrypted with per-workspace keys) and opens the connections to customer data sources. All outgoing connections leave through two fixed addresses, 203.0.113.10 and 203.0.113.11.\nOwner: **Data Integrations**.\n\n### query-engine\n\nRuns dataset queries, enforces the 120-second query time limit, and caches results for dashboards.\nOwner: **Analytics Engine**.\n\n### scheduler\n\nTriggers dataset refreshes and scheduled reports at the right time, in the time zone of each schedule. Generates the report PDFs and hands them over for delivery.\nOwner: **Analytics Engine**.\n\n### postroom\n\nSends every e-ma"
+  },
+  {
+    "subject": "Analytics Engine",
+    "relation": "contacted_via",
+    "object": "#oncall-analytics",
+    "chunk_id": "service-catalog.md:3",
+    "quote": "| Analytics Engine | Léa Fontaine | #oncall-analytics | 24/7 rotation |",
+    "grade": "correct",
+    "notes": "Verified: Team table specifies #oncall-analytics as primary channel for Analytics Engine.",
+    "source_text": "s. Generates invoice PDFs, runs the automatic payment retries, and applies the grace period and read-only rules of the Billing and Refund Policy. Talks to the payment processor; never stores full card numbers.\nOwner: **Payments Core**.\n\n### audit-log\n\nRecords security-relevant events (sign-ins, role changes, connector edits, exports) for workspaces on Business and Enterprise plans.\nOwner: **Identity**.\n\n## 2. Teams\n\n| Team | Engineering lead | On-call channel | Working hours (Paris time) |\n|---|---|---|---|\n| Platform | Samuel Okafor | #oncall-platform | 24/7 rotation |\n| Identity | Priya Raman | #oncall-identity | 24/7 rotation |\n| Data Integrations | Tomasz Wójcik | #oncall-data-integrations | 08:00–20:00, weekdays |\n| Analytics Engine | Léa Fontaine | #oncall-analytics | 24/7 rotation |"
+  },
+  {
+    "subject": "gateway",
+    "relation": "owned_by",
+    "object": "Platform",
+    "chunk_id": "service-catalog.md:0",
+    "quote": "Public entry point for the web app and the public API. Handles TLS, rate limiting and request routing to the other services.",
+    "grade": "correct",
+    "notes": "Verified: Service catalog explicitly documents Platform as gateway owner.",
+    "source_text": "# Kestrel Analytics — Service Catalog\n\nInternal document · Owner: Platform team · Last updated: 15 September 2026\n\nThis catalog lists the production services of Kestrel, what each one does, and which team owns it. The owning team is responsible for the service's on-call rotation, its alerts and its runbook entries. When in doubt about who owns something, ask in #platform-help.\n\n## 1. Services\n\n### gateway\n\nPublic entry point for the web app and the public API. Handles TLS, rate limiting and request routing to the other services. Rate limit: 600 API requests per minute per workspace; requests above the limit receive HTTP 429.\nOwner: **Platform**.\n\n### auth\n\nSign-in with password, two-factor authentication, single sign-on (SAML) and SCIM provisioning. Issues the session tokens used by every "
+  },
+  {
+    "subject": "KST-3020",
+    "relation": "caused_by",
+    "object": "KST-2044",
+    "chunk_id": "support-runbook-errors.md:6",
+    "quote": "the tooltip shows a second code with the real cause, usually a KST-2xxx connector error.",
+    "grade": "unsupported",
+    "notes": "Unsupported: Chunk says \"usually a KST-2xxx connector error\", but does not name KST-2044 specifically. Model inferred the specific code.",
+    "source_text": "*User sees:** \"This query took too long and was stopped.\"\n**Cause:** a dataset query ran for more than 120 seconds.\n**Support action:** suggest adding a filter, pre-aggregating in the source database, or refreshing less often. The time limit is the same on every plan and cannot be raised.\n**Escalate:** to Analytics Engine only if a query that used to finish quickly suddenly times out for many datasets of the same customer.\n\n### KST-3020 — Dataset refresh failed\n\n**User sees:** a red clock on the tiles.\n**Cause:** the tooltip shows a second code with the real cause, usually a KST-2xxx connector error.\n**Support action:** handle the underlying code.\n**Escalate:** depends on the underlying code.\n\n## Members and seats (KST-4xxx)\n\n### KST-4012 — No seat available\n\n**User sees:** \"This workspace"
+  },
+  {
+    "subject": "Messaging",
+    "relation": "managed_by",
+    "object": "Inès Moreau",
+    "chunk_id": "service-catalog.md:4",
+    "quote": "| Messaging | Inès Moreau | #oncall-messaging | 08:00–20:00, weekdays |",
+    "grade": "correct",
+    "notes": "Verified: Team catalog table lists Inès Moreau as Engineering lead of Messaging.",
+    "source_text": "call-data-integrations | 08:00–20:00, weekdays |\n| Analytics Engine | Léa Fontaine | #oncall-analytics | 24/7 rotation |\n| Messaging | Inès Moreau | #oncall-messaging | 08:00–20:00, weekdays |\n| Payments Core | Jonas Berg | #oncall-payments | 24/7 rotation |\n\nTeams with weekday hours are covered outside those hours by the Platform on-call, who can page the team lead for SEV-1 incidents only.\n\n## 3. Escalation rules\n\n1. Support identifies the service involved, using the error code and the Support Runbook.\n2. Support posts in the on-call channel of the team that owns that service, with the workspace name, the error code, the time, and the severity level.\n3. For SEV-1, support also pages the on-call engineer through the paging tool; posting in the channel is not enough.\n4. If the owning team "
+  },
+  {
+    "subject": "KST-2044",
+    "relation": "caused_by",
+    "object": "connector-hub",
+    "chunk_id": "support-runbook-errors.md:4",
+    "quote": "Your data source refused the connection from Kestrel.",
+    "grade": "wrong",
+    "notes": "Wrong: Inverted direction/causality. The cause is missing IP allowlisting at customer firewall, not connector-hub itself.",
+    "source_text": "imed out\n\n**User sees:** \"Kestrel could not reach your data source in time.\"\n**Cause:** the database is down, overloaded, or behind a firewall that silently drops the connection.\n**Support action:** ask the customer to confirm the database is reachable from outside their network, on the host and port configured in the connector.\n**Escalate:** to Data Integrations if several customers report it for the same source type at the same time.\n\n### KST-2044 — Source refused the connection\n\n**User sees:** \"Your data source refused the connection from Kestrel.\"\n**Cause:** the database only accepts connections from an allowlist of IP addresses, and the Kestrel addresses are missing from it.\n**Support action:** ask the customer to add both 203.0.113.10 and 203.0.113.11 to the allowlist of their databa"
+  },
+  {
+    "subject": "ledger",
+    "relation": "owned_by",
+    "object": "Payments Core",
+    "chunk_id": "service-catalog.md:2",
+    "quote": "Subscriptions, seats, invoices and payments. Generates invoice PDFs, runs the automatic payment retries",
+    "grade": "correct",
+    "notes": "Verified: Service catalog explicitly states ledger Owner: Payments Core.",
+    "source_text": "Generates the report PDFs and hands them over for delivery.\nOwner: **Analytics Engine**.\n\n### postroom\n\nSends every e-mail that leaves Kestrel: scheduled reports, invitations, password resets, ownership transfer confirmations and billing notifications. Tracks bounces and removes a recipient from a schedule after three rejections.\nOwner: **Messaging**.\n\npostroom replaced the older mailman service in November 2025. mailman is switched off; old alerts or documents that mention it refer to postroom today.\n\n### embed-svc\n\nIssues and checks embed tokens for dashboards embedded in customer applications.\nOwner: **Platform**.\n\n### ledger\n\nSubscriptions, seats, invoices and payments. Generates invoice PDFs, runs the automatic payment retries, and applies the grace period and read-only rules of the B"
+  },
+  {
+    "subject": "query-engine",
+    "relation": "requires",
+    "object": "Analytics Engine",
+    "chunk_id": "support-runbook-errors.md:5",
+    "quote": "a dataset query ran for more than 120 seconds.",
+    "grade": "wrong",
+    "notes": "Wrong relation type: query-engine is owned by Analytics Engine; \"requires\" is inaccurate.",
+    "source_text": "from it.\n**Support action:** ask the customer to add both 203.0.113.10 and 203.0.113.11 to the allowlist of their database or firewall. Adding only one of them leads to errors that come and go, because connections can come from either address.\n**Escalate:** no.\n\n### KST-2051 — Credentials rejected\n\n**User sees:** \"The username or password for this data source is incorrect.\"\n**Cause:** the database password was changed, or the database user was removed.\n**Support action:** an Admin must edit the connector and enter the new credentials. Support cannot see stored credentials.\n**Escalate:** no.\n\n## Queries and dashboards (KST-3xxx)\n\n### KST-3012 — Query time limit exceeded\n\n**User sees:** \"This query took too long and was stopped.\"\n**Cause:** a dataset query ran for more than 120 seconds.\n**Su"
+  }
+]

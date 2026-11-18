@@ -1,0 +1,1485 @@
+{
+  "version": 3,
+  "corpus": "kestrel",
+  "config": {
+    "size": 800,
+    "overlap": 120,
+    "k": 5
+  },
+  "generated": false,
+  "results": [
+    {
+      "configuration": "graph",
+      "corpus": "kestrel",
+      "summary": {
+        "questions": 12,
+        "answerable": 10,
+        "excluded_unanswerable": 2,
+        "missing_ground_truth": 0,
+        "hit_rate_at_1": 0.3,
+        "recall_at_1": 0.2,
+        "hit_rate_at_3": 0.3,
+        "recall_at_3": 0.2,
+        "hit_rate_at_5": 0.3,
+        "recall_at_5": 0.2,
+        "hit_rate_at_10": 0.3,
+        "recall_at_10": 0.2
+      },
+      "by_type": {
+        "exact_identifier": {
+          "count": 2,
+          "hit_rate_at_1": 1,
+          "recall_at_1": 0.75,
+          "hit_rate_at_3": 1,
+          "recall_at_3": 0.75,
+          "hit_rate_at_5": 1,
+          "recall_at_5": 0.75,
+          "hit_rate_at_10": 1,
+          "recall_at_10": 0.75
+        },
+        "split_answer": {
+          "count": 2,
+          "hit_rate_at_1": 0,
+          "recall_at_1": 0,
+          "hit_rate_at_3": 0,
+          "recall_at_3": 0,
+          "hit_rate_at_5": 0,
+          "recall_at_5": 0,
+          "hit_rate_at_10": 0,
+          "recall_at_10": 0
+        },
+        "vocabulary": {
+          "count": 1,
+          "hit_rate_at_1": 0,
+          "recall_at_1": 0,
+          "hit_rate_at_3": 0,
+          "recall_at_3": 0,
+          "hit_rate_at_5": 0,
+          "recall_at_5": 0,
+          "hit_rate_at_10": 0,
+          "recall_at_10": 0
+        },
+        "versions": {
+          "count": 2,
+          "hit_rate_at_1": 0,
+          "recall_at_1": 0,
+          "hit_rate_at_3": 0,
+          "recall_at_3": 0,
+          "hit_rate_at_5": 0,
+          "recall_at_5": 0,
+          "hit_rate_at_10": 0,
+          "recall_at_10": 0
+        },
+        "two_hop": {
+          "count": 3,
+          "hit_rate_at_1": 0.3333333333333333,
+          "recall_at_1": 0.16666666666666666,
+          "hit_rate_at_3": 0.3333333333333333,
+          "recall_at_3": 0.16666666666666666,
+          "hit_rate_at_5": 0.3333333333333333,
+          "recall_at_5": 0.16666666666666666,
+          "hit_rate_at_10": 0.3333333333333333,
+          "recall_at_10": 0.16666666666666666
+        }
+      },
+      "rows": [
+        {
+          "id": "q01",
+          "question": "What does error KST-2044 mean and how do I fix it?",
+          "type": "exact_identifier",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "support-runbook-errors.md",
+              "quote": "the Kestrel addresses are missing from it"
+            },
+            {
+              "source": "support-runbook-errors.md",
+              "quote": "add both 203.0.113.10 and 203.0.113.11 to the allowlist"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "support-runbook-errors.md:4",
+            "support-runbook-errors.md:5"
+          ],
+          "retrieved": [
+            {
+              "text": "imed out\n\n**User sees:** \"Kestrel could not reach your data source in time.\"\n**Cause:** the database is down, overloaded, or behind a firewall that silently drops the connection.\n**Support action:** ask the customer to confirm the database is reachable from outside their network, on the host and port configured in the connector.\n**Escalate:** to Data Integrations if several customers report it for the same source type at the same time.\n\n### KST-2044 — Source refused the connection\n\n**User sees:** \"Your data source refused the connection from Kestrel.\"\n**Cause:** the database only accepts connections from an allowlist of IP addresses, and the Kestrel addresses are missing from it.\n**Support action:** ask the customer to add both 203.0.113.10 and 203.0.113.11 to the allowlist of their databa",
+              "offset": 2720,
+              "id": "support-runbook-errors.md:4",
+              "source": "support-runbook-errors.md",
+              "score": 0.01639344262295082,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "support-runbook-errors.md:4",
+                  "from": "kst_2044",
+                  "relation": "caused_by",
+                  "to": "connector_hub",
+                  "edge_id": "kst_2044|caused_by|connector_hub",
+                  "depth": 1
+                },
+                {
+                  "chunk_id": "support-runbook-errors.md:4",
+                  "from": "connector_hub",
+                  "relation": "caused_by",
+                  "to": "kst_2044",
+                  "edge_id": "kst_2044|caused_by|connector_hub",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 1
+              }
+            },
+            {
+              "text": "*User sees:** \"This query took too long and was stopped.\"\n**Cause:** a dataset query ran for more than 120 seconds.\n**Support action:** suggest adding a filter, pre-aggregating in the source database, or refreshing less often. The time limit is the same on every plan and cannot be raised.\n**Escalate:** to Analytics Engine only if a query that used to finish quickly suddenly times out for many datasets of the same customer.\n\n### KST-3020 — Dataset refresh failed\n\n**User sees:** a red clock on the tiles.\n**Cause:** the tooltip shows a second code with the real cause, usually a KST-2xxx connector error.\n**Support action:** handle the underlying code.\n**Escalate:** depends on the underlying code.\n\n## Members and seats (KST-4xxx)\n\n### KST-4012 — No seat available\n\n**User sees:** \"This workspace",
+              "offset": 4080,
+              "id": "support-runbook-errors.md:6",
+              "source": "support-runbook-errors.md",
+              "score": 0.016129032258064516,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "support-runbook-errors.md:6",
+                  "from": "kst_2044",
+                  "relation": "caused_by",
+                  "to": "kst_3020",
+                  "edge_id": "kst_3020|caused_by|kst_2044",
+                  "depth": 1
+                },
+                {
+                  "chunk_id": "support-runbook-errors.md:6",
+                  "from": "kst_3020",
+                  "relation": "caused_by",
+                  "to": "kst_2044",
+                  "edge_id": "kst_3020|caused_by|kst_2044",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 2
+              }
+            },
+            {
+              "text": "ssword, two-factor authentication, single sign-on (SAML) and SCIM provisioning. Issues the session tokens used by every other service.\nOwner: **Identity**.\n\n### connector-hub\n\nStores connector credentials (encrypted with per-workspace keys) and opens the connections to customer data sources. All outgoing connections leave through two fixed addresses, 203.0.113.10 and 203.0.113.11.\nOwner: **Data Integrations**.\n\n### query-engine\n\nRuns dataset queries, enforces the 120-second query time limit, and caches results for dashboards.\nOwner: **Analytics Engine**.\n\n### scheduler\n\nTriggers dataset refreshes and scheduled reports at the right time, in the time zone of each schedule. Generates the report PDFs and hands them over for delivery.\nOwner: **Analytics Engine**.\n\n### postroom\n\nSends every e-ma",
+              "offset": 680,
+              "id": "service-catalog.md:1",
+              "source": "service-catalog.md",
+              "score": 0.015873015873015872,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "service-catalog.md:1",
+                  "from": "connector_hub",
+                  "relation": "owned_by",
+                  "to": "data_integrations",
+                  "edge_id": "connector_hub|owned_by|data_integrations",
+                  "depth": 2
+                },
+                {
+                  "chunk_id": "service-catalog.md:1",
+                  "from": "connector_hub",
+                  "relation": "routes_to",
+                  "to": "203_0_113_10_and_203_0_113_11",
+                  "edge_id": "203_0_113_10_and_203_0_113_11|routes_to|connector_hub",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 3
+              }
+            }
+          ],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 1,
+              "recall": 0.5
+            },
+            {
+              "k": 3,
+              "hit": 1,
+              "recall": 0.5
+            },
+            {
+              "k": 5,
+              "hit": 1,
+              "recall": 0.5
+            },
+            {
+              "k": 10,
+              "hit": 1,
+              "recall": 0.5
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [
+            {
+              "chunk_id": "support-runbook-errors.md:4",
+              "from": "kst_2044",
+              "relation": "caused_by",
+              "to": "connector_hub",
+              "edge_id": "kst_2044|caused_by|connector_hub",
+              "depth": 1
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:4",
+              "from": "connector_hub",
+              "relation": "caused_by",
+              "to": "kst_2044",
+              "edge_id": "kst_2044|caused_by|connector_hub",
+              "depth": 2
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:6",
+              "from": "kst_2044",
+              "relation": "caused_by",
+              "to": "kst_3020",
+              "edge_id": "kst_3020|caused_by|kst_2044",
+              "depth": 1
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:6",
+              "from": "kst_3020",
+              "relation": "caused_by",
+              "to": "kst_2044",
+              "edge_id": "kst_3020|caused_by|kst_2044",
+              "depth": 2
+            },
+            {
+              "chunk_id": "service-catalog.md:1",
+              "from": "connector_hub",
+              "relation": "owned_by",
+              "to": "data_integrations",
+              "edge_id": "connector_hub|owned_by|data_integrations",
+              "depth": 2
+            },
+            {
+              "chunk_id": "service-catalog.md:1",
+              "from": "connector_hub",
+              "relation": "routes_to",
+              "to": "203_0_113_10_and_203_0_113_11",
+              "edge_id": "203_0_113_10_and_203_0_113_11|routes_to|connector_hub",
+              "depth": 2
+            }
+          ],
+          "graph_entities": [
+            {
+              "id": "kst_2044",
+              "name": "KST-2044",
+              "type": "error_code"
+            }
+          ],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 10
+          }
+        },
+        {
+          "id": "q02",
+          "question": "A user gets KST-4012 when accepting an invitation. What should support tell them?",
+          "type": "exact_identifier",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "support-runbook-errors.md",
+              "quote": "all seats of the plan are already used"
+            },
+            {
+              "source": "support-runbook-errors.md",
+              "quote": "an Admin of the workspace must remove a member to free a seat, or the Owner must add seats or move to a larger plan"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "support-runbook-errors.md:7"
+          ],
+          "retrieved": [
+            {
+              "text": " the underlying code.\n\n## Members and seats (KST-4xxx)\n\n### KST-4012 — No seat available\n\n**User sees:** \"This workspace has no seat available. Ask an Admin.\"\n**Cause:** the person is accepting an invitation, but all seats of the plan are already used. Pending invitations do not use a seat; the check happens at acceptance.\n**Support action:** explain that an Admin of the workspace must remove a member to free a seat, or the Owner must add seats or move to a larger plan. Once a seat is free, the same invitation link works again as long as it is less than 7 days old.\n**Escalate:** no.\n\n### KST-4019 — Ownership transfer pending\n\n**User sees:** \"An ownership transfer is waiting for confirmation.\"\n**Cause:** the Owner started a transfer, and one of the two people has not confirmed it by e-mail.",
+              "offset": 4760,
+              "id": "support-runbook-errors.md:7",
+              "source": "support-runbook-errors.md",
+              "score": 0.01639344262295082,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "support-runbook-errors.md:7",
+                  "from": "kst_4012",
+                  "relation": "related_to",
+                  "to": "business_plan",
+                  "edge_id": "kst_4012|related_to|business_plan",
+                  "depth": 1
+                },
+                {
+                  "chunk_id": "support-runbook-errors.md:7",
+                  "from": "business_plan",
+                  "relation": "related_to",
+                  "to": "kst_4012",
+                  "edge_id": "kst_4012|related_to|business_plan",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 1
+              }
+            },
+            {
+              "text": "ne workspace per department. Members of one workspace cannot see the content of another workspace, even inside the same organisation.\n\n## 2. Plans and limits\n\nEach workspace is on exactly one plan. The plan sets the number of seats, how often data refreshes, and which administration features are available.\n\n| | Free | Starter | Team | Business | Enterprise |\n|---|---|---|---|---|---|\n| Seats included | 2 | 5 | 20 | 100 | Custom |\n| Dashboards | 3 | 25 | Unlimited | Unlimited | Unlimited |\n| Data connectors | 1 | 3 | 10 | Unlimited | Unlimited |\n| Fastest refresh | Daily | Hourly | Every 15 minutes | Every 5 minutes | Every minute |\n| History kept | 30 days | 1 year | 2 years | 5 years | Custom |\n| Single sign-on (SAML) | — | — | — | Yes | Yes |\n| SCIM user provisioning | — | — | — | — | Ye",
+              "offset": 680,
+              "id": "product-guide.md:1",
+              "source": "product-guide.md",
+              "score": 0.016129032258064516,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "product-guide.md:1",
+                  "from": "business_plan",
+                  "relation": "part_of",
+                  "to": "single_sign_on_saml",
+                  "edge_id": "single_sign_on_saml|part_of|business_plan",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 2
+              }
+            },
+            {
+              "text": "ars | 5 years | Custom |\n| Single sign-on (SAML) | — | — | — | Yes | Yes |\n| SCIM user provisioning | — | — | — | — | Yes |\n| Audit log | — | — | — | 90 days | 1 year |\n| Public share links | — | Yes | Yes | Yes | Yes |\n\nPlans can be changed at any time from **Settings → Plan**. An upgrade takes effect immediately. A downgrade takes effect at the end of the current billing period; if the workspace uses more than the lower plan allows (for example more dashboards than the limit), the extra items become read-only until you remove them.\n\n## 3. Workspace roles\n\nEvery member has one role in the workspace:\n\n- **Owner**: exactly one per workspace. The Owner can do everything an Admin can, and is the only person who can change the plan, delete the workspace or transfer ownership.\n- **Admin**: mana",
+              "offset": 1360,
+              "id": "product-guide.md:2",
+              "source": "product-guide.md",
+              "score": 0.015873015873015872,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "product-guide.md:2",
+                  "from": "business_plan",
+                  "relation": "part_of",
+                  "to": "single_sign_on_saml",
+                  "edge_id": "single_sign_on_saml|part_of|business_plan",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 3
+              }
+            }
+          ],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 1,
+              "recall": 1
+            },
+            {
+              "k": 3,
+              "hit": 1,
+              "recall": 1
+            },
+            {
+              "k": 5,
+              "hit": 1,
+              "recall": 1
+            },
+            {
+              "k": 10,
+              "hit": 1,
+              "recall": 1
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [
+            {
+              "chunk_id": "support-runbook-errors.md:7",
+              "from": "kst_4012",
+              "relation": "related_to",
+              "to": "business_plan",
+              "edge_id": "kst_4012|related_to|business_plan",
+              "depth": 1
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:7",
+              "from": "business_plan",
+              "relation": "related_to",
+              "to": "kst_4012",
+              "edge_id": "kst_4012|related_to|business_plan",
+              "depth": 2
+            },
+            {
+              "chunk_id": "product-guide.md:1",
+              "from": "business_plan",
+              "relation": "part_of",
+              "to": "single_sign_on_saml",
+              "edge_id": "single_sign_on_saml|part_of|business_plan",
+              "depth": 2
+            },
+            {
+              "chunk_id": "product-guide.md:2",
+              "from": "business_plan",
+              "relation": "part_of",
+              "to": "single_sign_on_saml",
+              "edge_id": "single_sign_on_saml|part_of|business_plan",
+              "depth": 2
+            }
+          ],
+          "graph_entities": [
+            {
+              "id": "kst_4012",
+              "name": "KST-4012",
+              "type": "error_code"
+            }
+          ],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 0
+          }
+        },
+        {
+          "id": "q03",
+          "question": "What happens, step by step, when a customer's card payment fails?",
+          "type": "split_answer",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "billing-policy-2026.md",
+              "quote": "We then retry the payment automatically 1 day, 3 days and 7 days after the first attempt"
+            },
+            {
+              "source": "billing-policy-2026.md",
+              "quote": "a grace period of 21 days from the first failed attempt"
+            },
+            {
+              "source": "billing-policy-2026.md",
+              "quote": "the workspace becomes read-only"
+            },
+            {
+              "source": "billing-policy-2026.md",
+              "quote": "60 days after the first failed attempt, the workspace is suspended"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "billing-policy-2026.md:5",
+            "billing-policy-2026.md:6"
+          ],
+          "retrieved": [],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": 0
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [],
+          "graph_entities": [],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 0
+          }
+        },
+        {
+          "id": "q04",
+          "question": "Which plans include single sign-on, and how does an admin set it up?",
+          "type": "split_answer",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "product-guide.md",
+              "quote": "| Single sign-on (SAML) | — | — | — | Yes | Yes |"
+            },
+            {
+              "source": "product-guide.md",
+              "quote": "downloads the Kestrel service provider metadata"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "product-guide.md:1",
+            "product-guide.md:2",
+            "product-guide.md:5",
+            "product-guide.md:6"
+          ],
+          "retrieved": [],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": 0
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [],
+          "graph_entities": [],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 1
+          }
+        },
+        {
+          "id": "q05",
+          "question": "I lost my phone and I can't log in anymore. What can I do?",
+          "type": "vocabulary",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "product-guide.md",
+              "quote": "If you no longer have your authenticator device, use one of your backup codes"
+            },
+            {
+              "source": "product-guide.md",
+              "quote": "ask an Admin of your workspace to reset your second factor"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "product-guide.md:6",
+            "product-guide.md:7"
+          ],
+          "retrieved": [],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": 0
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [],
+          "graph_entities": [],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 0
+          }
+        },
+        {
+          "id": "q06",
+          "question": "Can I get a refund on my annual plan 45 days after it renewed?",
+          "type": "versions",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "billing-policy-2026.md",
+              "quote": "within 60 days of the purchase or renewal date"
+            },
+            {
+              "source": "billing-policy-2026.md",
+              "quote": "pro-rated from the date of the request"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "billing-policy-2026.md:3",
+            "billing-policy-2026.md:4"
+          ],
+          "retrieved": [],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": 0
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [],
+          "graph_entities": [],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 0
+          }
+        },
+        {
+          "id": "q07",
+          "question": "How much do I save by paying annually instead of monthly?",
+          "type": "versions",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "billing-policy-2026.md",
+              "quote": "Customers who choose annual billing receive a 20% discount"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "billing-policy-2026.md:1"
+          ],
+          "retrieved": [],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": 0
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [],
+          "graph_entities": [],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 2
+          }
+        },
+        {
+          "id": "q08",
+          "question": "Error KST-5031 happened on the last two scheduled reports. Which team should support contact, and where?",
+          "type": "two_hop",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "support-runbook-errors.md",
+              "quote": "escalate to the team that owns postroom"
+            },
+            {
+              "source": "service-catalog.md",
+              "quote": "| Messaging | Inès Moreau | #oncall-messaging | 08:00–20:00, weekdays |"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "service-catalog.md:4",
+            "support-runbook-errors.md:9"
+          ],
+          "retrieved": [
+            {
+              "text": "ng for confirmation.\"\n**Cause:** the Owner started a transfer, and one of the two people has not confirmed it by e-mail.\n**Support action:** ask both people to check their inbox and spam folder. The transfer can be cancelled by the current Owner from **Settings → Members**.\n**Escalate:** no.\n\n## Delivery and embedding (KST-5xxx)\n\n### KST-5031 — Scheduled report not delivered\n\n**User sees:** the schedule shows \"Last delivery failed\".\n**Cause:** the report was generated but the e-mail was not sent. This error is raised by postroom, the service that sends all Kestrel e-mails. A single occurrence is usually a temporary problem with a recipient's mail server.\n**Support action:** check whether the recipient's address is correct and whether the next delivery succeeds. Ask the customer to check th",
+              "offset": 5440,
+              "id": "support-runbook-errors.md:8",
+              "source": "support-runbook-errors.md",
+              "score": 0.01639344262295082,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "support-runbook-errors.md:8",
+                  "from": "kst_5031",
+                  "relation": "caused_by",
+                  "to": "postroom",
+                  "edge_id": "kst_5031|caused_by|postroom",
+                  "depth": 1
+                },
+                {
+                  "chunk_id": "support-runbook-errors.md:8",
+                  "from": "postroom",
+                  "relation": "caused_by",
+                  "to": "kst_5031",
+                  "edge_id": "kst_5031|caused_by|postroom",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 1
+              }
+            },
+            {
+              "text": "ssword, two-factor authentication, single sign-on (SAML) and SCIM provisioning. Issues the session tokens used by every other service.\nOwner: **Identity**.\n\n### connector-hub\n\nStores connector credentials (encrypted with per-workspace keys) and opens the connections to customer data sources. All outgoing connections leave through two fixed addresses, 203.0.113.10 and 203.0.113.11.\nOwner: **Data Integrations**.\n\n### query-engine\n\nRuns dataset queries, enforces the 120-second query time limit, and caches results for dashboards.\nOwner: **Analytics Engine**.\n\n### scheduler\n\nTriggers dataset refreshes and scheduled reports at the right time, in the time zone of each schedule. Generates the report PDFs and hands them over for delivery.\nOwner: **Analytics Engine**.\n\n### postroom\n\nSends every e-ma",
+              "offset": 680,
+              "id": "service-catalog.md:1",
+              "source": "service-catalog.md",
+              "score": 0.016129032258064516,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "service-catalog.md:1",
+                  "from": "postroom",
+                  "relation": "routes_to",
+                  "to": "scheduler",
+                  "edge_id": "scheduler|routes_to|postroom",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 2
+              }
+            },
+            {
+              "text": "Generates the report PDFs and hands them over for delivery.\nOwner: **Analytics Engine**.\n\n### postroom\n\nSends every e-mail that leaves Kestrel: scheduled reports, invitations, password resets, ownership transfer confirmations and billing notifications. Tracks bounces and removes a recipient from a schedule after three rejections.\nOwner: **Messaging**.\n\npostroom replaced the older mailman service in November 2025. mailman is switched off; old alerts or documents that mention it refer to postroom today.\n\n### embed-svc\n\nIssues and checks embed tokens for dashboards embedded in customer applications.\nOwner: **Platform**.\n\n### ledger\n\nSubscriptions, seats, invoices and payments. Generates invoice PDFs, runs the automatic payment retries, and applies the grace period and read-only rules of the B",
+              "offset": 1360,
+              "id": "service-catalog.md:2",
+              "source": "service-catalog.md",
+              "score": 0.015873015873015872,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "service-catalog.md:2",
+                  "from": "postroom",
+                  "relation": "owned_by",
+                  "to": "messaging",
+                  "edge_id": "postroom|owned_by|messaging",
+                  "depth": 2
+                },
+                {
+                  "chunk_id": "service-catalog.md:2",
+                  "from": "postroom",
+                  "relation": "related_to",
+                  "to": "mailman",
+                  "edge_id": "mailman|related_to|postroom",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 3
+              }
+            }
+          ],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": 0
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [
+            {
+              "chunk_id": "support-runbook-errors.md:8",
+              "from": "kst_5031",
+              "relation": "caused_by",
+              "to": "postroom",
+              "edge_id": "kst_5031|caused_by|postroom",
+              "depth": 1
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:8",
+              "from": "postroom",
+              "relation": "caused_by",
+              "to": "kst_5031",
+              "edge_id": "kst_5031|caused_by|postroom",
+              "depth": 2
+            },
+            {
+              "chunk_id": "service-catalog.md:1",
+              "from": "postroom",
+              "relation": "routes_to",
+              "to": "scheduler",
+              "edge_id": "scheduler|routes_to|postroom",
+              "depth": 2
+            },
+            {
+              "chunk_id": "service-catalog.md:2",
+              "from": "postroom",
+              "relation": "owned_by",
+              "to": "messaging",
+              "edge_id": "postroom|owned_by|messaging",
+              "depth": 2
+            },
+            {
+              "chunk_id": "service-catalog.md:2",
+              "from": "postroom",
+              "relation": "related_to",
+              "to": "mailman",
+              "edge_id": "mailman|related_to|postroom",
+              "depth": 2
+            }
+          ],
+          "graph_entities": [
+            {
+              "id": "kst_5031",
+              "name": "KST-5031",
+              "type": "error_code"
+            }
+          ],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 0
+          }
+        },
+        {
+          "id": "q09",
+          "question": "Is there a Kestrel mobile app for iPhone?",
+          "type": "not_in_corpus",
+          "answerable": false,
+          "evidence": [],
+          "relevant_chunk_ids": [],
+          "retrieved": [],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": null
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": null
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": null
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": null
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [],
+          "graph_entities": [],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 0
+          }
+        },
+        {
+          "id": "q10",
+          "question": "How much does one seat cost per month on the Business plan?",
+          "type": "not_in_corpus",
+          "answerable": false,
+          "evidence": [],
+          "relevant_chunk_ids": [],
+          "retrieved": [
+            {
+              "text": "ne workspace per department. Members of one workspace cannot see the content of another workspace, even inside the same organisation.\n\n## 2. Plans and limits\n\nEach workspace is on exactly one plan. The plan sets the number of seats, how often data refreshes, and which administration features are available.\n\n| | Free | Starter | Team | Business | Enterprise |\n|---|---|---|---|---|---|\n| Seats included | 2 | 5 | 20 | 100 | Custom |\n| Dashboards | 3 | 25 | Unlimited | Unlimited | Unlimited |\n| Data connectors | 1 | 3 | 10 | Unlimited | Unlimited |\n| Fastest refresh | Daily | Hourly | Every 15 minutes | Every 5 minutes | Every minute |\n| History kept | 30 days | 1 year | 2 years | 5 years | Custom |\n| Single sign-on (SAML) | — | — | — | Yes | Yes |\n| SCIM user provisioning | — | — | — | — | Ye",
+              "offset": 680,
+              "id": "product-guide.md:1",
+              "source": "product-guide.md",
+              "score": 0.01639344262295082,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "product-guide.md:1",
+                  "from": "business_plan",
+                  "relation": "part_of",
+                  "to": "single_sign_on_saml",
+                  "edge_id": "single_sign_on_saml|part_of|business_plan",
+                  "depth": 1
+                },
+                {
+                  "chunk_id": "product-guide.md:1",
+                  "from": "single_sign_on_saml",
+                  "relation": "part_of",
+                  "to": "business_plan",
+                  "edge_id": "single_sign_on_saml|part_of|business_plan",
+                  "depth": 2
+                },
+                {
+                  "chunk_id": "product-guide.md:1",
+                  "from": "single_sign_on_saml",
+                  "relation": "part_of",
+                  "to": "enterprise_plan",
+                  "edge_id": "single_sign_on_saml|part_of|enterprise_plan",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 1
+              }
+            },
+            {
+              "text": "ars | 5 years | Custom |\n| Single sign-on (SAML) | — | — | — | Yes | Yes |\n| SCIM user provisioning | — | — | — | — | Yes |\n| Audit log | — | — | — | 90 days | 1 year |\n| Public share links | — | Yes | Yes | Yes | Yes |\n\nPlans can be changed at any time from **Settings → Plan**. An upgrade takes effect immediately. A downgrade takes effect at the end of the current billing period; if the workspace uses more than the lower plan allows (for example more dashboards than the limit), the extra items become read-only until you remove them.\n\n## 3. Workspace roles\n\nEvery member has one role in the workspace:\n\n- **Owner**: exactly one per workspace. The Owner can do everything an Admin can, and is the only person who can change the plan, delete the workspace or transfer ownership.\n- **Admin**: mana",
+              "offset": 1360,
+              "id": "product-guide.md:2",
+              "source": "product-guide.md",
+              "score": 0.016129032258064516,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "product-guide.md:2",
+                  "from": "business_plan",
+                  "relation": "part_of",
+                  "to": "single_sign_on_saml",
+                  "edge_id": "single_sign_on_saml|part_of|business_plan",
+                  "depth": 1
+                },
+                {
+                  "chunk_id": "product-guide.md:2",
+                  "from": "single_sign_on_saml",
+                  "relation": "part_of",
+                  "to": "business_plan",
+                  "edge_id": "single_sign_on_saml|part_of|business_plan",
+                  "depth": 2
+                },
+                {
+                  "chunk_id": "product-guide.md:2",
+                  "from": "single_sign_on_saml",
+                  "relation": "part_of",
+                  "to": "enterprise_plan",
+                  "edge_id": "single_sign_on_saml|part_of|enterprise_plan",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 2
+              }
+            },
+            {
+              "text": " the underlying code.\n\n## Members and seats (KST-4xxx)\n\n### KST-4012 — No seat available\n\n**User sees:** \"This workspace has no seat available. Ask an Admin.\"\n**Cause:** the person is accepting an invitation, but all seats of the plan are already used. Pending invitations do not use a seat; the check happens at acceptance.\n**Support action:** explain that an Admin of the workspace must remove a member to free a seat, or the Owner must add seats or move to a larger plan. Once a seat is free, the same invitation link works again as long as it is less than 7 days old.\n**Escalate:** no.\n\n### KST-4019 — Ownership transfer pending\n\n**User sees:** \"An ownership transfer is waiting for confirmation.\"\n**Cause:** the Owner started a transfer, and one of the two people has not confirmed it by e-mail.",
+              "offset": 4760,
+              "id": "support-runbook-errors.md:7",
+              "source": "support-runbook-errors.md",
+              "score": 0.015873015873015872,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "support-runbook-errors.md:7",
+                  "from": "business_plan",
+                  "relation": "related_to",
+                  "to": "kst_4012",
+                  "edge_id": "kst_4012|related_to|business_plan",
+                  "depth": 1
+                },
+                {
+                  "chunk_id": "support-runbook-errors.md:7",
+                  "from": "kst_4012",
+                  "relation": "related_to",
+                  "to": "business_plan",
+                  "edge_id": "kst_4012|related_to|business_plan",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 3
+              }
+            },
+            {
+              "text": "eir device, follow the second-factor reset procedure in the Product Guide (an Admin of the workspace resets it; support only does it after identity verification).\n**Escalate:** no.\n\n### KST-1012 — SSO response rejected\n\n**User sees:** \"Your identity provider returned an invalid response.\"\n**Cause:** the identity provider certificate has expired or was rotated, or the clock of the identity provider is out of sync.\n**Support action:** ask a workspace Admin to upload the new identity provider metadata in **Settings → Security → Single sign-on**.\n**Escalate:** to Identity if the metadata is correct and the error persists.\n\n## Connectors (KST-2xxx)\n\n### KST-2040 — Connection timed out\n\n**User sees:** \"Kestrel could not reach your data source in time.\"\n**Cause:** the database is down, overloaded",
+              "offset": 2040,
+              "id": "support-runbook-errors.md:3",
+              "source": "support-runbook-errors.md",
+              "score": 0.015625,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "support-runbook-errors.md:3",
+                  "from": "single_sign_on_saml",
+                  "relation": "caused_by",
+                  "to": "kst_1012",
+                  "edge_id": "kst_1012|caused_by|single_sign_on_saml",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 4
+              }
+            }
+          ],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": null
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": null
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": null
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": null
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [
+            {
+              "chunk_id": "product-guide.md:1",
+              "from": "business_plan",
+              "relation": "part_of",
+              "to": "single_sign_on_saml",
+              "edge_id": "single_sign_on_saml|part_of|business_plan",
+              "depth": 1
+            },
+            {
+              "chunk_id": "product-guide.md:1",
+              "from": "single_sign_on_saml",
+              "relation": "part_of",
+              "to": "business_plan",
+              "edge_id": "single_sign_on_saml|part_of|business_plan",
+              "depth": 2
+            },
+            {
+              "chunk_id": "product-guide.md:1",
+              "from": "single_sign_on_saml",
+              "relation": "part_of",
+              "to": "enterprise_plan",
+              "edge_id": "single_sign_on_saml|part_of|enterprise_plan",
+              "depth": 2
+            },
+            {
+              "chunk_id": "product-guide.md:2",
+              "from": "business_plan",
+              "relation": "part_of",
+              "to": "single_sign_on_saml",
+              "edge_id": "single_sign_on_saml|part_of|business_plan",
+              "depth": 1
+            },
+            {
+              "chunk_id": "product-guide.md:2",
+              "from": "single_sign_on_saml",
+              "relation": "part_of",
+              "to": "business_plan",
+              "edge_id": "single_sign_on_saml|part_of|business_plan",
+              "depth": 2
+            },
+            {
+              "chunk_id": "product-guide.md:2",
+              "from": "single_sign_on_saml",
+              "relation": "part_of",
+              "to": "enterprise_plan",
+              "edge_id": "single_sign_on_saml|part_of|enterprise_plan",
+              "depth": 2
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:7",
+              "from": "business_plan",
+              "relation": "related_to",
+              "to": "kst_4012",
+              "edge_id": "kst_4012|related_to|business_plan",
+              "depth": 1
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:7",
+              "from": "kst_4012",
+              "relation": "related_to",
+              "to": "business_plan",
+              "edge_id": "kst_4012|related_to|business_plan",
+              "depth": 2
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:3",
+              "from": "single_sign_on_saml",
+              "relation": "caused_by",
+              "to": "kst_1012",
+              "edge_id": "kst_1012|caused_by|single_sign_on_saml",
+              "depth": 2
+            }
+          ],
+          "graph_entities": [
+            {
+              "id": "business_plan",
+              "name": "Business plan",
+              "type": "plan"
+            }
+          ],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 0
+          }
+        },
+        {
+          "id": "q11",
+          "question": "A scheduled report has failed on two consecutive deliveries. Which service owner should support contact, and which channel should they use?",
+          "type": "two_hop",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "support-runbook-errors.md",
+              "quote": "escalate to the team that owns postroom, as SEV-2"
+            },
+            {
+              "source": "service-catalog.md",
+              "quote": "| Messaging | Inès Moreau | #oncall-messaging | 08:00–20:00, weekdays |"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "service-catalog.md:4",
+            "support-runbook-errors.md:9"
+          ],
+          "retrieved": [],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 3,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 5,
+              "hit": 0,
+              "recall": 0
+            },
+            {
+              "k": 10,
+              "hit": 0,
+              "recall": 0
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [],
+          "graph_entities": [],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 0
+          }
+        },
+        {
+          "id": "q12",
+          "question": "For a repeated KST-5031 scheduled-report delivery failure, which engineering team is responsible for the mail service and what are its normal support hours?",
+          "type": "two_hop",
+          "answerable": true,
+          "evidence": [
+            {
+              "source": "support-runbook-errors.md",
+              "quote": "This error is raised by postroom, the service that sends all Kestrel e-mails"
+            },
+            {
+              "source": "service-catalog.md",
+              "quote": "| Messaging | Inès Moreau | #oncall-messaging | 08:00–20:00, weekdays |"
+            }
+          ],
+          "relevant_chunk_ids": [
+            "service-catalog.md:4",
+            "support-runbook-errors.md:8"
+          ],
+          "retrieved": [
+            {
+              "text": "ng for confirmation.\"\n**Cause:** the Owner started a transfer, and one of the two people has not confirmed it by e-mail.\n**Support action:** ask both people to check their inbox and spam folder. The transfer can be cancelled by the current Owner from **Settings → Members**.\n**Escalate:** no.\n\n## Delivery and embedding (KST-5xxx)\n\n### KST-5031 — Scheduled report not delivered\n\n**User sees:** the schedule shows \"Last delivery failed\".\n**Cause:** the report was generated but the e-mail was not sent. This error is raised by postroom, the service that sends all Kestrel e-mails. A single occurrence is usually a temporary problem with a recipient's mail server.\n**Support action:** check whether the recipient's address is correct and whether the next delivery succeeds. Ask the customer to check th",
+              "offset": 5440,
+              "id": "support-runbook-errors.md:8",
+              "source": "support-runbook-errors.md",
+              "score": 0.01639344262295082,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "support-runbook-errors.md:8",
+                  "from": "kst_5031",
+                  "relation": "caused_by",
+                  "to": "postroom",
+                  "edge_id": "kst_5031|caused_by|postroom",
+                  "depth": 1
+                },
+                {
+                  "chunk_id": "support-runbook-errors.md:8",
+                  "from": "postroom",
+                  "relation": "caused_by",
+                  "to": "kst_5031",
+                  "edge_id": "kst_5031|caused_by|postroom",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 1
+              }
+            },
+            {
+              "text": "ssword, two-factor authentication, single sign-on (SAML) and SCIM provisioning. Issues the session tokens used by every other service.\nOwner: **Identity**.\n\n### connector-hub\n\nStores connector credentials (encrypted with per-workspace keys) and opens the connections to customer data sources. All outgoing connections leave through two fixed addresses, 203.0.113.10 and 203.0.113.11.\nOwner: **Data Integrations**.\n\n### query-engine\n\nRuns dataset queries, enforces the 120-second query time limit, and caches results for dashboards.\nOwner: **Analytics Engine**.\n\n### scheduler\n\nTriggers dataset refreshes and scheduled reports at the right time, in the time zone of each schedule. Generates the report PDFs and hands them over for delivery.\nOwner: **Analytics Engine**.\n\n### postroom\n\nSends every e-ma",
+              "offset": 680,
+              "id": "service-catalog.md:1",
+              "source": "service-catalog.md",
+              "score": 0.016129032258064516,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "service-catalog.md:1",
+                  "from": "postroom",
+                  "relation": "routes_to",
+                  "to": "scheduler",
+                  "edge_id": "scheduler|routes_to|postroom",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 2
+              }
+            },
+            {
+              "text": "Generates the report PDFs and hands them over for delivery.\nOwner: **Analytics Engine**.\n\n### postroom\n\nSends every e-mail that leaves Kestrel: scheduled reports, invitations, password resets, ownership transfer confirmations and billing notifications. Tracks bounces and removes a recipient from a schedule after three rejections.\nOwner: **Messaging**.\n\npostroom replaced the older mailman service in November 2025. mailman is switched off; old alerts or documents that mention it refer to postroom today.\n\n### embed-svc\n\nIssues and checks embed tokens for dashboards embedded in customer applications.\nOwner: **Platform**.\n\n### ledger\n\nSubscriptions, seats, invoices and payments. Generates invoice PDFs, runs the automatic payment retries, and applies the grace period and read-only rules of the B",
+              "offset": 1360,
+              "id": "service-catalog.md:2",
+              "source": "service-catalog.md",
+              "score": 0.015873015873015872,
+              "retrievers": [
+                "graph"
+              ],
+              "graph_path": [
+                {
+                  "chunk_id": "service-catalog.md:2",
+                  "from": "postroom",
+                  "relation": "owned_by",
+                  "to": "messaging",
+                  "edge_id": "postroom|owned_by|messaging",
+                  "depth": 2
+                },
+                {
+                  "chunk_id": "service-catalog.md:2",
+                  "from": "postroom",
+                  "relation": "related_to",
+                  "to": "mailman",
+                  "edge_id": "mailman|related_to|postroom",
+                  "depth": 2
+                }
+              ],
+              "ranks": {
+                "graph": 3
+              }
+            }
+          ],
+          "ranks": [
+            {
+              "k": 1,
+              "hit": 1,
+              "recall": 0.5
+            },
+            {
+              "k": 3,
+              "hit": 1,
+              "recall": 0.5
+            },
+            {
+              "k": 5,
+              "hit": 1,
+              "recall": 0.5
+            },
+            {
+              "k": 10,
+              "hit": 1,
+              "recall": 0.5
+            }
+          ],
+          "lists": {
+            "dense": false,
+            "bm25": false,
+            "graph": true
+          },
+          "graph_path": [
+            {
+              "chunk_id": "support-runbook-errors.md:8",
+              "from": "kst_5031",
+              "relation": "caused_by",
+              "to": "postroom",
+              "edge_id": "kst_5031|caused_by|postroom",
+              "depth": 1
+            },
+            {
+              "chunk_id": "support-runbook-errors.md:8",
+              "from": "postroom",
+              "relation": "caused_by",
+              "to": "kst_5031",
+              "edge_id": "kst_5031|caused_by|postroom",
+              "depth": 2
+            },
+            {
+              "chunk_id": "service-catalog.md:1",
+              "from": "postroom",
+              "relation": "routes_to",
+              "to": "scheduler",
+              "edge_id": "scheduler|routes_to|postroom",
+              "depth": 2
+            },
+            {
+              "chunk_id": "service-catalog.md:2",
+              "from": "postroom",
+              "relation": "owned_by",
+              "to": "messaging",
+              "edge_id": "postroom|owned_by|messaging",
+              "depth": 2
+            },
+            {
+              "chunk_id": "service-catalog.md:2",
+              "from": "postroom",
+              "relation": "related_to",
+              "to": "mailman",
+              "edge_id": "mailman|related_to|postroom",
+              "depth": 2
+            }
+          ],
+          "graph_entities": [
+            {
+              "id": "kst_5031",
+              "name": "KST-5031",
+              "type": "error_code"
+            }
+          ],
+          "generated": null,
+          "cost": {
+            "llm_calls": 0,
+            "tokens": null,
+            "latency_ms": 1
+          }
+        }
+      ]
+    }
+  ]
+}

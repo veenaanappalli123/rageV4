@@ -1,0 +1,1286 @@
+{
+  "corpus": "personal",
+  "config": {
+    "size": 800,
+    "overlap": 120,
+    "k": 5,
+    "retriever": "BM25",
+    "generate": false,
+    "noContext": false
+  },
+  "grading_rules": {
+    "correct": "Fully supported, or clearly abstains when unanswerable",
+    "partial": "Some supported details but incomplete",
+    "wrong": "Incorrect answer, including an answer to an unanswerable question",
+    "unsupported": "Claims not justified by cited documents"
+  },
+  "summary": {
+    "questions": 11,
+    "answerable": 10,
+    "excluded_unanswerable": 1,
+    "missing_ground_truth": 0,
+    "hit_rate_at_1": 0.6,
+    "recall_at_1": 0.6,
+    "hit_rate_at_3": 0.9,
+    "recall_at_3": 0.9,
+    "hit_rate_at_5": 0.9,
+    "recall_at_5": 0.9,
+    "hit_rate_at_10": 0.9,
+    "recall_at_10": 0.9
+  },
+  "by_type": {
+    "other": {
+      "count": 6,
+      "hit_rate_at_1": 0.6666666666666666,
+      "recall_at_1": 0.6666666666666666,
+      "hit_rate_at_3": 1,
+      "recall_at_3": 1,
+      "hit_rate_at_5": 1,
+      "recall_at_5": 1,
+      "hit_rate_at_10": 1,
+      "recall_at_10": 1
+    },
+    "exact_identifier": {
+      "count": 2,
+      "hit_rate_at_1": 0.5,
+      "recall_at_1": 0.5,
+      "hit_rate_at_3": 0.5,
+      "recall_at_3": 0.5,
+      "hit_rate_at_5": 0.5,
+      "recall_at_5": 0.5,
+      "hit_rate_at_10": 0.5,
+      "recall_at_10": 0.5
+    },
+    "split_answer": {
+      "count": 1,
+      "hit_rate_at_1": 0,
+      "recall_at_1": 0,
+      "hit_rate_at_3": 1,
+      "recall_at_3": 1,
+      "hit_rate_at_5": 1,
+      "recall_at_5": 1,
+      "hit_rate_at_10": 1,
+      "recall_at_10": 1
+    },
+    "vocabulary": {
+      "count": 1,
+      "hit_rate_at_1": 1,
+      "recall_at_1": 1,
+      "hit_rate_at_3": 1,
+      "recall_at_3": 1,
+      "hit_rate_at_5": 1,
+      "recall_at_5": 1,
+      "hit_rate_at_10": 1,
+      "recall_at_10": 1
+    }
+  },
+  "rows": [
+    {
+      "id": "p01",
+      "question": "Which command starts the support triage application?",
+      "type": "other",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "README.md",
+          "quote": "npm start"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "README.md:0"
+      ],
+      "retrieved": [
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 3.555534184251669
+        },
+        {
+          "text": "# RAG V2 extension\n\nThis adds a separate RAG app alongside the existing support-triage application.\n\n## Setup\n`npm install`\n\nRun the original triage app with `npm start` or the RAG app with `npm run rag:v2`, then open `http://localhost:3100`.\n\n## Data\nThe required Kestrel documents and questions were **not provided**. Add `.md`/`.txt` files to `rag-data/kestrel/docs/` and `questions.jsonl` to `rag-data/kestrel/`. Do the same for the second corpus under `rag-data/personal/`. See `rag-data/QUESTION_FORMAT.md`. Both folders are intentionally empty until you add real documents.\n\n## Web features\nThe Ask tab retrieves source chunks and optionally generates a cited answer. Documents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words",
+          "offset": 0,
+          "id": "RAG-V2-README.md:0",
+          "source": "RAG-V2-README.md",
+          "score": 3.014650706815358
+        },
+        {
+          "text": "# LLM–DM Research, Integration Strategy, Results and Analysis\n\n**EPITA — AI Systems Integration and Operations, BCS S5 (2026)**\n\n## 1. Decision-model research\n\nThe *Decisions Decisions* course presentation (pp. 5–12) defines decision models as classifiers that answer typed `choice`, `noul` or `score` questions with probabilities, in contrast with LLMs which generate text. The following providers are listed in the course slides (availability/pricing are **not independently verified**):\n\n| Candidate | Course-listed endpoint / status | Free hosted access confirmed? | Suitability |\n|---|---|---|---|\n| OpenAI Decisions API | `POST /v1/decisions`, public beta in slides | No | Typed decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign",
+          "offset": 0,
+          "id": "LLM-DM-report.md:0",
+          "source": "LLM-DM-report.md",
+          "score": 2.6059489986973094
+        },
+        {
+          "text": "endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys in `.env`, never in the repository. Treat outputs as support prioritization suggestions, not autonomous high-stakes actions.\n\n**References:** EPITA Course 5, *LLM API Integration – Part III – Extra – Decisions Decisions*, pp. 5–12, 14–15 and 22–23; *LLM API Integration – Part III*, p. 2.\n",
+          "offset": 4760,
+          "id": "LLM-DM-report.md:7",
+          "source": "LLM-DM-report.md",
+          "score": 2.08646456826851
+        },
+        {
+          "text": "yped decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign-up limitations noted |\n| OpenRouter Jev | `/api/alpha/decisions` or `/api/v1/systemone`, input billed | No | Gateway option, pricing requires verification |\n| vLLM Semantic Router Decision 3.0 | `POST /v1/systemone`, API key required | No | Candidate to investigate for free quota |\n| Cloudflare Clef | Endpoint not confirmed in slides | No | Open weights, but hosted endpoint not established |\n| Perplexity decider | Endpoint not confirmed in slides | No | Potential option, contract must be checked |\n\n**Provider selection status:** A genuinely free hosted provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword ",
+          "offset": 680,
+          "id": "LLM-DM-report.md:1",
+          "source": "LLM-DM-report.md",
+          "score": 1.7018463931065742
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 1.668951839051884
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 1.6593759765584093
+        },
+        {
+          "text": ".** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `LLM_INPUT_USD_PER_MILLION` and `DM_INPUT_USD_PER_MILLION` to estimate input-token cost. No cost is fabricated when a price is unknown. DM+LLM price is not fully estimated by the generic calculator.\n\n## UI and API\n\n- `POST /api/triage` — `{text, strategy: \"demo\"|\"llm\"|\"dm\"|\"dm+llm\", version: \"v1\"|\"v2\"}`. Version selector is included for course navigation; both currently use the same validated classification implementation. **Distinct original V1 behavior still needs the earlier course specification.**\n- `POST /api/chat` — `{message, conversationId?, strategy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept ",
+          "offset": 1360,
+          "id": "README.md:2",
+          "source": "README.md",
+          "score": 1.468162992728188
+        },
+        {
+          "text": "real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not supplied**, so no real benchmark or comparison has been run.\n- Triage V1/V2: interface supports both labels, but their behavior currently shares the same implementation pending earlier assignment details.\n\n## 4. Results and analysis\n\n**No empirical accuracy, latency or cost figures are claimed.** To complete the evaluation, import the professor's datasets, run comparable random samples for each configured strategy, and copy the actual run IDs/outputs from `/admin` here. Compare category and priority accuracy separately on labelled data; include error counts, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair",
+          "offset": 3400,
+          "id": "LLM-DM-report.md:5",
+          "source": "LLM-DM-report.md",
+          "score": 1.4496050013517643
+        },
+        {
+          "text": "/api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"category\":\"billing\", \"priority\":\"low\"},\n  {\"text\":\"Production API down for all customers\", \"category\":\"technical\", \"priority\":\"critical\"}\n]\n```\n\nCategories: `account`, `billing`, `technical`, `access`, `other`. Priorities: `low`, `medium`, `high`, `critical`. **The course datasets are not included.** They must be supplied and mapped to this label taxonomy. The 500-ticket set can omit labels. If the course uses different labels, adjust the taxonomy and adapters before evaluating.\n\n## Validation and limitations\n\nRun `npm test`. This project has a usable UI and testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or",
+          "offset": 2720,
+          "id": "README.md:4",
+          "source": "README.md",
+          "score": 0.04494653824285836
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p02",
+      "question": "What is the default strategy, and does it use a hosted model?",
+      "type": "other",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "README.md",
+          "quote": "Default strategy `demo` uses local keyword rules"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "README.md:0"
+      ],
+      "retrieved": [
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 7.483490538748842
+        },
+        {
+          "text": "testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or live benchmark results were provided. Smoke testing is sequential and may take time for paid models. Log files in `data/runs.jsonl` are local and the admin page is not authenticated (use on localhost only). No persistence for chat beyond the current server process. For a production deployment add auth, durable storage, rate limiting, audit controls, and human review for consequential decisions.\n\nSee `LLM-DM-report.md` for the research and evaluation plan.\n",
+          "offset": 3400,
+          "id": "README.md:5",
+          "source": "README.md",
+          "score": 5.297445530804075
+        },
+        {
+          "text": ".** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `LLM_INPUT_USD_PER_MILLION` and `DM_INPUT_USD_PER_MILLION` to estimate input-token cost. No cost is fabricated when a price is unknown. DM+LLM price is not fully estimated by the generic calculator.\n\n## UI and API\n\n- `POST /api/triage` — `{text, strategy: \"demo\"|\"llm\"|\"dm\"|\"dm+llm\", version: \"v1\"|\"v2\"}`. Version selector is included for course navigation; both currently use the same validated classification implementation. **Distinct original V1 behavior still needs the earlier course specification.**\n- `POST /api/chat` — `{message, conversationId?, strategy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept ",
+          "offset": 1360,
+          "id": "README.md:2",
+          "source": "README.md",
+          "score": 4.886734976877406
+        },
+        {
+          "text": "be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be reviewed by a human rather than acted on automatically.\n\n## 3. Implementation and verification status\n\n- Implemented in source: strategy selector; API adapters; Zod request/result validation; token usage; session chat history; dataset upload; random smoke runner; per-run logging; `/admin` view.\n- Local deterministic demo: available without credentials, but **not evidence of DM performance**.\n- Hosted LLM call: implemented, **not tested with a configured provider**.\n- Hosted DM call: implemented against the slide's illustrative contract, **not tested against a real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not su",
+          "offset": 2720,
+          "id": "LLM-DM-report.md:4",
+          "source": "LLM-DM-report.md",
+          "score": 4.264481541765179
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 4.139348293843968
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 4.003848075594601
+        },
+        {
+          "text": "val-only evaluation still works. Each run produces JSON with per-question retrieved chunks, HitRate@k, Recall@k, per-type results, and blank manual grade fields. The comparison file lists all configurations.\n\n**Metric caveat:** Evidence is matched by source filename and exact quote inside a chunk. If a quote spans a chunk boundary, it may not match; adjust the quote or chunking before interpreting metrics. Questions without matching evidence are flagged and excluded from retrieval metric denominators.\n\n## Testing\n`npm test`\n\n## Submission checklist\n- [ ] Import the authentic Kestrel corpus and starter questions\n- [ ] Add a real second corpus and 10+ original questions\n- [ ] Run no-context baseline on both sets and review already-answerable questions\n- [ ] Run and compare at least two confi",
+          "offset": 1360,
+          "id": "RAG-V2-README.md:2",
+          "source": "RAG-V2-README.md",
+          "score": 3.287366897522079
+        },
+        {
+          "text": "s, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair comparison, keep the same sampled tickets across strategies (the current runner samples randomly per run; a fixed-seed/common-sample option would be a useful extension).\n\n| Strategy | Sample | Category accuracy | Priority accuracy | Latency | Cost | Status |\n|---|---:|---:|---:|---:|---:|---|\n| LLM | — | — | — | — | — | Not run |\n| DM | — | — | — | — | — | Not run |\n| DM + LLM | — | — | — | — | — | Not run |\n\n## 5. Risks and follow-up\n\nPrompt injection in untrusted ticket text; calibration error; class imbalance; label mismatch with course data; hosted endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys",
+          "offset": 4080,
+          "id": "LLM-DM-report.md:6",
+          "source": "LLM-DM-report.md",
+          "score": 2.6075112568902306
+        },
+        {
+          "text": "/api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"category\":\"billing\", \"priority\":\"low\"},\n  {\"text\":\"Production API down for all customers\", \"category\":\"technical\", \"priority\":\"critical\"}\n]\n```\n\nCategories: `account`, `billing`, `technical`, `access`, `other`. Priorities: `low`, `medium`, `high`, `critical`. **The course datasets are not included.** They must be supplied and mapped to this label taxonomy. The 500-ticket set can omit labels. If the course uses different labels, adjust the taxonomy and adapters before evaluating.\n\n## Validation and limitations\n\nRun `npm test`. This project has a usable UI and testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or",
+          "offset": 2720,
+          "id": "README.md:4",
+          "source": "README.md",
+          "score": 2.538959786137124
+        },
+        {
+          "text": "l performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-completions-compatible URL** (e.g. a provider's `/v1/chat/completions` endpoint), and `LLM_MODEL` must be an authorized model name. `DM_API_URL` must be a **full hosted decision-model endpoint**, with `DM_MODEL` and `DM_API_KEY` from that provider. The DM adapter sends `{model,state,questions}` with `choice` criteria and expects a JSON response containing category and priority objects with `choice` and `probabilities` (optionally nested under `decisions` or `results`). **Provider schemas differ; check and adapt to the chosen provider's actual documentation.** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `",
+          "offset": 680,
+          "id": "README.md:1",
+          "source": "README.md",
+          "score": 2.2703118322818323
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p03",
+      "question": "Which endpoint classifies support tickets?",
+      "type": "exact_identifier",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "README.md",
+          "quote": "POST /api/triage"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "README.md:2"
+      ],
+      "retrieved": [
+        {
+          "text": "# LLM–DM Research, Integration Strategy, Results and Analysis\n\n**EPITA — AI Systems Integration and Operations, BCS S5 (2026)**\n\n## 1. Decision-model research\n\nThe *Decisions Decisions* course presentation (pp. 5–12) defines decision models as classifiers that answer typed `choice`, `noul` or `score` questions with probabilities, in contrast with LLMs which generate text. The following providers are listed in the course slides (availability/pricing are **not independently verified**):\n\n| Candidate | Course-listed endpoint / status | Free hosted access confirmed? | Suitability |\n|---|---|---|---|\n| OpenAI Decisions API | `POST /v1/decisions`, public beta in slides | No | Typed decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign",
+          "offset": 0,
+          "id": "LLM-DM-report.md:0",
+          "source": "LLM-DM-report.md",
+          "score": 3.6469647042779965
+        },
+        {
+          "text": "endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys in `.env`, never in the repository. Treat outputs as support prioritization suggestions, not autonomous high-stakes actions.\n\n**References:** EPITA Course 5, *LLM API Integration – Part III – Extra – Decisions Decisions*, pp. 5–12, 14–15 and 22–23; *LLM API Integration – Part III*, p. 2.\n",
+          "offset": 4760,
+          "id": "LLM-DM-report.md:7",
+          "source": "LLM-DM-report.md",
+          "score": 3.3565106140854173
+        },
+        {
+          "text": "s, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair comparison, keep the same sampled tickets across strategies (the current runner samples randomly per run; a fixed-seed/common-sample option would be a useful extension).\n\n| Strategy | Sample | Category accuracy | Priority accuracy | Latency | Cost | Status |\n|---|---:|---:|---:|---:|---:|---|\n| LLM | — | — | — | — | — | Not run |\n| DM | — | — | — | — | — | Not run |\n| DM + LLM | — | — | — | — | — | Not run |\n\n## 5. Risks and follow-up\n\nPrompt injection in untrusted ticket text; calibration error; class imbalance; label mismatch with course data; hosted endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys",
+          "offset": 4080,
+          "id": "LLM-DM-report.md:6",
+          "source": "LLM-DM-report.md",
+          "score": 3.1936641224859597
+        },
+        {
+          "text": "egy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept in server memory and lost on restart.\n- `POST /api/datasets/100` or `/api/datasets/500` — upload JSON array of tickets from UI. These are kept in server memory until restart. Alternatively place `data/tickets-100.json` and `data/tickets-500.json` on disk.\n- `POST /api/smoke` — `{dataset:\"100\"|\"500\", count:1..100, strategy}`. Random sampling without replacement, per-ticket predictions, category and priority mismatches, accuracy on valid labelled rows, latency, token usage, and model tracking.\n- `GET /api/admin` — log JSON, `GET /admin` — admin view, `GET /api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"categ",
+          "offset": 2040,
+          "id": "README.md:3",
+          "source": "README.md",
+          "score": 1.9560906220508596
+        },
+        {
+          "text": "yped decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign-up limitations noted |\n| OpenRouter Jev | `/api/alpha/decisions` or `/api/v1/systemone`, input billed | No | Gateway option, pricing requires verification |\n| vLLM Semantic Router Decision 3.0 | `POST /v1/systemone`, API key required | No | Candidate to investigate for free quota |\n| Cloudflare Clef | Endpoint not confirmed in slides | No | Open weights, but hosted endpoint not established |\n| Perplexity decider | Endpoint not confirmed in slides | No | Potential option, contract must be checked |\n\n**Provider selection status:** A genuinely free hosted provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword ",
+          "offset": 680,
+          "id": "LLM-DM-report.md:1",
+          "source": "LLM-DM-report.md",
+          "score": 1.6770562600584136
+        },
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 1.6134703187867518
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 1.6075250852681924
+        },
+        {
+          "text": "l performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-completions-compatible URL** (e.g. a provider's `/v1/chat/completions` endpoint), and `LLM_MODEL` must be an authorized model name. `DM_API_URL` must be a **full hosted decision-model endpoint**, with `DM_MODEL` and `DM_API_KEY` from that provider. The DM adapter sends `{model,state,questions}` with `choice` criteria and expects a JSON response containing category and priority objects with `choice` and `probabilities` (optionally nested under `decisions` or `results`). **Provider schemas differ; check and adapt to the chosen provider's actual documentation.** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `",
+          "offset": 680,
+          "id": "README.md:1",
+          "source": "README.md",
+          "score": 1.4497539776134605
+        },
+        {
+          "text": "ents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words tab shows vocabulary frequency, number of chunks containing each word, and question words with their matching chunks.\n\n## Repeatable CLI evaluation\n`npm run rag:evaluate -- kestrel --sizes 500,800 --overlaps 80,120`\n`npm run rag:evaluate -- personal --sizes 500,800 --overlaps 80,120`\n\nAdd `--generate` to call the LLM for each retrieved question, or `--no-context` to test the model without retrieval. These options need `RAG_API_KEY`, `RAG_API_URL` (OpenAI-compatible chat-completions endpoint), and `RAG_MODEL` set in your environment. Without them, retrieval-only evaluation still works. Each run produces JSON with per-question retrieved chunks, HitRate@k, Recall@k, per-typ",
+          "offset": 680,
+          "id": "RAG-V2-README.md:1",
+          "source": "RAG-V2-README.md",
+          "score": 1.0462660298620363
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 5,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 10,
+          "hit": 0,
+          "recall": 0
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p04",
+      "question": "Where can I open the admin interface?",
+      "type": "exact_identifier",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "README.md",
+          "quote": "http://localhost:3000/admin"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "README.md:0"
+      ],
+      "retrieved": [
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 5.4731430593903765
+        },
+        {
+          "text": "real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not supplied**, so no real benchmark or comparison has been run.\n- Triage V1/V2: interface supports both labels, but their behavior currently shares the same implementation pending earlier assignment details.\n\n## 4. Results and analysis\n\n**No empirical accuracy, latency or cost figures are claimed.** To complete the evaluation, import the professor's datasets, run comparable random samples for each configured strategy, and copy the actual run IDs/outputs from `/admin` here. Compare category and priority accuracy separately on labelled data; include error counts, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair",
+          "offset": 3400,
+          "id": "LLM-DM-report.md:5",
+          "source": "LLM-DM-report.md",
+          "score": 3.232154023330222
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 3.153881917297066
+        },
+        {
+          "text": "/api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"category\":\"billing\", \"priority\":\"low\"},\n  {\"text\":\"Production API down for all customers\", \"category\":\"technical\", \"priority\":\"critical\"}\n]\n```\n\nCategories: `account`, `billing`, `technical`, `access`, `other`. Priorities: `low`, `medium`, `high`, `critical`. **The course datasets are not included.** They must be supplied and mapped to this label taxonomy. The 500-ticket set can omit labels. If the course uses different labels, adjust the taxonomy and adapters before evaluating.\n\n## Validation and limitations\n\nRun `npm test`. This project has a usable UI and testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or",
+          "offset": 2720,
+          "id": "README.md:4",
+          "source": "README.md",
+          "score": 2.0536224853157807
+        },
+        {
+          "text": "egy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept in server memory and lost on restart.\n- `POST /api/datasets/100` or `/api/datasets/500` — upload JSON array of tickets from UI. These are kept in server memory until restart. Alternatively place `data/tickets-100.json` and `data/tickets-500.json` on disk.\n- `POST /api/smoke` — `{dataset:\"100\"|\"500\", count:1..100, strategy}`. Random sampling without replacement, per-ticket predictions, category and priority mismatches, accuracy on valid labelled rows, latency, token usage, and model tracking.\n- `GET /api/admin` — log JSON, `GET /admin` — admin view, `GET /api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"categ",
+          "offset": 2040,
+          "id": "README.md:3",
+          "source": "README.md",
+          "score": 1.9369280292736808
+        },
+        {
+          "text": "yped decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign-up limitations noted |\n| OpenRouter Jev | `/api/alpha/decisions` or `/api/v1/systemone`, input billed | No | Gateway option, pricing requires verification |\n| vLLM Semantic Router Decision 3.0 | `POST /v1/systemone`, API key required | No | Candidate to investigate for free quota |\n| Cloudflare Clef | Endpoint not confirmed in slides | No | Open weights, but hosted endpoint not established |\n| Perplexity decider | Endpoint not confirmed in slides | No | Potential option, contract must be checked |\n\n**Provider selection status:** A genuinely free hosted provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword ",
+          "offset": 680,
+          "id": "LLM-DM-report.md:1",
+          "source": "LLM-DM-report.md",
+          "score": 1.7018463931065742
+        },
+        {
+          "text": "# RAG V2 extension\n\nThis adds a separate RAG app alongside the existing support-triage application.\n\n## Setup\n`npm install`\n\nRun the original triage app with `npm start` or the RAG app with `npm run rag:v2`, then open `http://localhost:3100`.\n\n## Data\nThe required Kestrel documents and questions were **not provided**. Add `.md`/`.txt` files to `rag-data/kestrel/docs/` and `questions.jsonl` to `rag-data/kestrel/`. Do the same for the second corpus under `rag-data/personal/`. See `rag-data/QUESTION_FORMAT.md`. Both folders are intentionally empty until you add real documents.\n\n## Web features\nThe Ask tab retrieves source chunks and optionally generates a cited answer. Documents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words",
+          "offset": 0,
+          "id": "RAG-V2-README.md:0",
+          "source": "RAG-V2-README.md",
+          "score": 1.6509634815542618
+        },
+        {
+          "text": "testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or live benchmark results were provided. Smoke testing is sequential and may take time for paid models. Log files in `data/runs.jsonl` are local and the admin page is not authenticated (use on localhost only). No persistence for chat beyond the current server process. For a production deployment add auth, durable storage, rate limiting, audit controls, and human review for consequential decisions.\n\nSee `LLM-DM-report.md` for the research and evaluation plan.\n",
+          "offset": 3400,
+          "id": "README.md:5",
+          "source": "README.md",
+          "score": 1.356724949946779
+        },
+        {
+          "text": "be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be reviewed by a human rather than acted on automatically.\n\n## 3. Implementation and verification status\n\n- Implemented in source: strategy selector; API adapters; Zod request/result validation; token usage; session chat history; dataset upload; random smoke runner; per-run logging; `/admin` view.\n- Local deterministic demo: available without credentials, but **not evidence of DM performance**.\n- Hosted LLM call: implemented, **not tested with a configured provider**.\n- Hosted DM call: implemented against the slide's illustrative contract, **not tested against a real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not su",
+          "offset": 2720,
+          "id": "LLM-DM-report.md:4",
+          "source": "LLM-DM-report.md",
+          "score": 1.2590360034429726
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 0.04949214807743152
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p05",
+      "question": "What is the maximum smoke-test count in one request?",
+      "type": "other",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "README.md",
+          "quote": "count:1..100"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "README.md:3"
+      ],
+      "retrieved": [
+        {
+          "text": " ] Run no-context baseline on both sets and review already-answerable questions\n- [ ] Run and compare at least two configurations for both corpora\n- [ ] Generate answers and manually grade the best configuration\n- [ ] Diagnose one retrieval miss per corpus using Words Analytics\n- [ ] Complete REPORT.md with your own real observations\n- [ ] Commit the project and create Git tag `v2`\n\nThe unlinked `/about` page is intentionally available only by entering its URL directly. **This is a development package, not a verified complete V2 submission.**\n",
+          "offset": 2040,
+          "id": "RAG-V2-README.md:3",
+          "source": "RAG-V2-README.md",
+          "score": 4.095860412450492
+        },
+        {
+          "text": "egy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept in server memory and lost on restart.\n- `POST /api/datasets/100` or `/api/datasets/500` — upload JSON array of tickets from UI. These are kept in server memory until restart. Alternatively place `data/tickets-100.json` and `data/tickets-500.json` on disk.\n- `POST /api/smoke` — `{dataset:\"100\"|\"500\", count:1..100, strategy}`. Random sampling without replacement, per-ticket predictions, category and priority mismatches, accuracy on valid labelled rows, latency, token usage, and model tracking.\n- `GET /api/admin` — log JSON, `GET /admin` — admin view, `GET /api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"categ",
+          "offset": 2040,
+          "id": "README.md:3",
+          "source": "README.md",
+          "score": 3.5531817996879846
+        },
+        {
+          "text": "be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be reviewed by a human rather than acted on automatically.\n\n## 3. Implementation and verification status\n\n- Implemented in source: strategy selector; API adapters; Zod request/result validation; token usage; session chat history; dataset upload; random smoke runner; per-run logging; `/admin` view.\n- Local deterministic demo: available without credentials, but **not evidence of DM performance**.\n- Hosted LLM call: implemented, **not tested with a configured provider**.\n- Hosted DM call: implemented against the slide's illustrative contract, **not tested against a real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not su",
+          "offset": 2720,
+          "id": "LLM-DM-report.md:4",
+          "source": "LLM-DM-report.md",
+          "score": 3.350526734364712
+        },
+        {
+          "text": "testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or live benchmark results were provided. Smoke testing is sequential and may take time for paid models. Log files in `data/runs.jsonl` are local and the admin page is not authenticated (use on localhost only). No persistence for chat beyond the current server process. For a production deployment add auth, durable storage, rate limiting, audit controls, and human review for consequential decisions.\n\nSee `LLM-DM-report.md` for the research and evaluation plan.\n",
+          "offset": 3400,
+          "id": "README.md:5",
+          "source": "README.md",
+          "score": 2.197843945838243
+        },
+        {
+          "text": "yped decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign-up limitations noted |\n| OpenRouter Jev | `/api/alpha/decisions` or `/api/v1/systemone`, input billed | No | Gateway option, pricing requires verification |\n| vLLM Semantic Router Decision 3.0 | `POST /v1/systemone`, API key required | No | Candidate to investigate for free quota |\n| Cloudflare Clef | Endpoint not confirmed in slides | No | Open weights, but hosted endpoint not established |\n| Perplexity decider | Endpoint not confirmed in slides | No | Potential option, contract must be checked |\n\n**Provider selection status:** A genuinely free hosted provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword ",
+          "offset": 680,
+          "id": "LLM-DM-report.md:1",
+          "source": "LLM-DM-report.md",
+          "score": 1.921752407363009
+        },
+        {
+          "text": ".** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `LLM_INPUT_USD_PER_MILLION` and `DM_INPUT_USD_PER_MILLION` to estimate input-token cost. No cost is fabricated when a price is unknown. DM+LLM price is not fully estimated by the generic calculator.\n\n## UI and API\n\n- `POST /api/triage` — `{text, strategy: \"demo\"|\"llm\"|\"dm\"|\"dm+llm\", version: \"v1\"|\"v2\"}`. Version selector is included for course navigation; both currently use the same validated classification implementation. **Distinct original V1 behavior still needs the earlier course specification.**\n- `POST /api/chat` — `{message, conversationId?, strategy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept ",
+          "offset": 1360,
+          "id": "README.md:2",
+          "source": "README.md",
+          "score": 1.4005626693501747
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 1.3855324416067019
+        },
+        {
+          "text": "# LLM–DM Research, Integration Strategy, Results and Analysis\n\n**EPITA — AI Systems Integration and Operations, BCS S5 (2026)**\n\n## 1. Decision-model research\n\nThe *Decisions Decisions* course presentation (pp. 5–12) defines decision models as classifiers that answer typed `choice`, `noul` or `score` questions with probabilities, in contrast with LLMs which generate text. The following providers are listed in the course slides (availability/pricing are **not independently verified**):\n\n| Candidate | Course-listed endpoint / status | Free hosted access confirmed? | Suitability |\n|---|---|---|---|\n| OpenAI Decisions API | `POST /v1/decisions`, public beta in slides | No | Typed decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign",
+          "offset": 0,
+          "id": "LLM-DM-report.md:0",
+          "source": "LLM-DM-report.md",
+          "score": 1.3125868027547878
+        },
+        {
+          "text": "endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys in `.env`, never in the repository. Treat outputs as support prioritization suggestions, not autonomous high-stakes actions.\n\n**References:** EPITA Course 5, *LLM API Integration – Part III – Extra – Decisions Decisions*, pp. 5–12, 14–15 and 22–23; *LLM API Integration – Part III*, p. 2.\n",
+          "offset": 4760,
+          "id": "LLM-DM-report.md:7",
+          "source": "LLM-DM-report.md",
+          "score": 1.2910695985810106
+        },
+        {
+          "text": "s, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair comparison, keep the same sampled tickets across strategies (the current runner samples randomly per run; a fixed-seed/common-sample option would be a useful extension).\n\n| Strategy | Sample | Category accuracy | Priority accuracy | Latency | Cost | Status |\n|---|---:|---:|---:|---:|---:|---|\n| LLM | — | — | — | — | — | Not run |\n| DM | — | — | — | — | — | Not run |\n| DM + LLM | — | — | — | — | — | Not run |\n\n## 5. Risks and follow-up\n\nPrompt injection in untrusted ticket text; calibration error; class imbalance; label mismatch with course data; hosted endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys",
+          "offset": 4080,
+          "id": "LLM-DM-report.md:6",
+          "source": "LLM-DM-report.md",
+          "score": 0.8658834782609194
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p06",
+      "question": "What categories can a ticket have?",
+      "type": "other",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "README.md",
+          "quote": "`account`, `billing`, `technical`, `access`, `other`"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "README.md:4"
+      ],
+      "retrieved": [
+        {
+          "text": "/api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"category\":\"billing\", \"priority\":\"low\"},\n  {\"text\":\"Production API down for all customers\", \"category\":\"technical\", \"priority\":\"critical\"}\n]\n```\n\nCategories: `account`, `billing`, `technical`, `access`, `other`. Priorities: `low`, `medium`, `high`, `critical`. **The course datasets are not included.** They must be supplied and mapped to this label taxonomy. The 500-ticket set can omit labels. If the course uses different labels, adjust the taxonomy and adapters before evaluating.\n\n## Validation and limitations\n\nRun `npm test`. This project has a usable UI and testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or",
+          "offset": 2720,
+          "id": "README.md:4",
+          "source": "README.md",
+          "score": 4.801368213766946
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 3.4391175530616276
+        },
+        {
+          "text": "s, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair comparison, keep the same sampled tickets across strategies (the current runner samples randomly per run; a fixed-seed/common-sample option would be a useful extension).\n\n| Strategy | Sample | Category accuracy | Priority accuracy | Latency | Cost | Status |\n|---|---:|---:|---:|---:|---:|---|\n| LLM | — | — | — | — | — | Not run |\n| DM | — | — | — | — | — | Not run |\n| DM + LLM | — | — | — | — | — | Not run |\n\n## 5. Risks and follow-up\n\nPrompt injection in untrusted ticket text; calibration error; class imbalance; label mismatch with course data; hosted endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys",
+          "offset": 4080,
+          "id": "LLM-DM-report.md:6",
+          "source": "LLM-DM-report.md",
+          "score": 2.374558267402614
+        },
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 2.1285741759113668
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 0.38538410733669776
+        },
+        {
+          "text": "be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be reviewed by a human rather than acted on automatically.\n\n## 3. Implementation and verification status\n\n- Implemented in source: strategy selector; API adapters; Zod request/result validation; token usage; session chat history; dataset upload; random smoke runner; per-run logging; `/admin` view.\n- Local deterministic demo: available without credentials, but **not evidence of DM performance**.\n- Hosted LLM call: implemented, **not tested with a configured provider**.\n- Hosted DM call: implemented against the slide's illustrative contract, **not tested against a real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not su",
+          "offset": 2720,
+          "id": "LLM-DM-report.md:4",
+          "source": "LLM-DM-report.md",
+          "score": 0.34370628247289176
+        },
+        {
+          "text": "l performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-completions-compatible URL** (e.g. a provider's `/v1/chat/completions` endpoint), and `LLM_MODEL` must be an authorized model name. `DM_API_URL` must be a **full hosted decision-model endpoint**, with `DM_MODEL` and `DM_API_KEY` from that provider. The DM adapter sends `{model,state,questions}` with `choice` criteria and expects a JSON response containing category and priority objects with `choice` and `probabilities` (optionally nested under `decisions` or `results`). **Provider schemas differ; check and adapt to the chosen provider's actual documentation.** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `",
+          "offset": 680,
+          "id": "README.md:1",
+          "source": "README.md",
+          "score": 0.34091671033630955
+        },
+        {
+          "text": "val-only evaluation still works. Each run produces JSON with per-question retrieved chunks, HitRate@k, Recall@k, per-type results, and blank manual grade fields. The comparison file lists all configurations.\n\n**Metric caveat:** Evidence is matched by source filename and exact quote inside a chunk. If a quote spans a chunk boundary, it may not match; adjust the quote or chunking before interpreting metrics. Questions without matching evidence are flagged and excluded from retrieval metric denominators.\n\n## Testing\n`npm test`\n\n## Submission checklist\n- [ ] Import the authentic Kestrel corpus and starter questions\n- [ ] Add a real second corpus and 10+ original questions\n- [ ] Run no-context baseline on both sets and review already-answerable questions\n- [ ] Run and compare at least two confi",
+          "offset": 1360,
+          "id": "RAG-V2-README.md:2",
+          "source": "RAG-V2-README.md",
+          "score": 0.3403642208444528
+        },
+        {
+          "text": "# RAG V2 extension\n\nThis adds a separate RAG app alongside the existing support-triage application.\n\n## Setup\n`npm install`\n\nRun the original triage app with `npm start` or the RAG app with `npm run rag:v2`, then open `http://localhost:3100`.\n\n## Data\nThe required Kestrel documents and questions were **not provided**. Add `.md`/`.txt` files to `rag-data/kestrel/docs/` and `questions.jsonl` to `rag-data/kestrel/`. Do the same for the second corpus under `rag-data/personal/`. See `rag-data/QUESTION_FORMAT.md`. Both folders are intentionally empty until you add real documents.\n\n## Web features\nThe Ask tab retrieves source chunks and optionally generates a cited answer. Documents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words",
+          "offset": 0,
+          "id": "RAG-V2-README.md:0",
+          "source": "RAG-V2-README.md",
+          "score": 0.3365463723777563
+        },
+        {
+          "text": " ] Run no-context baseline on both sets and review already-answerable questions\n- [ ] Run and compare at least two configurations for both corpora\n- [ ] Generate answers and manually grade the best configuration\n- [ ] Diagnose one retrieval miss per corpus using Words Analytics\n- [ ] Complete REPORT.md with your own real observations\n- [ ] Commit the project and create Git tag `v2`\n\nThe unlinked `/about` page is intentionally available only by entering its URL directly. **This is a development package, not a verified complete V2 submission.**\n",
+          "offset": 2040,
+          "id": "RAG-V2-README.md:3",
+          "source": "RAG-V2-README.md",
+          "score": 0.30296725444136374
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p07",
+      "question": "Does the project include the original labelled 100 and 500 ticket datasets?",
+      "type": "other",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "LLM-DM-report.md",
+          "quote": "Original labelled 100-ticket and 500-ticket datasets: **not supplied**"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "LLM-DM-report.md:5"
+      ],
+      "retrieved": [
+        {
+          "text": "egy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept in server memory and lost on restart.\n- `POST /api/datasets/100` or `/api/datasets/500` — upload JSON array of tickets from UI. These are kept in server memory until restart. Alternatively place `data/tickets-100.json` and `data/tickets-500.json` on disk.\n- `POST /api/smoke` — `{dataset:\"100\"|\"500\", count:1..100, strategy}`. Random sampling without replacement, per-ticket predictions, category and priority mismatches, accuracy on valid labelled rows, latency, token usage, and model tracking.\n- `GET /api/admin` — log JSON, `GET /admin` — admin view, `GET /api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"categ",
+          "offset": 2040,
+          "id": "README.md:3",
+          "source": "README.md",
+          "score": 7.9964038033660465
+        },
+        {
+          "text": "real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not supplied**, so no real benchmark or comparison has been run.\n- Triage V1/V2: interface supports both labels, but their behavior currently shares the same implementation pending earlier assignment details.\n\n## 4. Results and analysis\n\n**No empirical accuracy, latency or cost figures are claimed.** To complete the evaluation, import the professor's datasets, run comparable random samples for each configured strategy, and copy the actual run IDs/outputs from `/admin` here. Compare category and priority accuracy separately on labelled data; include error counts, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair",
+          "offset": 3400,
+          "id": "LLM-DM-report.md:5",
+          "source": "LLM-DM-report.md",
+          "score": 7.837009528334827
+        },
+        {
+          "text": "/api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"category\":\"billing\", \"priority\":\"low\"},\n  {\"text\":\"Production API down for all customers\", \"category\":\"technical\", \"priority\":\"critical\"}\n]\n```\n\nCategories: `account`, `billing`, `technical`, `access`, `other`. Priorities: `low`, `medium`, `high`, `critical`. **The course datasets are not included.** They must be supplied and mapped to this label taxonomy. The 500-ticket set can omit labels. If the course uses different labels, adjust the taxonomy and adapters before evaluating.\n\n## Validation and limitations\n\nRun `npm test`. This project has a usable UI and testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or",
+          "offset": 2720,
+          "id": "README.md:4",
+          "source": "README.md",
+          "score": 6.661043395931219
+        },
+        {
+          "text": "be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be reviewed by a human rather than acted on automatically.\n\n## 3. Implementation and verification status\n\n- Implemented in source: strategy selector; API adapters; Zod request/result validation; token usage; session chat history; dataset upload; random smoke runner; per-run logging; `/admin` view.\n- Local deterministic demo: available without credentials, but **not evidence of DM performance**.\n- Hosted LLM call: implemented, **not tested with a configured provider**.\n- Hosted DM call: implemented against the slide's illustrative contract, **not tested against a real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not su",
+          "offset": 2720,
+          "id": "LLM-DM-report.md:4",
+          "source": "LLM-DM-report.md",
+          "score": 6.318709912780026
+        },
+        {
+          "text": "testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or live benchmark results were provided. Smoke testing is sequential and may take time for paid models. Log files in `data/runs.jsonl` are local and the admin page is not authenticated (use on localhost only). No persistence for chat beyond the current server process. For a production deployment add auth, durable storage, rate limiting, audit controls, and human review for consequential decisions.\n\nSee `LLM-DM-report.md` for the research and evaluation plan.\n",
+          "offset": 3400,
+          "id": "README.md:5",
+          "source": "README.md",
+          "score": 4.824231609801123
+        },
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 3.6993246886066777
+        },
+        {
+          "text": "s, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair comparison, keep the same sampled tickets across strategies (the current runner samples randomly per run; a fixed-seed/common-sample option would be a useful extension).\n\n| Strategy | Sample | Category accuracy | Priority accuracy | Latency | Cost | Status |\n|---|---:|---:|---:|---:|---:|---|\n| LLM | — | — | — | — | — | Not run |\n| DM | — | — | — | — | — | Not run |\n| DM + LLM | — | — | — | — | — | Not run |\n\n## 5. Risks and follow-up\n\nPrompt injection in untrusted ticket text; calibration error; class imbalance; label mismatch with course data; hosted endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys",
+          "offset": 4080,
+          "id": "LLM-DM-report.md:6",
+          "source": "LLM-DM-report.md",
+          "score": 2.2575455583413175
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 2.115267365568696
+        },
+        {
+          "text": "ents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words tab shows vocabulary frequency, number of chunks containing each word, and question words with their matching chunks.\n\n## Repeatable CLI evaluation\n`npm run rag:evaluate -- kestrel --sizes 500,800 --overlaps 80,120`\n`npm run rag:evaluate -- personal --sizes 500,800 --overlaps 80,120`\n\nAdd `--generate` to call the LLM for each retrieved question, or `--no-context` to test the model without retrieval. These options need `RAG_API_KEY`, `RAG_API_URL` (OpenAI-compatible chat-completions endpoint), and `RAG_MODEL` set in your environment. Without them, retrieval-only evaluation still works. Each run produces JSON with per-question retrieved chunks, HitRate@k, Recall@k, per-typ",
+          "offset": 680,
+          "id": "RAG-V2-README.md:1",
+          "source": "RAG-V2-README.md",
+          "score": 2.1103548931105465
+        },
+        {
+          "text": " ] Run no-context baseline on both sets and review already-answerable questions\n- [ ] Run and compare at least two configurations for both corpora\n- [ ] Generate answers and manually grade the best configuration\n- [ ] Diagnose one retrieval miss per corpus using Words Analytics\n- [ ] Complete REPORT.md with your own real observations\n- [ ] Commit the project and create Git tag `v2`\n\nThe unlinked `/about` page is intentionally available only by entering its URL directly. **This is a development package, not a verified complete V2 submission.**\n",
+          "offset": 2040,
+          "id": "RAG-V2-README.md:3",
+          "source": "RAG-V2-README.md",
+          "score": 2.0923357706801897
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p08",
+      "question": "What does the dm+llm strategy do?",
+      "type": "split_answer",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "LLM-DM-report.md",
+          "quote": "first gets fixed DM labels, then asks the LLM for an explanation"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "LLM-DM-report.md:3"
+      ],
+      "retrieved": [
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 4.5735721562529115
+        },
+        {
+          "text": "be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be reviewed by a human rather than acted on automatically.\n\n## 3. Implementation and verification status\n\n- Implemented in source: strategy selector; API adapters; Zod request/result validation; token usage; session chat history; dataset upload; random smoke runner; per-run logging; `/admin` view.\n- Local deterministic demo: available without credentials, but **not evidence of DM performance**.\n- Hosted LLM call: implemented, **not tested with a configured provider**.\n- Hosted DM call: implemented against the slide's illustrative contract, **not tested against a real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not su",
+          "offset": 2720,
+          "id": "LLM-DM-report.md:4",
+          "source": "LLM-DM-report.md",
+          "score": 4.381570636766866
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 4.108612620203024
+        },
+        {
+          "text": ".** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `LLM_INPUT_USD_PER_MILLION` and `DM_INPUT_USD_PER_MILLION` to estimate input-token cost. No cost is fabricated when a price is unknown. DM+LLM price is not fully estimated by the generic calculator.\n\n## UI and API\n\n- `POST /api/triage` — `{text, strategy: \"demo\"|\"llm\"|\"dm\"|\"dm+llm\", version: \"v1\"|\"v2\"}`. Version selector is included for course navigation; both currently use the same validated classification implementation. **Distinct original V1 behavior still needs the earlier course specification.**\n- `POST /api/chat` — `{message, conversationId?, strategy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept ",
+          "offset": 1360,
+          "id": "README.md:2",
+          "source": "README.md",
+          "score": 3.2223351274031096
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 2.881509952640965
+        },
+        {
+          "text": "s, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair comparison, keep the same sampled tickets across strategies (the current runner samples randomly per run; a fixed-seed/common-sample option would be a useful extension).\n\n| Strategy | Sample | Category accuracy | Priority accuracy | Latency | Cost | Status |\n|---|---:|---:|---:|---:|---:|---|\n| LLM | — | — | — | — | — | Not run |\n| DM | — | — | — | — | — | Not run |\n| DM + LLM | — | — | — | — | — | Not run |\n\n## 5. Risks and follow-up\n\nPrompt injection in untrusted ticket text; calibration error; class imbalance; label mismatch with course data; hosted endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys",
+          "offset": 4080,
+          "id": "LLM-DM-report.md:6",
+          "source": "LLM-DM-report.md",
+          "score": 2.670505213094536
+        },
+        {
+          "text": "# LLM–DM Research, Integration Strategy, Results and Analysis\n\n**EPITA — AI Systems Integration and Operations, BCS S5 (2026)**\n\n## 1. Decision-model research\n\nThe *Decisions Decisions* course presentation (pp. 5–12) defines decision models as classifiers that answer typed `choice`, `noul` or `score` questions with probabilities, in contrast with LLMs which generate text. The following providers are listed in the course slides (availability/pricing are **not independently verified**):\n\n| Candidate | Course-listed endpoint / status | Free hosted access confirmed? | Suitability |\n|---|---|---|---|\n| OpenAI Decisions API | `POST /v1/decisions`, public beta in slides | No | Typed decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign",
+          "offset": 0,
+          "id": "LLM-DM-report.md:0",
+          "source": "LLM-DM-report.md",
+          "score": 2.412709122850357
+        },
+        {
+          "text": "l performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-completions-compatible URL** (e.g. a provider's `/v1/chat/completions` endpoint), and `LLM_MODEL` must be an authorized model name. `DM_API_URL` must be a **full hosted decision-model endpoint**, with `DM_MODEL` and `DM_API_KEY` from that provider. The DM adapter sends `{model,state,questions}` with `choice` criteria and expects a JSON response containing category and priority objects with `choice` and `probabilities` (optionally nested under `decisions` or `results`). **Provider schemas differ; check and adapt to the chosen provider's actual documentation.** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `",
+          "offset": 680,
+          "id": "README.md:1",
+          "source": "README.md",
+          "score": 2.367553497656331
+        },
+        {
+          "text": "# RAG V2 extension\n\nThis adds a separate RAG app alongside the existing support-triage application.\n\n## Setup\n`npm install`\n\nRun the original triage app with `npm start` or the RAG app with `npm run rag:v2`, then open `http://localhost:3100`.\n\n## Data\nThe required Kestrel documents and questions were **not provided**. Add `.md`/`.txt` files to `rag-data/kestrel/docs/` and `questions.jsonl` to `rag-data/kestrel/`. Do the same for the second corpus under `rag-data/personal/`. See `rag-data/QUESTION_FORMAT.md`. Both folders are intentionally empty until you add real documents.\n\n## Web features\nThe Ask tab retrieves source chunks and optionally generates a cited answer. Documents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words",
+          "offset": 0,
+          "id": "RAG-V2-README.md:0",
+          "source": "RAG-V2-README.md",
+          "score": 1.6509634815542618
+        },
+        {
+          "text": "egy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept in server memory and lost on restart.\n- `POST /api/datasets/100` or `/api/datasets/500` — upload JSON array of tickets from UI. These are kept in server memory until restart. Alternatively place `data/tickets-100.json` and `data/tickets-500.json` on disk.\n- `POST /api/smoke` — `{dataset:\"100\"|\"500\", count:1..100, strategy}`. Random sampling without replacement, per-ticket predictions, category and priority mismatches, accuracy on valid labelled rows, latency, token usage, and model tracking.\n- `GET /api/admin` — log JSON, `GET /admin` — admin view, `GET /api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"categ",
+          "offset": 2040,
+          "id": "README.md:3",
+          "source": "README.md",
+          "score": 1.3735080845281682
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": 0
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p09",
+      "question": "What metric caveat is mentioned for the RAG evaluator?",
+      "type": "vocabulary",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "RAG-V2-README.md",
+          "quote": "If a quote spans a chunk boundary, it may not match"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "RAG-V2-README.md:2"
+      ],
+      "retrieved": [
+        {
+          "text": "val-only evaluation still works. Each run produces JSON with per-question retrieved chunks, HitRate@k, Recall@k, per-type results, and blank manual grade fields. The comparison file lists all configurations.\n\n**Metric caveat:** Evidence is matched by source filename and exact quote inside a chunk. If a quote spans a chunk boundary, it may not match; adjust the quote or chunking before interpreting metrics. Questions without matching evidence are flagged and excluded from retrieval metric denominators.\n\n## Testing\n`npm test`\n\n## Submission checklist\n- [ ] Import the authentic Kestrel corpus and starter questions\n- [ ] Add a real second corpus and 10+ original questions\n- [ ] Run no-context baseline on both sets and review already-answerable questions\n- [ ] Run and compare at least two confi",
+          "offset": 1360,
+          "id": "RAG-V2-README.md:2",
+          "source": "RAG-V2-README.md",
+          "score": 6.712796975330666
+        },
+        {
+          "text": "# RAG V2 extension\n\nThis adds a separate RAG app alongside the existing support-triage application.\n\n## Setup\n`npm install`\n\nRun the original triage app with `npm start` or the RAG app with `npm run rag:v2`, then open `http://localhost:3100`.\n\n## Data\nThe required Kestrel documents and questions were **not provided**. Add `.md`/`.txt` files to `rag-data/kestrel/docs/` and `questions.jsonl` to `rag-data/kestrel/`. Do the same for the second corpus under `rag-data/personal/`. See `rag-data/QUESTION_FORMAT.md`. Both folders are intentionally empty until you add real documents.\n\n## Web features\nThe Ask tab retrieves source chunks and optionally generates a cited answer. Documents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words",
+          "offset": 0,
+          "id": "RAG-V2-README.md:0",
+          "source": "RAG-V2-README.md",
+          "score": 3.877206354306667
+        },
+        {
+          "text": "ents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words tab shows vocabulary frequency, number of chunks containing each word, and question words with their matching chunks.\n\n## Repeatable CLI evaluation\n`npm run rag:evaluate -- kestrel --sizes 500,800 --overlaps 80,120`\n`npm run rag:evaluate -- personal --sizes 500,800 --overlaps 80,120`\n\nAdd `--generate` to call the LLM for each retrieved question, or `--no-context` to test the model without retrieval. These options need `RAG_API_KEY`, `RAG_API_URL` (OpenAI-compatible chat-completions endpoint), and `RAG_MODEL` set in your environment. Without them, retrieval-only evaluation still works. Each run produces JSON with per-question retrieved chunks, HitRate@k, Recall@k, per-typ",
+          "offset": 680,
+          "id": "RAG-V2-README.md:1",
+          "source": "RAG-V2-README.md",
+          "score": 3.266995988994872
+        },
+        {
+          "text": "testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or live benchmark results were provided. Smoke testing is sequential and may take time for paid models. Log files in `data/runs.jsonl` are local and the admin page is not authenticated (use on localhost only). No persistence for chat beyond the current server process. For a production deployment add auth, durable storage, rate limiting, audit controls, and human review for consequential decisions.\n\nSee `LLM-DM-report.md` for the research and evaluation plan.\n",
+          "offset": 3400,
+          "id": "README.md:5",
+          "source": "README.md",
+          "score": 2.2544929396252527
+        },
+        {
+          "text": ".** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `LLM_INPUT_USD_PER_MILLION` and `DM_INPUT_USD_PER_MILLION` to estimate input-token cost. No cost is fabricated when a price is unknown. DM+LLM price is not fully estimated by the generic calculator.\n\n## UI and API\n\n- `POST /api/triage` — `{text, strategy: \"demo\"|\"llm\"|\"dm\"|\"dm+llm\", version: \"v1\"|\"v2\"}`. Version selector is included for course navigation; both currently use the same validated classification implementation. **Distinct original V1 behavior still needs the earlier course specification.**\n- `POST /api/chat` — `{message, conversationId?, strategy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept ",
+          "offset": 1360,
+          "id": "README.md:2",
+          "source": "README.md",
+          "score": 1.8959315966842387
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 1.866190474831443
+        },
+        {
+          "text": " ] Run no-context baseline on both sets and review already-answerable questions\n- [ ] Run and compare at least two configurations for both corpora\n- [ ] Generate answers and manually grade the best configuration\n- [ ] Diagnose one retrieval miss per corpus using Words Analytics\n- [ ] Complete REPORT.md with your own real observations\n- [ ] Commit the project and create Git tag `v2`\n\nThe unlinked `/about` page is intentionally available only by entering its URL directly. **This is a development package, not a verified complete V2 submission.**\n",
+          "offset": 2040,
+          "id": "RAG-V2-README.md:3",
+          "source": "RAG-V2-README.md",
+          "score": 1.8059098417685473
+        },
+        {
+          "text": "/api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"category\":\"billing\", \"priority\":\"low\"},\n  {\"text\":\"Production API down for all customers\", \"category\":\"technical\", \"priority\":\"critical\"}\n]\n```\n\nCategories: `account`, `billing`, `technical`, `access`, `other`. Priorities: `low`, `medium`, `high`, `critical`. **The course datasets are not included.** They must be supplied and mapped to this label taxonomy. The 500-ticket set can omit labels. If the course uses different labels, adjust the taxonomy and adapters before evaluating.\n\n## Validation and limitations\n\nRun `npm test`. This project has a usable UI and testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or",
+          "offset": 2720,
+          "id": "README.md:4",
+          "source": "README.md",
+          "score": 1.3388678980567474
+        },
+        {
+          "text": "yped decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign-up limitations noted |\n| OpenRouter Jev | `/api/alpha/decisions` or `/api/v1/systemone`, input billed | No | Gateway option, pricing requires verification |\n| vLLM Semantic Router Decision 3.0 | `POST /v1/systemone`, API key required | No | Candidate to investigate for free quota |\n| Cloudflare Clef | Endpoint not confirmed in slides | No | Open weights, but hosted endpoint not established |\n| Perplexity decider | Endpoint not confirmed in slides | No | Potential option, contract must be checked |\n\n**Provider selection status:** A genuinely free hosted provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword ",
+          "offset": 680,
+          "id": "LLM-DM-report.md:1",
+          "source": "LLM-DM-report.md",
+          "score": 1.3203335644128633
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 1.2933267179939423
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p10",
+      "question": "Which environment variables configure the RAG generation model?",
+      "type": "other",
+      "answerable": true,
+      "evidence": [
+        {
+          "source": "RAG-V2-README.md",
+          "quote": "`RAG_API_KEY`, `RAG_API_URL`"
+        }
+      ],
+      "relevant_chunk_ids": [
+        "RAG-V2-README.md:1"
+      ],
+      "retrieved": [
+        {
+          "text": "ents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words tab shows vocabulary frequency, number of chunks containing each word, and question words with their matching chunks.\n\n## Repeatable CLI evaluation\n`npm run rag:evaluate -- kestrel --sizes 500,800 --overlaps 80,120`\n`npm run rag:evaluate -- personal --sizes 500,800 --overlaps 80,120`\n\nAdd `--generate` to call the LLM for each retrieved question, or `--no-context` to test the model without retrieval. These options need `RAG_API_KEY`, `RAG_API_URL` (OpenAI-compatible chat-completions endpoint), and `RAG_MODEL` set in your environment. Without them, retrieval-only evaluation still works. Each run produces JSON with per-question retrieved chunks, HitRate@k, Recall@k, per-typ",
+          "offset": 680,
+          "id": "RAG-V2-README.md:1",
+          "source": "RAG-V2-README.md",
+          "score": 5.832284432761105
+        },
+        {
+          "text": "# RAG V2 extension\n\nThis adds a separate RAG app alongside the existing support-triage application.\n\n## Setup\n`npm install`\n\nRun the original triage app with `npm start` or the RAG app with `npm run rag:v2`, then open `http://localhost:3100`.\n\n## Data\nThe required Kestrel documents and questions were **not provided**. Add `.md`/`.txt` files to `rag-data/kestrel/docs/` and `questions.jsonl` to `rag-data/kestrel/`. Do the same for the second corpus under `rag-data/personal/`. See `rag-data/QUESTION_FORMAT.md`. Both folders are intentionally empty until you add real documents.\n\n## Web features\nThe Ask tab retrieves source chunks and optionally generates a cited answer. Documents tab adds/deletes documents and imports a JSONL question set. Evaluation tab saves a run under `rag-results/`. Words",
+          "offset": 0,
+          "id": "RAG-V2-README.md:0",
+          "source": "RAG-V2-README.md",
+          "score": 3.401842127688929
+        },
+        {
+          "text": "# LLM–DM Research, Integration Strategy, Results and Analysis\n\n**EPITA — AI Systems Integration and Operations, BCS S5 (2026)**\n\n## 1. Decision-model research\n\nThe *Decisions Decisions* course presentation (pp. 5–12) defines decision models as classifiers that answer typed `choice`, `noul` or `score` questions with probabilities, in contrast with LLMs which generate text. The following providers are listed in the course slides (availability/pricing are **not independently verified**):\n\n| Candidate | Course-listed endpoint / status | Free hosted access confirmed? | Suitability |\n|---|---|---|---|\n| OpenAI Decisions API | `POST /v1/decisions`, public beta in slides | No | Typed decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign",
+          "offset": 0,
+          "id": "LLM-DM-report.md:0",
+          "source": "LLM-DM-report.md",
+          "score": 2.6059489986973094
+        },
+        {
+          "text": "l performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-completions-compatible URL** (e.g. a provider's `/v1/chat/completions` endpoint), and `LLM_MODEL` must be an authorized model name. `DM_API_URL` must be a **full hosted decision-model endpoint**, with `DM_MODEL` and `DM_API_KEY` from that provider. The DM adapter sends `{model,state,questions}` with `choice` criteria and expects a JSON response containing category and priority objects with `choice` and `probabilities` (optionally nested under `decisions` or `results`). **Provider schemas differ; check and adapt to the chosen provider's actual documentation.** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `",
+          "offset": 680,
+          "id": "README.md:1",
+          "source": "README.md",
+          "score": 0.8429339817054363
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 0.8406982976787402
+        },
+        {
+          "text": "probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence and explanation. The `dm+llm` branch first gets fixed DM labels, then asks the LLM for an explanation while retaining DM labels. The `demo` branch is a local rule-based baseline only.\n\nThe DM can choose labels but cannot reliably write a support explanation; the LLM can explain but may produce invalid or inconsistent output. Using both combines typed classification with natural-language explanation, at the cost of additional latency and tokens. The architecture keeps the choice explicit and records model identifiers. The slide warns that confidence can be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be review",
+          "offset": 2040,
+          "id": "LLM-DM-report.md:3",
+          "source": "LLM-DM-report.md",
+          "score": 0.8389850721444708
+        },
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 0.8146002943262038
+        },
+        {
+          "text": "testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or live benchmark results were provided. Smoke testing is sequential and may take time for paid models. Log files in `data/runs.jsonl` are local and the admin page is not authenticated (use on localhost only). No persistence for chat beyond the current server process. For a production deployment add auth, durable storage, rate limiting, audit controls, and human review for consequential decisions.\n\nSee `LLM-DM-report.md` for the research and evaluation plan.\n",
+          "offset": 3400,
+          "id": "README.md:5",
+          "source": "README.md",
+          "score": 0.6715746875450229
+        },
+        {
+          "text": "s, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair comparison, keep the same sampled tickets across strategies (the current runner samples randomly per run; a fixed-seed/common-sample option would be a useful extension).\n\n| Strategy | Sample | Category accuracy | Priority accuracy | Latency | Cost | Status |\n|---|---:|---:|---:|---:|---:|---|\n| LLM | — | — | — | — | — | Not run |\n| DM | — | — | — | — | — | Not run |\n| DM + LLM | — | — | — | — | — | Not run |\n\n## 5. Risks and follow-up\n\nPrompt injection in untrusted ticket text; calibration error; class imbalance; label mismatch with course data; hosted endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys",
+          "offset": 4080,
+          "id": "LLM-DM-report.md:6",
+          "source": "LLM-DM-report.md",
+          "score": 0.6482449575590834
+        },
+        {
+          "text": "/api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"category\":\"billing\", \"priority\":\"low\"},\n  {\"text\":\"Production API down for all customers\", \"category\":\"technical\", \"priority\":\"critical\"}\n]\n```\n\nCategories: `account`, `billing`, `technical`, `access`, `other`. Priorities: `low`, `medium`, `high`, `critical`. **The course datasets are not included.** They must be supplied and mapped to this label taxonomy. The 500-ticket set can omit labels. If the course uses different labels, adjust the taxonomy and adapters before evaluating.\n\n## Validation and limitations\n\nRun `npm test`. This project has a usable UI and testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or",
+          "offset": 2720,
+          "id": "README.md:4",
+          "source": "README.md",
+          "score": 0.632316241152556
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 3,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 5,
+          "hit": 1,
+          "recall": 1
+        },
+        {
+          "k": 10,
+          "hit": 1,
+          "recall": 1
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    },
+    {
+      "id": "p11",
+      "question": "What is the project’s monthly cloud hosting bill in euros?",
+      "type": "not_in_corpus",
+      "answerable": false,
+      "evidence": [],
+      "relevant_chunk_ids": [],
+      "retrieved": [
+        {
+          "text": " ] Run no-context baseline on both sets and review already-answerable questions\n- [ ] Run and compare at least two configurations for both corpora\n- [ ] Generate answers and manually grade the best configuration\n- [ ] Diagnose one retrieval miss per corpus using Words Analytics\n- [ ] Complete REPORT.md with your own real observations\n- [ ] Commit the project and create Git tag `v2`\n\nThe unlinked `/about` page is intentionally available only by entering its URL directly. **This is a development package, not a verified complete V2 submission.**\n",
+          "offset": 2040,
+          "id": "RAG-V2-README.md:3",
+          "source": "RAG-V2-README.md",
+          "score": 3.1432915899953215
+        },
+        {
+          "text": "provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword heuristic is a decision model. A suitable next candidate to investigate is vLLM Semantic Router's hosted Decision 3.0 service; this is a research priority, not a verified free-tier selection. The assignment explicitly allows contacting the instructor if a free DM cannot be found.\n\n## 2. Integration strategy and justification\n\nThe user chooses among `demo`, `llm`, `dm`, and `dm+llm` on the frontend. The `dm` branch supplies support-ticket text as state and two closed-set `choice` questions for category and priority. A validator checks returned labels and probability bounds. The `llm` branch uses a chat-completions-style model to generate JSON category, priority, confidence",
+          "offset": 1360,
+          "id": "LLM-DM-report.md:2",
+          "source": "LLM-DM-report.md",
+          "score": 2.572301898632861
+        },
+        {
+          "text": "/api/config` — provider readiness.\n\n## Dataset shape\n\n```json\n[\n  {\"text\":\"My invoice shows an incorrect charge\", \"category\":\"billing\", \"priority\":\"low\"},\n  {\"text\":\"Production API down for all customers\", \"category\":\"technical\", \"priority\":\"critical\"}\n]\n```\n\nCategories: `account`, `billing`, `technical`, `access`, `other`. Priorities: `low`, `medium`, `high`, `critical`. **The course datasets are not included.** They must be supplied and mapped to this label taxonomy. The 500-ticket set can omit labels. If the course uses different labels, adjust the taxonomy and adapters before evaluating.\n\n## Validation and limitations\n\nRun `npm test`. This project has a usable UI and testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or",
+          "offset": 2720,
+          "id": "README.md:4",
+          "source": "README.md",
+          "score": 2.5170307396245626
+        },
+        {
+          "text": "testable API, but is **not validated against a live hosted decision model**, and no authentic 100/500 course datasets or live benchmark results were provided. Smoke testing is sequential and may take time for paid models. Log files in `data/runs.jsonl` are local and the admin page is not authenticated (use on localhost only). No persistence for chat beyond the current server process. For a production deployment add auth, durable storage, rate limiting, audit controls, and human review for consequential decisions.\n\nSee `LLM-DM-report.md` for the research and evaluation plan.\n",
+          "offset": 3400,
+          "id": "README.md:5",
+          "source": "README.md",
+          "score": 2.197843945838243
+        },
+        {
+          "text": "s, latency, model names, input/output token usage, and actual/estimated costs with disclosed price assumptions. For fair comparison, keep the same sampled tickets across strategies (the current runner samples randomly per run; a fixed-seed/common-sample option would be a useful extension).\n\n| Strategy | Sample | Category accuracy | Priority accuracy | Latency | Cost | Status |\n|---|---:|---:|---:|---:|---:|---|\n| LLM | — | — | — | — | — | Not run |\n| DM | — | — | — | — | — | Not run |\n| DM + LLM | — | — | — | — | — | Not run |\n\n## 5. Risks and follow-up\n\nPrompt injection in untrusted ticket text; calibration error; class imbalance; label mismatch with course data; hosted endpoint schema drift; API key leakage; unverified pricing; and evaluation bias from different random samples. Keep keys",
+          "offset": 4080,
+          "id": "LLM-DM-report.md:6",
+          "source": "LLM-DM-report.md",
+          "score": 2.14270732940799
+        },
+        {
+          "text": "be miscalibrated and typed output does not guarantee a correct decision (p. 15); low-confidence results should be reviewed by a human rather than acted on automatically.\n\n## 3. Implementation and verification status\n\n- Implemented in source: strategy selector; API adapters; Zod request/result validation; token usage; session chat history; dataset upload; random smoke runner; per-run logging; `/admin` view.\n- Local deterministic demo: available without credentials, but **not evidence of DM performance**.\n- Hosted LLM call: implemented, **not tested with a configured provider**.\n- Hosted DM call: implemented against the slide's illustrative contract, **not tested against a real provider**; contract adjustments may be necessary.\n- Original labelled 100-ticket and 500-ticket datasets: **not su",
+          "offset": 2720,
+          "id": "LLM-DM-report.md:4",
+          "source": "LLM-DM-report.md",
+          "score": 2.0587572735952384
+        },
+        {
+          "text": "yped decisions; needs account/API access |\n| TypeSafe AI Jev | `POST /v1/systemone`, early access | No | Native DM; sign-up limitations noted |\n| OpenRouter Jev | `/api/alpha/decisions` or `/api/v1/systemone`, input billed | No | Gateway option, pricing requires verification |\n| vLLM Semantic Router Decision 3.0 | `POST /v1/systemone`, API key required | No | Candidate to investigate for free quota |\n| Cloudflare Clef | Endpoint not confirmed in slides | No | Open weights, but hosted endpoint not established |\n| Perplexity decider | Endpoint not confirmed in slides | No | Potential option, contract must be checked |\n\n**Provider selection status:** A genuinely free hosted provider has **not yet been verified**. The application is provider-configurable rather than pretending a local keyword ",
+          "offset": 680,
+          "id": "LLM-DM-report.md:1",
+          "source": "LLM-DM-report.md",
+          "score": 1.921752407363009
+        },
+        {
+          "text": "l performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-completions-compatible URL** (e.g. a provider's `/v1/chat/completions` endpoint), and `LLM_MODEL` must be an authorized model name. `DM_API_URL` must be a **full hosted decision-model endpoint**, with `DM_MODEL` and `DM_API_KEY` from that provider. The DM adapter sends `{model,state,questions}` with `choice` criteria and expects a JSON response containing category and priority objects with `choice` and `probabilities` (optionally nested under `decisions` or `results`). **Provider schemas differ; check and adapt to the chosen provider's actual documentation.** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `",
+          "offset": 680,
+          "id": "README.md:1",
+          "source": "README.md",
+          "score": 1.7169020409810496
+        },
+        {
+          "text": "# EPITA Support Ticket Triage App\n\nCourse 5 integrated project: chat history, triage V1/V2 UI, Zod validation, token usage, decision model strategy selection, smoke tests and admin logging.\n\n## Quick start\n\nRequires Node.js 18+ and npm.\n\n```sh\nnpm install\ncp .env.example .env  # On Windows, copy .env.example .env\nnpm test\nnpm start\n```\n\nOpen http://localhost:3000 (admin at http://localhost:3000/admin).\n\n**Default strategy `demo` uses local keyword rules, NOT an AI model.** It allows interface and test-runner demonstrations without credentials. The real LLM/DM strategies require configured, accessible hosted providers. Do not submit demo output as evidence of decision-model performance.\n\n## Hosted AI configuration\n\nFill `.env` (do not share this file). `LLM_API_URL` must be a **full chat-co",
+          "offset": 0,
+          "id": "README.md:0",
+          "source": "README.md",
+          "score": 1.638905700532261
+        },
+        {
+          "text": ".** The slide examples are not proof that any given provider will accept this exact contract.\n\nOptional `.env` prices: `LLM_INPUT_USD_PER_MILLION` and `DM_INPUT_USD_PER_MILLION` to estimate input-token cost. No cost is fabricated when a price is unknown. DM+LLM price is not fully estimated by the generic calculator.\n\n## UI and API\n\n- `POST /api/triage` — `{text, strategy: \"demo\"|\"llm\"|\"dm\"|\"dm+llm\", version: \"v1\"|\"v2\"}`. Version selector is included for course navigation; both currently use the same validated classification implementation. **Distinct original V1 behavior still needs the earlier course specification.**\n- `POST /api/chat` — `{message, conversationId?, strategy}`. LLM chat sends the full recent conversation history; demo gives a deterministic response. Chat sessions are kept ",
+          "offset": 1360,
+          "id": "README.md:2",
+          "source": "README.md",
+          "score": 1.4005626693501747
+        }
+      ],
+      "ranks": [
+        {
+          "k": 1,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 3,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 5,
+          "hit": 0,
+          "recall": null
+        },
+        {
+          "k": 10,
+          "hit": 0,
+          "recall": null
+        }
+      ],
+      "grade": null,
+      "grade_notes": ""
+    }
+  ]
+}

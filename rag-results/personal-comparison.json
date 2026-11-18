@@ -1,0 +1,286 @@
+[
+  {
+    "file": "rag-results/personal-500-80.json",
+    "config": {
+      "size": 500,
+      "overlap": 80,
+      "k": 5,
+      "retriever": "BM25",
+      "generate": false,
+      "noContext": false
+    },
+    "summary": {
+      "questions": 11,
+      "answerable": 10,
+      "excluded_unanswerable": 1,
+      "missing_ground_truth": 0,
+      "hit_rate_at_1": 0.5,
+      "recall_at_1": 0.5,
+      "hit_rate_at_3": 0.7,
+      "recall_at_3": 0.7,
+      "hit_rate_at_5": 0.8,
+      "recall_at_5": 0.8,
+      "hit_rate_at_10": 0.9,
+      "recall_at_10": 0.9
+    },
+    "by_type": {
+      "other": {
+        "count": 6,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 0.8333333333333334,
+        "recall_at_3": 0.8333333333333334,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "exact_identifier": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.5,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 0.5,
+        "recall_at_10": 0.5
+      },
+      "split_answer": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 0,
+        "recall_at_5": 0,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "vocabulary": {
+        "count": 1,
+        "hit_rate_at_1": 1,
+        "recall_at_1": 1,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      }
+    }
+  },
+  {
+    "file": "rag-results/personal-500-120.json",
+    "config": {
+      "size": 500,
+      "overlap": 120,
+      "k": 5,
+      "retriever": "BM25",
+      "generate": false,
+      "noContext": false
+    },
+    "summary": {
+      "questions": 11,
+      "answerable": 10,
+      "excluded_unanswerable": 1,
+      "missing_ground_truth": 0,
+      "hit_rate_at_1": 0.5,
+      "recall_at_1": 0.4,
+      "hit_rate_at_3": 0.7,
+      "recall_at_3": 0.7,
+      "hit_rate_at_5": 0.8,
+      "recall_at_5": 0.75,
+      "hit_rate_at_10": 0.9,
+      "recall_at_10": 0.9
+    },
+    "by_type": {
+      "other": {
+        "count": 6,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.3333333333333333,
+        "hit_rate_at_3": 0.8333333333333334,
+        "recall_at_3": 0.8333333333333334,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 0.9166666666666666,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "exact_identifier": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.5,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 0.5,
+        "recall_at_10": 0.5
+      },
+      "split_answer": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 0,
+        "recall_at_5": 0,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "vocabulary": {
+        "count": 1,
+        "hit_rate_at_1": 1,
+        "recall_at_1": 1,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      }
+    }
+  },
+  {
+    "file": "rag-results/personal-800-80.json",
+    "config": {
+      "size": 800,
+      "overlap": 80,
+      "k": 5,
+      "retriever": "BM25",
+      "generate": false,
+      "noContext": false
+    },
+    "summary": {
+      "questions": 11,
+      "answerable": 10,
+      "excluded_unanswerable": 1,
+      "missing_ground_truth": 0,
+      "hit_rate_at_1": 0.7,
+      "recall_at_1": 0.7,
+      "hit_rate_at_3": 0.8,
+      "recall_at_3": 0.8,
+      "hit_rate_at_5": 0.9,
+      "recall_at_5": 0.9,
+      "hit_rate_at_10": 0.9,
+      "recall_at_10": 0.9
+    },
+    "by_type": {
+      "other": {
+        "count": 6,
+        "hit_rate_at_1": 0.6666666666666666,
+        "recall_at_1": 0.6666666666666666,
+        "hit_rate_at_3": 0.8333333333333334,
+        "recall_at_3": 0.8333333333333334,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "exact_identifier": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.5,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 0.5,
+        "recall_at_10": 0.5
+      },
+      "split_answer": {
+        "count": 1,
+        "hit_rate_at_1": 1,
+        "recall_at_1": 1,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "vocabulary": {
+        "count": 1,
+        "hit_rate_at_1": 1,
+        "recall_at_1": 1,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      }
+    }
+  },
+  {
+    "file": "rag-results/personal-800-120.json",
+    "config": {
+      "size": 800,
+      "overlap": 120,
+      "k": 5,
+      "retriever": "BM25",
+      "generate": false,
+      "noContext": false
+    },
+    "summary": {
+      "questions": 11,
+      "answerable": 10,
+      "excluded_unanswerable": 1,
+      "missing_ground_truth": 0,
+      "hit_rate_at_1": 0.6,
+      "recall_at_1": 0.6,
+      "hit_rate_at_3": 0.9,
+      "recall_at_3": 0.9,
+      "hit_rate_at_5": 0.9,
+      "recall_at_5": 0.9,
+      "hit_rate_at_10": 0.9,
+      "recall_at_10": 0.9
+    },
+    "by_type": {
+      "other": {
+        "count": 6,
+        "hit_rate_at_1": 0.6666666666666666,
+        "recall_at_1": 0.6666666666666666,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "exact_identifier": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.5,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 0.5,
+        "recall_at_10": 0.5
+      },
+      "split_answer": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "vocabulary": {
+        "count": 1,
+        "hit_rate_at_1": 1,
+        "recall_at_1": 1,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      }
+    }
+  }
+]

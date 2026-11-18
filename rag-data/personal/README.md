@@ -1,0 +1,1 @@
+Second corpus: documentation of this EPITA support-triage project (README.md, LLM-DM-report.md, RAG-V2-README.md). 11 original questions, including one unanswerable. This is a smaller, technical project-documentation corpus; results may not generalize to Kestrel.

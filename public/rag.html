@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RAG V3 Lab — Hybrid Search</title>
+  <style>
+    :root {
+      --primary: #2155b6;
+      --bg: #f4f6fa;
+      --card-bg: #ffffff;
+      --border: #dce1ea;
+      --text: #172033;
+      --text-muted: #536176;
+      --dense-color: #7c3aed;
+      --bm25-color: #2563eb;
+      --graph-color: #059669;
+    }
+    body {
+      font: 15px/1.5 system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 20px 40px;
+    }
+    header {
+      margin-bottom: 20px;
+    }
+    h1 { margin: 0 0 6px; font-size: 28px; }
+    p.subtitle { margin: 0; color: var(--text-muted); font-size: 15px; }
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 16px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    label { display: inline-flex; align-items: center; gap: 6px; margin: 6px 12px 6px 0; font-weight: 500; }
+    input, select, textarea, button { font: inherit; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; }
+    textarea { width: 100%; box-sizing: border-box; min-height: 80px; resize: vertical; }
+    button { background: var(--primary); color: white; border: 0; cursor: pointer; font-weight: 500; transition: opacity .15s; }
+    button:hover { opacity: 0.9; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    nav { display: flex; gap: 8px; margin: 18px 0; }
+    nav button { background: #475569; }
+    nav button.active { background: var(--primary); }
+    .hint { color: var(--text-muted); font-size: 13px; margin: 6px 0; }
+    .checks { display: flex; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .badge-dense { background: #f3e8ff; color: var(--dense-color); border: 1px solid #d8b4fe; }
+    .badge-bm25 { background: #dbeafe; color: var(--bm25-color); border: 1px solid #bfdbfe; }
+    .badge-graph { background: #d1fae5; color: var(--graph-color); border: 1px solid #a7f3d0; }
+    .badge-entity { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+    .path-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid var(--graph-color);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 12px 0;
+    }
+    .path-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0;
+      font-family: ui-monospace, monospace;
+      font-size: 13px;
+    }
+    .path-arrow { color: #64748b; font-weight: bold; }
+    .chunk-card {
+      background: #fafafa;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 10px 0;
+    }
+    .chunk-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .chunk-source { font-weight: 600; color: #1e293b; font-size: 14px; }
+    .chunk-text {
+      font-size: 13.5px;
+      color: #334155;
+      background: white;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #edf2f7;
+      white-space: pre-wrap;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      max-height: 400px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RAG V3 Lab</h1>
+    <p class="subtitle">Hybrid Search Architecture: Dense Embeddings + BM25 Lexical + Concept Graph + Reciprocal Rank Fusion (RRF)</p>
+  </header>
+
+  <section>
+    <label>Corpus:
+      <select id="corpus"></select>
+    </label>
+    <label>Chunk Size: <input id="size" type="number" value="800" min="100" max="4000" style="width:75px"></label>
+    <label>Overlap: <input id="overlap" type="number" value="120" min="0" style="width:65px"></label>
+    <label>Top-k: <input id="k" type="number" value="5" min="1" max="10" style="width:55px"></label>
+    <button onclick="refresh()">Refresh Corpora</button>
+    <p style="margin: 10px 0 4px; font-weight: 500;">Filter Corpus Documents (leave all checked to search whole corpus):</p>
+    <div id="docs"></div>
+  </section>
+
+  <section>
+    <h2>Retrievers & Fusion Controls (RRF)</h2>
+    <div class="checks">
+      <label><input type="checkbox" id="dense" checked> <span class="badge badge-dense">Dense</span> Semantic Embeddings</label>
+      <label><input type="checkbox" id="bm25" checked> <span class="badge badge-bm25">BM25</span> Lexical Search</label>
+      <label><input type="checkbox" id="graph"> <span class="badge badge-graph">Concept Graph</span> Kestrel Reasoning</label>
+    </div>
+    <p class="hint">Toggle retrievers to test individual or fused retrieval. When Concept Graph is enabled on Kestrel, entity traversal and evidence provenance will be displayed below.</p>
+    <button id="buildGraph" onclick="buildGraph()">Build / Rebuild Kestrel Graph</button>
+    <span id="graphStatus" class="hint" style="margin-left: 10px;"></span>
+  </section>
+
+  <nav>
+    <button id="btn-ask" class="active" onclick="tab('ask')">Ask & Inspect</button>
+    <button id="btn-eval" onclick="tab('eval')">Benchmark Evaluation</button>
+    <button id="btn-words" onclick="tab('words')">Vocabulary & Words</button>
+    <button id="btn-manage" onclick="tab('manage')">Document Management</button>
+  </nav>
+
+  <section id="ask">
+    <h2>Ask Question with Provenance & Path</h2>
+    <textarea id="question" placeholder="e.g. Error KST-5031 happened on the last two scheduled reports. Which team should support contact, and where?"></textarea>
+    <div style="margin-top: 8px;">
+      <label><input id="generate" type="checkbox"> Generate LLM Answer & Grounded Citations</label>
+      <button onclick="run('ask')">Retrieve & Answer</button>
+    </div>
+  </section>
+
+  <section id="eval" hidden>
+    <h2>Repeatable V3 Benchmark Evaluation</h2>
+    <p class="hint">Evaluates Dense, Dense + BM25, and Dense + BM25 + Graph across all question types (HitRate@k and Recall@k for k = 1, 3, 5, 10).</p>
+    <label><input type="checkbox" id="genEval"> Generate model answers during benchmark (tracks token cost)</label>
+    <button onclick="run('evaluate')">Run Full Evaluation</button>
+    <p class="hint">CLI equivalent: <code>npm run rag:evaluate:v3 -- kestrel</code></p>
+  </section>
+
+  <section id="words" hidden>
+    <h2>Word Analytics (BM25 Vocabulary & IDF View)</h2>
+    <input id="wordQuestion" placeholder="Enter word or question" style="width:65%">
+    <button onclick="run('words')">Analyze</button>
+  </section>
+
+  <section id="manage" hidden>
+    <h2>Document & Question Management</h2>
+    <input id="filename" placeholder="document-name.md" style="width: 250px;">
+    <textarea id="content" placeholder="Paste document content..."></textarea>
+    <div style="margin: 8px 0;">
+      <button onclick="upload()">Save Document</button>
+      <button onclick="removeDocument()" style="background:#dc2626;">Delete Document</button>
+    </div>
+    <h3 style="margin-top: 20px;">Questions Set (JSONL)</h3>
+    <textarea id="jsonl" placeholder="Paste questions JSONL..."></textarea>
+    <button onclick="uploadQuestions()">Upload Questions JSONL</button>
+  </section>
+
+  <section id="visual-results">
+    <h2>Retrieval Results & Provenance</h2>
+    <div id="output-content">
+      <p class="hint">Enter a question above and click <strong>Retrieve & Answer</strong>.</p>
+    </div>
+    <details style="margin-top: 20px;">
+      <summary style="cursor: pointer; color: var(--primary); font-weight: 500;">View Raw JSON Response</summary>
+      <pre id="raw-json" style="margin-top: 10px;">{}</pre>
+    </details>
+  </section>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const api = async (url, method='GET', data) => {
+      const r = await fetch(url, {
+        method,
+        headers: {'Content-Type': 'application/json'},
+        body: data ? JSON.stringify(data) : undefined
+      });
+      const j = await r.json();
+      if (!r.ok) throw Error(j.error || `HTTP ${r.status}`);
+      return j;
+    };
+
+    const cfg = () => ({
+      corpus: $('corpus').value,
+      size: Number($('size').value),
+      overlap: Number($('overlap').value),
+      k: Number($('k').value),
+      documents: [...document.querySelectorAll('#docs input:checked')].map(x => x.value),
+      dense: $('dense').checked,
+      bm25: $('bm25').checked,
+      graph: $('graph').checked
+    });
+
+    function tab(id) {
+      for (const x of ['ask','eval','words','manage']) {
+        $(x).hidden = (x !== id);
+        const b = $('btn-' + x);
+        if (b) b.classList.toggle('active', x === id);
+      }
+    }
+
+    async function refresh() {
+      try {
+        const corpora = await api('/api/rag/corpora');
+        $('corpus').innerHTML = corpora.map(x => `<option value="${x.name}">${x.name} (${x.documents} docs${x.graph ? ' • graph ready' : ''})</option>`).join('');
+        await docs();
+      } catch (e) {
+        renderError(e.message);
+      }
+    }
+
+    async function docs() {
+      if (!$('corpus').value) return;
+      const isKestrel = $('corpus').value === 'kestrel';
+      $('graph').disabled = !isKestrel;
+      if (!isKestrel) $('graph').checked = false;
+      const names = await api('/api/rag/documents?corpus=' + encodeURIComponent($('corpus').value));
+      $('docs').replaceChildren(...names.map(n => {
+        const l = document.createElement('label');
+        const i = document.createElement('input');
+        i.type = 'checkbox';
+        i.checked = true;
+        i.value = n;
+        l.append(i, document.createTextNode(' ' + n));
+        return l;
+      }));
+    }
+
+    function renderError(msg) {
+      $('output-content').innerHTML = `<div style="background:#fee2e2; border:1px solid #f87171; color:#991b1b; padding:12px; border-radius:6px;"><strong>Error:</strong> ${msg}</div>`;
+      $('raw-json').textContent = JSON.stringify({ error: msg }, null, 2);
+    }
+
+    function renderAskResults(r) {
+      let html = '';
+
+      // 1. Answer Card
+      if (r.answer) {
+        html += `<div style="background:#ecfdf5; border:1px solid #6ee7b7; border-left:4px solid #10b981; border-radius:8px; padding:14px 18px; margin-bottom:16px;">
+          <h3 style="margin:0 0 6px; color:#065f46;">Generated Answer</h3>
+          <p style="margin:0; font-size:15px; color:#064e3b;">${r.answer.answer}</p>
+          ${r.answer.citations && r.answer.citations.length ? `
+            <div style="margin-top:10px; font-size:13px; color:#047857;">
+              <strong>Citations:</strong> ${r.answer.citations.map(c => `<code>${c}</code>`).join(', ')}
+            </div>
+          ` : ''}
+        </div>`;
+      }
+
+      // 2. Concept Graph Reasoning Path
+      if (r.graph && (r.graph.entities?.length || r.graph.paths?.length)) {
+        html += `<div class="path-box">
+          <h3 style="margin:0 0 8px; color:var(--graph-color); display:flex; align-items:center; gap:8px;">
+            <span class="badge badge-graph">Concept Graph</span> Reasoning Path Behind Answer
+          </h3>`;
+        
+        if (r.graph.entities?.length) {
+          html += `<div style="margin-bottom:8px;">
+            <strong style="font-size:13px; color:#475569;">Question Entities Detected:</strong>
+            ${r.graph.entities.map(e => `<span class="badge badge-entity">${e.name} <small>(${e.type})</small></span>`).join(' ')}
+          </div>`;
+        }
+
+        if (r.graph.paths?.length) {
+          html += `<div>
+            <strong style="font-size:13px; color:#475569;">Edges Followed & Provenance Chunks:</strong>`;
+          const uniquePaths = [];
+          const seen = new Set();
+          for (const p of r.graph.paths) {
+            const key = `${p.from}->${p.relation}->${p.to}->${p.chunk_id}`;
+            if (!seen.has(key)) {
+              seen.add(key);
+              uniquePaths.push(p);
+            }
+          }
+          uniquePaths.forEach(p => {
+            html += `<div class="path-step">
+              <span style="font-weight:600; color:#1e293b;">${p.from}</span>
+              <span class="path-arrow">──[${p.relation}]──▶</span>
+              <span style="font-weight:600; color:#1e293b;">${p.to}</span>
+              <span style="color:#64748b; font-size:12px;">(chunk: <code>${p.chunk_id}</code>, hop depth: ${p.depth})</span>
+            </div>`;
+          });
+          html += `</div>`;
+        }
+        html += `</div>`;
+      }
+
+      // 3. Fused Retrieved Chunks
+      if (r.retrieved && r.retrieved.length) {
+        html += `<h3 style="margin:18px 0 10px;">Top Retrieved Chunks (RRF Fused)</h3>`;
+        r.retrieved.forEach((c, idx) => {
+          const ranks = c.retriever_ranks || c.ranks || {};
+          let badges = '';
+          if (ranks.dense) badges += `<span class="badge badge-dense">Dense #${ranks.dense}</span>`;
+          if (ranks.bm25) badges += `<span class="badge badge-bm25">BM25 #${ranks.bm25}</span>`;
+          if (ranks.graph) badges += `<span class="badge badge-graph">Graph #${ranks.graph}</span>`;
+
+          html += `<div class="chunk-card">
+            <div class="chunk-header">
+              <span class="chunk-source">#${idx+1} ${c.source} <small style="color:#64748b;">(${c.id})</small></span>
+              <div>
+                ${badges}
+                <span class="badge" style="background:#f1f5f9; color:#475569;">RRF Score: ${c.score?.toFixed(5) || 'N/A'}</span>
+              </div>
+            </div>
+            <div class="chunk-text">${c.text}</div>
+          </div>`;
+        });
+      } else {
+        html += `<p class="hint">No chunks retrieved for this question.</p>`;
+      }
+
+      $('output-content').innerHTML = html;
+      $('raw-json').textContent = JSON.stringify(r, null, 2);
+    }
+
+    async function run(mode) {
+      try {
+        $('output-content').innerHTML = '<p class="hint">Processing query...</p>';
+        const p = cfg();
+        if (mode === 'ask') {
+          p.question = $('question').value;
+          p.generate = $('generate').checked;
+          if (!p.question.trim()) throw Error('Please enter a question first.');
+          const r = await api('/api/rag/ask', 'POST', p);
+          renderAskResults(r);
+        } else if (mode === 'words') {
+          p.question = $('wordQuestion').value;
+          const r = await api('/api/rag/words', 'POST', p);
+          $('output-content').innerHTML = `<p><strong>Vocabulary:</strong> ${r.chunk_count} chunks analyzed. Found ${r.question_words?.length || 0} query terms in dictionary.</p>`;
+          $('raw-json').textContent = JSON.stringify(r, null, 2);
+        } else if (mode === 'evaluate') {
+          p.generate = $('genEval').checked;
+          $('output-content').innerHTML = '<p class="hint">Running evaluation across all configurations... this may take a few seconds.</p>';
+          const r = await api('/api/rag/evaluate', 'POST', p);
+          let evalHtml = `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:8px; padding:12px; margin-bottom:14px;">
+            <h3 style="margin:0 0 6px; color:#15803d;">Evaluation Complete</h3>
+            <p style="margin:0; font-size:14px;">Saved results to <code>${r.file}</code></p>
+          </div>`;
+          evalHtml += `<table style="width:100%; border-collapse:collapse; font-size:14px;">
+            <thead>
+              <tr style="background:#f1f5f9; text-align:left;">
+                <th style="padding:8px; border:1px solid var(--border);">Configuration</th>
+                <th style="padding:8px; border:1px solid var(--border);">Hit@1</th>
+                <th style="padding:8px; border:1px solid var(--border);">Hit@3</th>
+                <th style="padding:8px; border:1px solid var(--border);">Hit@5</th>
+                <th style="padding:8px; border:1px solid var(--border);">Recall@5</th>
+              </tr>
+            </thead>
+            <tbody>`;
+          for (const res of r.results || []) {
+            evalHtml += `<tr>
+              <td style="padding:8px; border:1px solid var(--border); font-weight:600;">${res.configuration}</td>
+              <td style="padding:8px; border:1px solid var(--border);">${(res.summary.hit_rate_at_1*100).toFixed(1)}%</td>
+              <td style="padding:8px; border:1px solid var(--border);">${(res.summary.hit_rate_at_3*100).toFixed(1)}%</td>
+              <td style="padding:8px; border:1px solid var(--border);">${(res.summary.hit_rate_at_5*100).toFixed(1)}%</td>
+              <td style="padding:8px; border:1px solid var(--border);">${(res.summary.recall_at_5*100).toFixed(1)}%</td>
+            </tr>`;
+          }
+          evalHtml += `</tbody></table>`;
+          $('output-content').innerHTML = evalHtml;
+          $('raw-json').textContent = JSON.stringify(r, null, 2);
+        }
+      } catch (e) {
+        renderError(e.message);
+      }
+    }
+
+    async function buildGraph() {
+      const b = $('buildGraph');
+      b.disabled = true;
+      $('graphStatus').textContent = 'Building Kestrel graph...';
+      try {
+        const r = await api('/api/rag/graph/build', 'POST', {
+          corpus: 'kestrel',
+          size: Number($('size').value),
+          overlap: Number($('overlap').value)
+        });
+        $('graphStatus').textContent = `Graph ready: ${r.nodes} entities, ${r.edges} relations.`;
+        await refresh();
+        $('raw-json').textContent = JSON.stringify(r, null, 2);
+      } catch (e) {
+        $('graphStatus').textContent = e.message;
+        renderError(e.message);
+      } finally {
+        b.disabled = false;
+      }
+    }
+
+    async function upload() {
+      try {
+        const r = await api('/api/rag/document', 'POST', {
+          corpus: $('corpus').value,
+          filename: $('filename').value,
+          text: $('content').value
+        });
+        await docs();
+        $('raw-json').textContent = JSON.stringify(r, null, 2);
+      } catch (e) {
+        renderError(e.message);
+      }
+    }
+
+    async function removeDocument() {
+      if (!confirm('Delete document ' + $('filename').value + '?')) return;
+      try {
+        const r = await api('/api/rag/document', 'DELETE', {
+          corpus: $('corpus').value,
+          filename: $('filename').value
+        });
+        await docs();
+        $('raw-json').textContent = JSON.stringify(r, null, 2);
+      } catch (e) {
+        renderError(e.message);
+      }
+    }
+
+    async function uploadQuestions() {
+      try {
+        const r = await api('/api/rag/questions', 'POST', {
+          corpus: $('corpus').value,
+          jsonl: $('jsonl').value
+        });
+        $('raw-json').textContent = JSON.stringify(r, null, 2);
+      } catch (e) {
+        renderError(e.message);
+      }
+    }
+
+    $('corpus').addEventListener('change', docs);
+    refresh();
+  </script>
+</body>
+</html>

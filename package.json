@@ -1,0 +1,25 @@
+{
+  "name": "epita-triage-app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test tests/*.test.js",
+    "rag:v2": "node server/rag-v2.js",
+    "rag:evaluate": "node scripts/evaluate-v2.js",
+    "rag:v3": "node server/rag-v3.js",
+    "rag:graph": "node scripts/build-graph-v3.js",
+    "rag:evaluate:v3": "node scripts/evaluate-v3.js",
+    "rag:v1": "node server/rag-v1.js",
+    "rag:v4": "node server/rag-v4.js",
+    "rag:evaluate:v4": "node scripts/evaluate-v4.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "zod": "^4.6.7"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

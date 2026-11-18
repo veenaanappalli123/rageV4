@@ -1,0 +1,330 @@
+[
+  {
+    "file": "rag-results/kestrel-500-80.json",
+    "config": {
+      "size": 500,
+      "overlap": 80,
+      "k": 5,
+      "retriever": "BM25",
+      "generate": false,
+      "noContext": false
+    },
+    "summary": {
+      "questions": 10,
+      "answerable": 8,
+      "excluded_unanswerable": 2,
+      "missing_ground_truth": 0,
+      "hit_rate_at_1": 0.375,
+      "recall_at_1": 0.25,
+      "hit_rate_at_3": 0.375,
+      "recall_at_3": 0.25,
+      "hit_rate_at_5": 0.5,
+      "recall_at_5": 0.3125,
+      "hit_rate_at_10": 0.875,
+      "recall_at_10": 0.625
+    },
+    "by_type": {
+      "exact_identifier": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.25,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.25,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.25,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.75
+      },
+      "split_answer": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.25,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.25,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.5
+      },
+      "vocabulary": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 0,
+        "recall_at_5": 0,
+        "hit_rate_at_10": 0,
+        "recall_at_10": 0
+      },
+      "versions": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.5,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "two_hop": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 0,
+        "recall_at_5": 0,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.5
+      }
+    }
+  },
+  {
+    "file": "rag-results/kestrel-500-120.json",
+    "config": {
+      "size": 500,
+      "overlap": 120,
+      "k": 5,
+      "retriever": "BM25",
+      "generate": false,
+      "noContext": false
+    },
+    "summary": {
+      "questions": 10,
+      "answerable": 8,
+      "excluded_unanswerable": 2,
+      "missing_ground_truth": 0,
+      "hit_rate_at_1": 0.375,
+      "recall_at_1": 0.25,
+      "hit_rate_at_3": 0.5,
+      "recall_at_3": 0.4375,
+      "hit_rate_at_5": 0.625,
+      "recall_at_5": 0.5,
+      "hit_rate_at_10": 0.875,
+      "recall_at_10": 0.625
+    },
+    "by_type": {
+      "exact_identifier": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.25,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.5,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.75
+      },
+      "split_answer": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.25,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.25,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.25,
+        "hit_rate_at_10": 0.5,
+        "recall_at_10": 0.25
+      },
+      "vocabulary": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 0,
+        "recall_at_5": 0,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.5
+      },
+      "versions": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "two_hop": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.5
+      }
+    }
+  },
+  {
+    "file": "rag-results/kestrel-800-80.json",
+    "config": {
+      "size": 800,
+      "overlap": 80,
+      "k": 5,
+      "retriever": "BM25",
+      "generate": false,
+      "noContext": false
+    },
+    "summary": {
+      "questions": 10,
+      "answerable": 8,
+      "excluded_unanswerable": 2,
+      "missing_ground_truth": 0,
+      "hit_rate_at_1": 0.5,
+      "recall_at_1": 0.3125,
+      "hit_rate_at_3": 0.75,
+      "recall_at_3": 0.5625,
+      "hit_rate_at_5": 0.75,
+      "recall_at_5": 0.5625,
+      "hit_rate_at_10": 0.875,
+      "recall_at_10": 0.75
+    },
+    "by_type": {
+      "exact_identifier": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.25,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.25,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.25,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "split_answer": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.25,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 0.75,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 0.75,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.75
+      },
+      "vocabulary": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 0,
+        "recall_at_5": 0,
+        "hit_rate_at_10": 0,
+        "recall_at_10": 0
+      },
+      "versions": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 1,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "two_hop": {
+        "count": 1,
+        "hit_rate_at_1": 1,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 0.5,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.5
+      }
+    }
+  },
+  {
+    "file": "rag-results/kestrel-800-120.json",
+    "config": {
+      "size": 800,
+      "overlap": 120,
+      "k": 5,
+      "retriever": "BM25",
+      "generate": false,
+      "noContext": false
+    },
+    "summary": {
+      "questions": 10,
+      "answerable": 8,
+      "excluded_unanswerable": 2,
+      "missing_ground_truth": 0,
+      "hit_rate_at_1": 0.25,
+      "recall_at_1": 0.15625,
+      "hit_rate_at_3": 0.5,
+      "recall_at_3": 0.40625,
+      "hit_rate_at_5": 0.5,
+      "recall_at_5": 0.46875,
+      "hit_rate_at_10": 0.75,
+      "recall_at_10": 0.6875
+    },
+    "by_type": {
+      "exact_identifier": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.5,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.5,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.5,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 0.75
+      },
+      "split_answer": {
+        "count": 2,
+        "hit_rate_at_1": 0.5,
+        "recall_at_1": 0.125,
+        "hit_rate_at_3": 0.5,
+        "recall_at_3": 0.375,
+        "hit_rate_at_5": 0.5,
+        "recall_at_5": 0.375,
+        "hit_rate_at_10": 0.5,
+        "recall_at_10": 0.5
+      },
+      "vocabulary": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 0,
+        "recall_at_5": 0,
+        "hit_rate_at_10": 0,
+        "recall_at_10": 0
+      },
+      "versions": {
+        "count": 2,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 1,
+        "recall_at_3": 0.75,
+        "hit_rate_at_5": 1,
+        "recall_at_5": 1,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      },
+      "two_hop": {
+        "count": 1,
+        "hit_rate_at_1": 0,
+        "recall_at_1": 0,
+        "hit_rate_at_3": 0,
+        "recall_at_3": 0,
+        "hit_rate_at_5": 0,
+        "recall_at_5": 0,
+        "hit_rate_at_10": 1,
+        "recall_at_10": 1
+      }
+    }
+  }
+]
